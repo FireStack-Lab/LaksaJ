@@ -1,7 +1,12 @@
 package com.firestack.laksaj.blockchain;
 
-public abstract class EventParam {
-    protected String vname;
-    protected String type;
-    protected String value;
+import lombok.Data;
+import lombok.experimental.Builder;
+
+@Data
+@Builder
+public class EventParam {
+    private String vname;
+    private String type;
+    private String value;
 }

@@ -1,6 +1,6 @@
 package com.firestack.laksaj.blockchain;
 
-public abstract class EventLogEntry {
+public class EventLogEntry {
     protected String address;
     protected String eventName;
     protected EventParam[] params;
