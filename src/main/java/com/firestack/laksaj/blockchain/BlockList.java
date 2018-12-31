@@ -6,6 +6,7 @@ import lombok.experimental.Builder;
 
 @Data
 @Builder
-public class ShardingStructure {
-    private int[] numPeers;
+public class BlockList {
+    private BlockShort[] data;
+    private int maxPages;
 }
