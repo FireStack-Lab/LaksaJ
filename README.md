@@ -1,2 +1,2 @@
 # LaksaJ
-LaksaJ -- Zilliqa Blockchain JavaLibrary 
+LaksaJ -- Zilliqa Blockchain Java Library 
