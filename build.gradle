@@ -16,4 +16,5 @@ dependencies {
     compile "org.projectlombok:lombok:1.12.6"
     compile "com.madgag.spongycastle:core:1.53.0.0"
     compile "com.madgag.spongycastle:prov:1.53.0.0"
+    compile 'com.google.guava:guava:27.0.1-jre'
 }

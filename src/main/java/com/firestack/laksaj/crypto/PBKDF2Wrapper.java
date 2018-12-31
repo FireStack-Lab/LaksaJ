@@ -1,16 +1,16 @@
 package com.firestack.laksaj.crypto;
 
 
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.PBEKeySpec;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
+import org.spongycastle.crypto.digests.SHA256Digest;
+import org.spongycastle.crypto.generators.PKCS5S2ParametersGenerator;
+import org.spongycastle.crypto.params.KeyParameter;
+
+import java.io.UnsupportedEncodingException;
 
 public class PBKDF2Wrapper {
-    public static byte[] generateDerivedScryptKey(String password, byte[] salt, int iterationCount, int keySize) throws NoSuchAlgorithmException, InvalidKeySpecException {
-        PBEKeySpec spec = new PBEKeySpec(password.toCharArray(), salt, iterationCount, keySize);
-        SecretKeyFactory skf = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
-        byte[] hash = skf.generateSecret(spec).getEncoded();
-        return hash;
+    public static byte[] generateDerivedScryptKey(String password, byte[] salt, int iterationCount, int keySize) throws UnsupportedEncodingException {
+        PKCS5S2ParametersGenerator generator = new PKCS5S2ParametersGenerator(new SHA256Digest());
+        generator.init(password.getBytes("UTF-8"), salt, iterationCount);
+        return ((KeyParameter) generator.generateDerivedParameters(keySize * 8)).getKey();
     }
 }
