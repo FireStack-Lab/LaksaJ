@@ -1,5 +1,7 @@
 package com.firestack.laksaj.crypto;
 
+import java.security.SecureRandom;
+
 public class KeyTools {
 
     public static String getAddressFromPrivateKey(String privateKey) {
@@ -17,8 +19,14 @@ public class KeyTools {
         return "";
     }
 
-    public static boolean VerifyPrivateKey(String privateKey) {
+    public static boolean verifyPrivateKey(String privateKey) {
         //todo
         return true;
+    }
+
+    public static byte[] generateRandomBytes(int size) {
+        byte[] bytes = new byte[size];
+        new SecureRandom().nextBytes(bytes);
+        return bytes;
     }
 }
