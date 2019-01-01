@@ -16,11 +16,11 @@ public class PBKDF2WrapperTest {
                 .count(262144)
                 .dkLen(32)
                 .build();
-        byte[] bytes = PBKDF2Wrapper.getDerivedKey("stronk_password",
+        byte[] bytes = PBKDF2Wrapper.getDerivedKey("stronk_password".getBytes(),
                 ByteUtil.hexStringToByteArray(params.getSalt()), params.getCount(), params.getDkLen());
-        byte[] macArray = HashUtil.generateMac(bytes,ByteUtil.hexStringToByteArray("dc55047d51f795509ffb6969db837a4481887ccfb6bfb7c259fb77b19078c2a4"));
+        byte[] macArray = HashUtil.generateMac(bytes, ByteUtil.hexStringToByteArray("dc55047d51f795509ffb6969db837a4481887ccfb6bfb7c259fb77b19078c2a4"));
         System.out.println(ByteUtil.byteArrayToHexString(macArray));
-        Assert.assertEquals(ByteUtil.byteArrayToHexString(macArray).toLowerCase(),"dedc361c53c421974c2811f7f989bc530aebf9a90c487b4161e0e54ae6faba31");
+        Assert.assertEquals(ByteUtil.byteArrayToHexString(macArray).toLowerCase(), "dedc361c53c421974c2811f7f989bc530aebf9a90c487b4161e0e54ae6faba31");
 
     }
 }
