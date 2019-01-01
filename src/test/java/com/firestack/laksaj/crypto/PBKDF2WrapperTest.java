@@ -16,7 +16,7 @@ public class PBKDF2WrapperTest {
                 .count(262144)
                 .dkLen(32)
                 .build();
-        byte[] bytes = PBKDF2Wrapper.generateDerivedScryptKey("stronk_password",
+        byte[] bytes = PBKDF2Wrapper.getDerivedKey("stronk_password",
                 ByteUtil.hexStringToByteArray(params.getSalt()), params.getCount(), params.getDkLen());
         byte[] macArray = HashUtil.generateMac(bytes,ByteUtil.hexStringToByteArray("dc55047d51f795509ffb6969db837a4481887ccfb6bfb7c259fb77b19078c2a4"));
         System.out.println(ByteUtil.byteArrayToHexString(macArray));
