@@ -15,7 +15,7 @@ public class ScryptWrapperTest {
                 .r(8)
                 .p(1)
                 .build();
-        byte[] bytes = ScryptWrapper.generateDerivedScryptKey("stronk_password".getBytes(), ByteUtil.hexStringToByteArray(params.getSalt()), params.getN(), params.getR(), params.getP(), params.getDkLen());
+        byte[] bytes = ScryptWrapper.getDerivedKey("stronk_password".getBytes(), ByteUtil.hexStringToByteArray(params.getSalt()), params.getN(), params.getR(), params.getP(), params.getDkLen());
         byte[] macArray = HashUtil.generateMac(bytes,ByteUtil.hexStringToByteArray("ecdf81453d031ac2fa068b7185ddac044fa4632d3b061400d3c07a86510b4823"));
         System.out.println(ByteUtil.byteArrayToHexString(macArray));
         Assert.assertEquals("ed7fa37a4adbc8b7bbe0d43a329a047f89e2dcf7f2dfc96babfe79edd955f7a3",ByteUtil.byteArrayToHexString(macArray).toLowerCase());
