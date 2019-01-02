@@ -25,6 +25,10 @@ public class KeyTools {
                 CURVE_PARAMS.getH());
     }
 
+    public static String generatePrivateKey() {
+        return ECKeyPairGenerator.generatePrivateKey();
+    }
+
     public static String getAddressFromPrivateKey(String privateKey) {
         String publicKey = getPublicKeyFromPrivateKey(privateKey, false);
         return getAddressFromPublicKey(publicKey);

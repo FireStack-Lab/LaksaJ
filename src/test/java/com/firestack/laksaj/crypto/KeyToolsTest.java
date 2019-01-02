@@ -1,14 +1,25 @@
 package com.firestack.laksaj.crypto;
 
+import com.firestack.laksaj.utils.ByteUtil;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class KeyToolsTest {
+
+    @Test
+    public void generatePrivateKey() {
+        String privateKey = KeyTools.generatePrivateKey();
+        System.out.println(privateKey);
+        Assert.assertNotNull(privateKey);
+        Assert.assertEquals(privateKey.length(),64);
+    }
+
     @Test
     public void generateRandomBytes() {
-        byte[] bytes = KeyTools.generateRandomBytes(20);
+        byte[] bytes = KeyTools.generateRandomBytes(32);
         Assert.assertNotNull(bytes);
-        Assert.assertTrue(20 == bytes.length);
+        Assert.assertTrue(32 == bytes.length);
+        System.out.println(ByteUtil.byteArrayToHexString(bytes).toLowerCase());
     }
 
     @Test
