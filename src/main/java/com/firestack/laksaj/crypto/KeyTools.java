@@ -1,6 +1,7 @@
 package com.firestack.laksaj.crypto;
 
 import com.firestack.laksaj.utils.ByteUtil;
+import com.firestack.laksaj.utils.HashUtil;
 import org.bouncycastle.asn1.x9.X9ECParameters;
 import org.bouncycastle.crypto.ec.CustomNamedCurves;
 import org.bouncycastle.crypto.params.ECDomainParameters;
@@ -40,8 +41,12 @@ public class KeyTools {
     }
 
     public static String getAddressFromPublicKey(String publicKey) {
-        //todo
-        return "";
+        byte[] data = getAddressFromPublicKey(ByteUtil.hexStringToByteArray(publicKey));
+        return ByteUtil.byteArrayToHexString(data);
+    }
+
+    public static byte[] getAddressFromPublicKey(byte[] publicKey) {
+        return HashUtil.sha256(publicKey);
     }
 
     public static boolean verifyPrivateKey(String privateKey) {
