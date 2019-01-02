@@ -30,4 +30,11 @@ public class KeyToolsTest {
         address = KeyTools.getAddressFromPublicKey(publicKey);
         Assert.assertEquals(address.toLowerCase(), "f5b2dfddfdbd0d13a67085a5ad5744c0c6246d9704592116fccbf41978fe99c8");
     }
+
+    @Test
+    public void getAddressFromPrivateKey() {
+        String privateKey = "ca7de577b3e6968da27088d22e918c039a96af3d4821b7e103560fb6ca1185c4";
+        String address = KeyTools.getAddressFromPrivateKey(privateKey);
+        Assert.assertEquals(address.toLowerCase(),"0179e96ddeb567686e47f71794256ddbdbbfd5ca865b26d6751c66c84aa1ef4b");
+    }
 }

@@ -12,8 +12,9 @@ The project is still under development.
 - [ ] verifyPrivateKey
 - [x] getPublicKeyFromPrivateKey
 - [ ] isPublicjKey
-- [ ] getPublicKeyFromPrivateKey
+- [x] getPublicKeyFromPrivateKey
 - [x] getAddressFromPublicKey
+- [x] getAddressFromPrivateKey
 - [ ] IsAddress
 - [ ] SignTransaction
 - [ ] VerifySignature

@@ -26,8 +26,8 @@ public class KeyTools {
     }
 
     public static String getAddressFromPrivateKey(String privateKey) {
-        //todo
-        return "";
+        String publicKey = getPublicKeyFromPrivateKey(privateKey, false);
+        return getAddressFromPublicKey(publicKey);
     }
 
     /**
