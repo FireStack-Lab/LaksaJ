@@ -9,6 +9,7 @@ The project is still under development.
 
 - [x] getDerivedKey (PBKDF2 and Scrypt)
 - [x] generatePrivateKey
+- [x] Schnorr.sign
 - [ ] verifyPrivateKey
 - [x] getPublicKeyFromPrivateKey
 - [ ] isPublicjKey
