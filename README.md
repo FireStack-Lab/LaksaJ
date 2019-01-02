@@ -8,7 +8,7 @@ The project is still under development.
 ### Wallet API
 
 - [x] getDerivedKey (PBKDF2 and Scrypt)
-- [ ] generatePrivateKey
+- [x] generatePrivateKey
 - [ ] verifyPrivateKey
 - [x] getPublicKeyFromPrivateKey
 - [ ] isPublicjKey
