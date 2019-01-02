@@ -9,7 +9,7 @@ public class Account {
 
     public Account(String privateKey) {
         this.privateKey = privateKey;
-        this.publicKey = KeyTools.getPublicKeyFromPrivateKey(privateKey);
+        this.publicKey = KeyTools.getPublicKeyFromPrivateKey(privateKey,false);
         this.address = KeyTools.getAddressFromPublicKey(this.publicKey);
     }
 }
