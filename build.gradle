@@ -17,4 +17,5 @@ dependencies {
     compile "com.madgag.spongycastle:core:1.53.0.0"
     compile "com.madgag.spongycastle:prov:1.53.0.0"
     compile 'com.google.guava:guava:27.0.1-jre'
+    compile 'org.bouncycastle:bcprov-jdk15on:1.58'
 }
