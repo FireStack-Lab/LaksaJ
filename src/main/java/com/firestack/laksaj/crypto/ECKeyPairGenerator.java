@@ -8,7 +8,7 @@ public class ECKeyPairGenerator {
 
     private static KeyPairGenerator keyPairGenerator;
 
-    private static ECGenParameterSpec ecSpec = new ECGenParameterSpec("secp256k1");
+    public static ECGenParameterSpec ecSpec = new ECGenParameterSpec("secp256k1");
 
     static {
         try {
@@ -27,7 +27,7 @@ public class ECKeyPairGenerator {
 
     }
 
-    private static String adjustTo64(String s) {
+    public static String adjustTo64(String s) {
         switch (s.length()) {
             case 62:
                 return "00" + s;
@@ -39,6 +39,7 @@ public class ECKeyPairGenerator {
                 throw new IllegalArgumentException("not a valid key: " + s);
         }
     }
+
 
     public static void isValidPrivateKey() {
 
