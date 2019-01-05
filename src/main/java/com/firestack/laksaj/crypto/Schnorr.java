@@ -16,7 +16,7 @@ public class Schnorr {
     static final int PUBKEY_COMPRESSED_SIZE_BYTES = 33;
 
     public static Signature sign(byte[] privateKey, byte[] publicKey, byte[] message, BigInteger k) {
-
+        //todo add some validate
         ECPoint QPoint = spec.getG().multiply(k);
         BigInteger Q = new BigInteger(QPoint.getEncoded(true));
         List<Integer> m = new ArrayList<>();
@@ -66,6 +66,26 @@ public class Schnorr {
         byte[] hashByte = HashUtil.sha256(B);
 
         return new BigInteger(hashByte);
+    }
+
+    static boolean verify(List<Integer> message, BigInteger R, BigInteger S, byte[] publicKey) {
+        //todo add some validate
+        ECPoint publicKeyPoint = spec.getCurve().decodePoint(publicKey);
+        Signature signature = Signature.builder().r(R).s(S).build();
+        ECPoint l = publicKeyPoint.multiply(signature.getR());
+        ECPoint r = spec.getG().multiply(signature.getS());
+        ECPoint QPoint = l.add(r);
+        if (QPoint.isInfinity()) {
+            throw new IllegalArgumentException("Invalid intermediate point.");
+        }
+        BigInteger Q = new BigInteger(QPoint.getEncoded(true));
+        List<Integer> m = new ArrayList<>();
+        List<Integer> pk = new ArrayList<>();
+        for (byte p : publicKey) {
+            pk.add((int) p);
+        }
+        BigInteger r1 = hash(Q, pk, message).mod(spec.getN());
+        return signature.getR().equals(r1);
     }
 
 
