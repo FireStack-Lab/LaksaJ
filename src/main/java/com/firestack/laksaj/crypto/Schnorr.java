@@ -85,6 +85,8 @@ public class Schnorr {
             pk.add((int) p);
         }
         BigInteger r1 = hash(Q, pk, message).mod(spec.getN());
+        System.out.println(R);
+        System.out.println(r1);
         return signature.getR().equals(r1);
     }
 
