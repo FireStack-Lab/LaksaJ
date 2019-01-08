@@ -23,7 +23,7 @@ The project is still under development.
 
 ### JSON-RPC API
 - [ ] getBalance
-- [ ] getDsBlock
+- [x] getDsBlock
 - [ ] getTxBlock
 - [ ] getLatestDsBlock
 - [ ] getLatestTxBlock
