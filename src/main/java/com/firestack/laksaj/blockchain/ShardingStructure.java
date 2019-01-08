@@ -7,5 +7,5 @@ import lombok.experimental.Builder;
 @Data
 @Builder
 public class ShardingStructure {
-    private int[] numPeers;
+    private int[] NumPeers;
 }
