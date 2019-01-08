@@ -1,5 +1,6 @@
 package com.firestack.laksaj.jsonrpc;
 
+import com.firestack.laksaj.blockchain.BlockList;
 import com.firestack.laksaj.blockchain.DsBlock;
 import com.firestack.laksaj.blockchain.TxBlock;
 import org.junit.Assert;
@@ -15,6 +16,14 @@ public class JsonRPCClientTest {
         JsonRPCClient client = new JsonRPCClient("https://api.zilliqa.com/");
         String networkId = client.getNetworkId();
         Assert.assertEquals("TestNet", networkId);
+    }
+
+    @Test
+    public void getDSBlockListing() throws IOException {
+        JsonRPCClient client = new JsonRPCClient("https://api.zilliqa.com/");
+        BlockList blockList = client.getDSBlockListing(1);
+        System.out.println(blockList);
+        Assert.assertNotNull(blockList);
     }
 
 

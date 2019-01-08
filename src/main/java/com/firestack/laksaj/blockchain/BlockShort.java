@@ -6,6 +6,6 @@ import lombok.experimental.Builder;
 @Data
 @Builder
 public class BlockShort {
-    private int blockNumber;
-    private String hash;
+    private int BlockNum;
+    private String Hash;
 }

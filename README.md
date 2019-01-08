@@ -36,7 +36,7 @@ The project is still under development.
 - [ ] getBlockchainInfo
 - [x] getNetworkId
 - [ ] getRecentTransactions
-- [ ] getDSBlockListing 
+- [x] getDSBlockListing 
 - [ ] getTxBlockListing 
 
 
