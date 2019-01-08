@@ -6,16 +6,16 @@ import lombok.experimental.Builder;
 @Data
 @Builder
 public class BlockchainInfo {
-    private int numPeers;
-    private String numTxBlocks;
-    private String numDSBlocks;
-    private String numTransactions;
-    private String transactionRate;
-    private int txBlockRate;
+    private int NumPeers;
+    private String NumTxBlocks;
+    private String NumDSBlocks;
+    private String NumTransactions;
+    private String TransactionRate;
+    private int TxBlockRate;
     private int DSBlockRate;
-    private String currentMiniEpoch;
-    private String currentDSEpoch;
-    private String numTxnsDSEpoch;
-    private int numTxnsTxEpoch;
+    private String CurrentMiniEpoch;
+    private String CurrentDSEpoch;
+    private String NumTxnsDSEpoch;
+    private int NumTxnsTxEpoch;
     private ShardingStructure shardingStructure;
 }
