@@ -26,7 +26,7 @@ The project is still under development.
 - [x] getDsBlock
 - [x] getTxBlock
 - [x] getLatestDsBlock
-- [ ] getLatestTxBlock
+- [x] getLatestTxBlock
 - [ ] getTransaction
 - [ ] createTransaction
 - [ ] getSmartContracts
