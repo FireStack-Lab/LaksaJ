@@ -9,5 +9,5 @@ public class Req {
     private String id;
     private String jsonrpc;
     private String method;
-    private String[] params;
+    private Object[] params;
 }
