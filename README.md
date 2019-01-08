@@ -25,7 +25,7 @@ The project is still under development.
 - [ ] getBalance
 - [x] getDsBlock
 - [x] getTxBlock
-- [ ] getLatestDsBlock
+- [x] getLatestDsBlock
 - [ ] getLatestTxBlock
 - [ ] getTransaction
 - [ ] createTransaction
