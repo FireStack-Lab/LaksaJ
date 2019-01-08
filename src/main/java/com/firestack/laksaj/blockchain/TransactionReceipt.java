@@ -8,6 +8,6 @@ import lombok.experimental.Builder;
 @Builder
 public class TransactionReceipt {
     private boolean success;
-    private String cumulativeGas;
-    private EventLogEntry[] eventLogs;
+    private String cumulative_gas;
+//    private EventLogEntry[] eventLogs;
 }

@@ -1,9 +1,6 @@
 package com.firestack.laksaj.jsonrpc;
 
-import com.firestack.laksaj.blockchain.BlockList;
-import com.firestack.laksaj.blockchain.BlockchainInfo;
-import com.firestack.laksaj.blockchain.DsBlock;
-import com.firestack.laksaj.blockchain.TxBlock;
+import com.firestack.laksaj.blockchain.*;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -91,5 +88,19 @@ public class JsonRPCClientTest {
         JsonRPCClient client = new JsonRPCClient("https://api.zilliqa.com/");
         String code = client.getSmartContractCode("8cb841ef4f1f61d44271e167557e160434bd6d63");
         System.out.println(code);
+    }
+
+    @Test
+    public void getTransaction() throws IOException {
+        JsonRPCClient client = new JsonRPCClient("https://api.zilliqa.com/");
+        Transaction transaction = client.getTransaction("7368CA774642FB2AAB78D540E45BF44E22F2CF69B8B0632FF0317338D29ABAB5");
+        System.out.println(transaction);
+    }
+
+    @Test
+    public void getRecentTransactions() throws IOException {
+        JsonRPCClient client = new JsonRPCClient("https://api.zilliqa.com/");
+        TransactionList transactionList = client.getRecentTransactions();
+        System.out.println(transactionList);
     }
 }
