@@ -6,11 +6,13 @@ import com.firestack.laksaj.blockchain.DsBlock;
 import com.firestack.laksaj.blockchain.TxBlock;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
+import com.sun.tools.javac.util.Assert;
 import lombok.Data;
 import okhttp3.*;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Objects;
 
@@ -29,12 +31,7 @@ public class JsonRPCClient {
     //Blockchain-related methods
     public String getNetworkId() throws IOException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetNetworkId").params(new String[]{""}).build();
-        RequestBody body = RequestBody.create(JSON, gson.toJson(req));
-        Request request = new Request.Builder()
-                .post(body)
-                .url(new URL(this.url))
-                .build();
-        Response response = client.newCall(request).execute();
+        Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Type type = new TypeToken<Rep<String>>() {
         }.getType();
@@ -45,12 +42,7 @@ public class JsonRPCClient {
 
     public BlockchainInfo getBlockchainInfo() throws IOException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetBlockchainInfo").params(new String[]{""}).build();
-        RequestBody body = RequestBody.create(JSON, gson.toJson(req));
-        Request request = new Request.Builder()
-                .post(body)
-                .url(new URL(this.url))
-                .build();
-        Response response = client.newCall(request).execute();
+        Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Type type = new TypeToken<Rep<BlockchainInfo>>() {
         }.getType();
@@ -60,12 +52,7 @@ public class JsonRPCClient {
 
     public BlockList getDSBlockListing(int pageNumber) throws IOException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("DSBlockListing").params(new Integer[]{pageNumber}).build();
-        RequestBody body = RequestBody.create(JSON, gson.toJson(req));
-        Request request = new Request.Builder()
-                .post(body)
-                .url(new URL(this.url))
-                .build();
-        Response response = client.newCall(request).execute();
+        Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Type type = new TypeToken<Rep<BlockList>>() {
         }.getType();
@@ -75,12 +62,7 @@ public class JsonRPCClient {
 
     public BlockList getTxBlockListing(int pageNumber) throws IOException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("TxBlockListing").params(new Integer[]{pageNumber}).build();
-        RequestBody body = RequestBody.create(JSON, gson.toJson(req));
-        Request request = new Request.Builder()
-                .post(body)
-                .url(new URL(this.url))
-                .build();
-        Response response = client.newCall(request).execute();
+        Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Type type = new TypeToken<Rep<BlockList>>() {
         }.getType();
@@ -91,12 +73,7 @@ public class JsonRPCClient {
 
     public DsBlock getDsBlock(String blockNumber) throws IOException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetDsBlock").params(new String[]{blockNumber}).build();
-        RequestBody body = RequestBody.create(JSON, gson.toJson(req));
-        Request request = new Request.Builder()
-                .post(body)
-                .url(new URL(this.url))
-                .build();
-        Response response = client.newCall(request).execute();
+        Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Type type = new TypeToken<Rep<DsBlock>>() {
         }.getType();
@@ -106,12 +83,7 @@ public class JsonRPCClient {
 
     public TxBlock getTxBlock(String blockNumber) throws IOException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetTxBlock").params(new String[]{blockNumber}).build();
-        RequestBody body = RequestBody.create(JSON, gson.toJson(req));
-        Request request = new Request.Builder()
-                .post(body)
-                .url(new URL(this.url))
-                .build();
-        Response response = client.newCall(request).execute();
+        Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Rep<TxBlock> rep = gson.fromJson(resultString, new TypeToken<Rep<TxBlock>>() {
         }.getType());
@@ -120,12 +92,7 @@ public class JsonRPCClient {
 
     public DsBlock getLatestDsBlock() throws IOException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetLatestDsBlock").params(new String[]{""}).build();
-        RequestBody body = RequestBody.create(JSON, gson.toJson(req));
-        Request request = new Request.Builder()
-                .post(body)
-                .url(new URL(this.url))
-                .build();
-        Response response = client.newCall(request).execute();
+        Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Rep<DsBlock> rep = gson.fromJson(resultString, new TypeToken<Rep<DsBlock>>() {
         }.getType());
@@ -134,12 +101,7 @@ public class JsonRPCClient {
 
     public TxBlock getLatestTxBlock() throws IOException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetLatestTxBlock").params(new String[]{""}).build();
-        RequestBody body = RequestBody.create(JSON, gson.toJson(req));
-        Request request = new Request.Builder()
-                .post(body)
-                .url(new URL(this.url))
-                .build();
-        Response response = client.newCall(request).execute();
+        Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Rep<TxBlock> rep = gson.fromJson(resultString, new TypeToken<Rep<TxBlock>>() {
         }.getType());
@@ -149,23 +111,45 @@ public class JsonRPCClient {
     //Account-related methods
     public String getBalance(String address) throws IOException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetBalance").params(new String[]{address}).build();
-        RequestBody body = RequestBody.create(JSON, gson.toJson(req));
-        Request request = new Request.Builder()
-                .post(body)
-                .url(new URL(this.url))
-                .build();
-        Response response = client.newCall(request).execute();
+        Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
-        System.out.println(resultString);
         Type type = new TypeToken<Rep<BalanceResult>>() {
         }.getType();
         Rep<BalanceResult> rep = gson.fromJson(resultString, type);
+        Assert.checkNonNull(rep.getResult(), "result is null, check your account address!");
         return rep.getResult().balance;
     }
+
+    //Contract-related methods
+    public String getSmartContractCode(String address) throws IOException {
+        Req req = Req.builder().id("1").jsonrpc("2.0").method("GetSmartContractCode").params(new String[]{address}).build();
+        Response response = client.newCall(buildRequest(req)).execute();
+        String resultString = Objects.requireNonNull(response.body()).string();
+        System.out.println(resultString);
+        Type type = new TypeToken<Rep<ContractResult>>() {
+        }.getType();
+        Rep<ContractResult> rep = gson.fromJson(resultString, type);
+        Assert.checkNonNull(rep.getResult(), "result is null, check your contract address!");
+        return rep.getResult().code;
+    }
+
+    private Request buildRequest(Req req) throws MalformedURLException {
+        RequestBody body = RequestBody.create(JSON, gson.toJson(req));
+        return new Request.Builder()
+                .post(body)
+                .url(new URL(this.url))
+                .build();
+    }
+
 
     @Data
     public static class BalanceResult {
         private String balance;
         private String nonce;
+    }
+
+    @Data
+    public static class ContractResult {
+        private String code;
     }
 }

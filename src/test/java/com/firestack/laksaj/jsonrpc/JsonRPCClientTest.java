@@ -85,4 +85,11 @@ public class JsonRPCClientTest {
         System.out.println(balance);
         Assert.assertNotNull(balance);
     }
+
+    @Test
+    public void getSmartContractCode() throws IOException {
+        JsonRPCClient client = new JsonRPCClient("https://api.zilliqa.com/");
+        String code = client.getSmartContractCode("8cb841ef4f1f61d44271e167557e160434bd6d63");
+        System.out.println(code);
+    }
 }
