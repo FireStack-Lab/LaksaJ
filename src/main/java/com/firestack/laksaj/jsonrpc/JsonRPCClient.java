@@ -1,9 +1,6 @@
 package com.firestack.laksaj.jsonrpc;
 
-import com.firestack.laksaj.blockchain.BlockList;
-import com.firestack.laksaj.blockchain.BlockchainInfo;
-import com.firestack.laksaj.blockchain.DsBlock;
-import com.firestack.laksaj.blockchain.TxBlock;
+import com.firestack.laksaj.blockchain.*;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.sun.tools.javac.util.Assert;
@@ -133,6 +130,28 @@ public class JsonRPCClient {
         return rep.getResult().code;
     }
 
+    //Transaction-related methods
+    public Transaction getTransaction(String hash) throws IOException {
+        Req req = Req.builder().id("1").jsonrpc("2.0").method("GetTransaction").params(new String[]{hash}).build();
+        Response response = client.newCall(buildRequest(req)).execute();
+        String resultString = Objects.requireNonNull(response.body()).string();
+        Type type = new TypeToken<Rep<Transaction>>() {
+        }.getType();
+        Rep<Transaction> rep = gson.fromJson(resultString, type);
+        return rep.getResult();
+    }
+
+
+    public TransactionList getRecentTransactions() throws IOException {
+        Req req = Req.builder().id("1").jsonrpc("2.0").method("GetRecentTransactions").params(new String[]{""}).build();
+        Response response = client.newCall(buildRequest(req)).execute();
+        String resultString = Objects.requireNonNull(response.body()).string();
+        Type type = new TypeToken<Rep<TransactionList>>() {
+        }.getType();
+        Rep<TransactionList> rep = gson.fromJson(resultString, type);
+        return rep.getResult();
+    }
+
     private Request buildRequest(Req req) throws MalformedURLException {
         RequestBody body = RequestBody.create(JSON, gson.toJson(req));
         return new Request.Builder()
@@ -140,7 +159,6 @@ public class JsonRPCClient {
                 .url(new URL(this.url))
                 .build();
     }
-
 
     @Data
     public static class BalanceResult {

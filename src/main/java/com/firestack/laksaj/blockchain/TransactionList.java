@@ -7,5 +7,5 @@ import lombok.experimental.Builder;
 @Builder
 public class TransactionList {
     private int number;
-    private String[] transactionHashes;
+    private String[] TxnHashes;
 }

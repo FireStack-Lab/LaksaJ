@@ -27,7 +27,7 @@ The project is still under development.
 - [x] getTxBlock
 - [x] getLatestDsBlock
 - [x] getLatestTxBlock
-- [ ] getTransaction
+- [x] getTransaction
 - [ ] createTransaction
 - [ ] getSmartContracts
 - [ ] getSmartContractState
@@ -35,7 +35,7 @@ The project is still under development.
 - [ ] getSmartContractInit
 - [x] getBlockchainInfo
 - [x] getNetworkId
-- [ ] getRecentTransactions
+- [x] getRecentTransactions
 - [x] getDSBlockListing 
 - [x] getTxBlockListing 
 
