@@ -11,11 +11,11 @@ public class BlockchainInfo {
     private String NumDSBlocks;
     private String NumTransactions;
     private String TransactionRate;
-    private int TxBlockRate;
-    private int DSBlockRate;
+    private double TxBlockRate;
+    private double DSBlockRate;
     private String CurrentMiniEpoch;
     private String CurrentDSEpoch;
     private String NumTxnsDSEpoch;
     private int NumTxnsTxEpoch;
-    private ShardingStructure shardingStructure;
+    private ShardingStructure ShardingStructure;
 }
