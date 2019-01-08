@@ -1,6 +1,7 @@
 package com.firestack.laksaj.jsonrpc;
 
 import com.firestack.laksaj.blockchain.DsBlock;
+import com.firestack.laksaj.blockchain.TxBlock;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import okhttp3.*;
@@ -22,10 +23,9 @@ public class JsonRPCClient {
         this.url = url;
     }
 
-    public DsBlock getDsBlock() throws IOException {
+    public DsBlock getDsBlock(String blockNumber) throws IOException {
 
-        Req req = Req.builder().id("1").jsonrpc("2.0").method("GetDsBlock").params(new String[]{"1"}).build();
-        System.out.println(gson.toJson(req));
+        Req req = Req.builder().id("1").jsonrpc("2.0").method("GetDsBlock").params(new String[]{blockNumber}).build();
         RequestBody body = RequestBody.create(JSON, gson.toJson(req));
         Request request = new Request.Builder()
                 .post(body)
@@ -39,4 +39,8 @@ public class JsonRPCClient {
         Rep<DsBlock> rep = gson.fromJson(resultString, type);
         return rep.getResult();
     }
+
+//    public TxBlock getTxBlock(String blockNumber) {
+//        Req req = Req.builder().id("1").jsonrpc("2.0").method("GetDsBlock").params(new String[]{blockNumber}).build();
+//    }
 }
