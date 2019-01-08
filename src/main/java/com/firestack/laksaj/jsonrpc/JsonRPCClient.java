@@ -4,6 +4,7 @@ import com.firestack.laksaj.blockchain.DsBlock;
 import com.firestack.laksaj.blockchain.TxBlock;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
+import lombok.Data;
 import okhttp3.*;
 
 import java.io.IOException;
@@ -79,5 +80,27 @@ public class JsonRPCClient {
         Rep<TxBlock> rep = gson.fromJson(resultString, new TypeToken<Rep<TxBlock>>() {
         }.getType());
         return rep.getResult();
+    }
+
+    public String getBalance(String address) throws IOException {
+        Req req = Req.builder().id("1").jsonrpc("2.0").method("GetBalance").params(new String[]{address}).build();
+        RequestBody body = RequestBody.create(JSON, gson.toJson(req));
+        Request request = new Request.Builder()
+                .post(body)
+                .url(new URL(this.url))
+                .build();
+        Response response = client.newCall(request).execute();
+        String resultString = Objects.requireNonNull(response.body()).string();
+        System.out.println(resultString);
+        Type type = new TypeToken<Rep<BalanceResult>>() {
+        }.getType();
+        Rep<BalanceResult> rep = gson.fromJson(resultString, type);
+        return rep.getResult().balance;
+    }
+
+    @Data
+    public static class BalanceResult {
+        private String balance;
+        private String nonce;
     }
 }
