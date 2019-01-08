@@ -33,14 +33,25 @@ public class JsonRPCClient {
                 .build();
         Response response = client.newCall(request).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
-        System.out.println(resultString);
         Type type = new TypeToken<Rep<DsBlock>>() {
         }.getType();
         Rep<DsBlock> rep = gson.fromJson(resultString, type);
         return rep.getResult();
     }
 
-//    public TxBlock getTxBlock(String blockNumber) {
-//        Req req = Req.builder().id("1").jsonrpc("2.0").method("GetDsBlock").params(new String[]{blockNumber}).build();
-//    }
+    public TxBlock getTxBlock(String blockNumber) throws IOException {
+        Req req = Req.builder().id("1").jsonrpc("2.0").method("GetTxBlock").params(new String[]{blockNumber}).build();
+        RequestBody body = RequestBody.create(JSON, gson.toJson(req));
+        Request request = new Request.Builder()
+                .post(body)
+                .url(new URL(this.url))
+                .build();
+        Response response = client.newCall(request).execute();
+        String resultString = Objects.requireNonNull(response.body()).string();
+        System.out.println(resultString);
+        Rep<TxBlock> rep = gson.fromJson(resultString, new TypeToken<Rep<TxBlock>>() {
+        }.getType());
+        return rep.getResult();
+
+    }
 }
