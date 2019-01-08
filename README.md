@@ -37,6 +37,6 @@ The project is still under development.
 - [x] getNetworkId
 - [ ] getRecentTransactions
 - [x] getDSBlockListing 
-- [ ] getTxBlockListing 
+- [x] getTxBlockListing 
 
 

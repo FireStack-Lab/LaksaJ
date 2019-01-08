@@ -26,6 +26,14 @@ public class JsonRPCClientTest {
         Assert.assertNotNull(blockList);
     }
 
+    @Test
+    public void getTxBlockListing() throws IOException {
+        JsonRPCClient client = new JsonRPCClient("https://api.zilliqa.com/");
+        BlockList blockList = client.getTxBlockListing(1);
+        System.out.println(blockList);
+        Assert.assertNotNull(blockList);
+    }
+
 
     @Test
     public void getDsBlock() throws IOException {
