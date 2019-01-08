@@ -11,6 +11,14 @@ import java.io.IOException;
 public class JsonRPCClientTest {
 
     @Test
+    public void getNetWorkId() throws IOException {
+        JsonRPCClient client = new JsonRPCClient("https://api.zilliqa.com/");
+        String networkId = client.getNetworkId();
+        Assert.assertEquals("TestNet", networkId);
+    }
+
+
+    @Test
     public void getDsBlock() throws IOException {
         JsonRPCClient client = new JsonRPCClient("https://api.zilliqa.com/");
         DsBlock dsBlock = client.getDsBlock("1");
