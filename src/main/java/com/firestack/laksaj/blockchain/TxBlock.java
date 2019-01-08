@@ -23,5 +23,5 @@ public class TxBlock {
     }
 
     private Body body;
-    private TxBlockHeader txBlockHeader;
+    private TxBlockHeader header;
 }

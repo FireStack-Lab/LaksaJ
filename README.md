@@ -24,7 +24,7 @@ The project is still under development.
 ### JSON-RPC API
 - [ ] getBalance
 - [x] getDsBlock
-- [ ] getTxBlock
+- [x] getTxBlock
 - [ ] getLatestDsBlock
 - [ ] getLatestTxBlock
 - [ ] getTransaction
