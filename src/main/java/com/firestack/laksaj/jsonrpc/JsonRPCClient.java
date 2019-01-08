@@ -1,6 +1,7 @@
 package com.firestack.laksaj.jsonrpc;
 
 import com.firestack.laksaj.blockchain.BlockList;
+import com.firestack.laksaj.blockchain.BlockchainInfo;
 import com.firestack.laksaj.blockchain.DsBlock;
 import com.firestack.laksaj.blockchain.TxBlock;
 import com.google.common.reflect.TypeToken;
@@ -39,6 +40,21 @@ public class JsonRPCClient {
         }.getType();
         Rep<String> rep = gson.fromJson(resultString, type);
 
+        return rep.getResult();
+    }
+
+    public BlockchainInfo getBlockchainInfo() throws IOException {
+        Req req = Req.builder().id("1").jsonrpc("2.0").method("GetBlockchainInfo").params(new String[]{""}).build();
+        RequestBody body = RequestBody.create(JSON, gson.toJson(req));
+        Request request = new Request.Builder()
+                .post(body)
+                .url(new URL(this.url))
+                .build();
+        Response response = client.newCall(request).execute();
+        String resultString = Objects.requireNonNull(response.body()).string();
+        Type type = new TypeToken<Rep<BlockchainInfo>>() {
+        }.getType();
+        Rep<BlockchainInfo> rep = gson.fromJson(resultString, type);
         return rep.getResult();
     }
 

@@ -1,6 +1,7 @@
 package com.firestack.laksaj.jsonrpc;
 
 import com.firestack.laksaj.blockchain.BlockList;
+import com.firestack.laksaj.blockchain.BlockchainInfo;
 import com.firestack.laksaj.blockchain.DsBlock;
 import com.firestack.laksaj.blockchain.TxBlock;
 import org.junit.Assert;
@@ -32,6 +33,14 @@ public class JsonRPCClientTest {
         BlockList blockList = client.getTxBlockListing(1);
         System.out.println(blockList);
         Assert.assertNotNull(blockList);
+    }
+
+    @Test
+    public void getBlockchainInfo() throws IOException {
+        JsonRPCClient client = new JsonRPCClient("https://api.zilliqa.com/");
+        BlockchainInfo blockchainInfo = client.getBlockchainInfo();
+        System.out.println(blockchainInfo);
+        Assert.assertNotNull(blockchainInfo);
     }
 
 
