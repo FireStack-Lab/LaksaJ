@@ -29,10 +29,10 @@ The project is still under development.
 - [x] getLatestTxBlock
 - [x] getTransaction
 - [ ] createTransaction
-- [ ] getSmartContracts
-- [ ] getSmartContractState
+- [x] getSmartContracts
+- [x] getSmartContractState
 - [x] getSmartContractCode
-- [ ] getSmartContractInit
+- [x] getSmartContractInit
 - [x] getBlockchainInfo
 - [x] getNetworkId
 - [x] getRecentTransactions
