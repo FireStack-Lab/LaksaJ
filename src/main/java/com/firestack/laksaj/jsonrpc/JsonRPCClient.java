@@ -24,8 +24,24 @@ public class JsonRPCClient {
         this.url = url;
     }
 
-    public DsBlock getDsBlock(String blockNumber) throws IOException {
+    //Blockchain-related methods
+    public String getNetworkId() throws IOException {
+        Req req = Req.builder().id("1").jsonrpc("2.0").method("GetNetworkId").params(new String[]{""}).build();
+        RequestBody body = RequestBody.create(JSON, gson.toJson(req));
+        Request request = new Request.Builder()
+                .post(body)
+                .url(new URL(this.url))
+                .build();
+        Response response = client.newCall(request).execute();
+        String resultString = Objects.requireNonNull(response.body()).string();
+        Type type = new TypeToken<Rep<String>>() {
+        }.getType();
+        Rep<String> rep = gson.fromJson(resultString, type);
 
+        return rep.getResult();
+    }
+
+    public DsBlock getDsBlock(String blockNumber) throws IOException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetDsBlock").params(new String[]{blockNumber}).build();
         RequestBody body = RequestBody.create(JSON, gson.toJson(req));
         Request request = new Request.Builder()
@@ -82,6 +98,7 @@ public class JsonRPCClient {
         return rep.getResult();
     }
 
+    //Account-related methods
     public String getBalance(String address) throws IOException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetBalance").params(new String[]{address}).build();
         RequestBody body = RequestBody.create(JSON, gson.toJson(req));
