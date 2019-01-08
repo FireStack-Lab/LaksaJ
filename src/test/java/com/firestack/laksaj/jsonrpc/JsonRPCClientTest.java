@@ -27,4 +27,12 @@ public class JsonRPCClientTest {
         Assert.assertNotNull(txBlock);
         Assert.assertEquals(3,txBlock.getBody().getMicroBlockInfos().length);
     }
+
+    @Test
+    public void getLatestDsBlock() throws IOException {
+        JsonRPCClient client = new JsonRPCClient("https://api.zilliqa.com/");
+        DsBlock dsBlock = client.getLatestDsBlock();
+        Assert.assertNotNull(dsBlock);
+        System.out.println(dsBlock);
+    }
 }
