@@ -22,7 +22,7 @@ The project is still under development.
 - [ ] VerifySignature
 
 ### JSON-RPC API
-- [ ] getBalance
+- [x] getBalance
 - [x] getDsBlock
 - [x] getTxBlock
 - [x] getLatestDsBlock

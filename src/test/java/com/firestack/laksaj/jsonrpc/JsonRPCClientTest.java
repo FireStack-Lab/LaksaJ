@@ -25,7 +25,7 @@ public class JsonRPCClientTest {
         TxBlock txBlock = client.getTxBlock("40");
         System.out.println(txBlock);
         Assert.assertNotNull(txBlock);
-        Assert.assertEquals(3,txBlock.getBody().getMicroBlockInfos().length);
+        Assert.assertEquals(3, txBlock.getBody().getMicroBlockInfos().length);
     }
 
     @Test
@@ -42,5 +42,13 @@ public class JsonRPCClientTest {
         TxBlock txBlock = client.getLatestTxBlock();
         System.out.println(txBlock);
         Assert.assertNotNull(txBlock);
+    }
+
+    @Test
+    public void getBalance() throws IOException {
+        JsonRPCClient client = new JsonRPCClient("https://api.zilliqa.com/");
+        String balance = client.getBalance("E9C49CAF0D0BC9D7C769391E8BDA2028F824CF3D".toLowerCase());
+        System.out.println(balance);
+        Assert.assertNotNull(balance);
     }
 }
