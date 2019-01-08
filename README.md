@@ -34,7 +34,7 @@ The project is still under development.
 - [ ] getSmartContractCode
 - [ ] getSmartContractInit
 - [ ] getBlockchainInfo
-- [ ] getNetworkId
+- [x] getNetworkId
 - [ ] getRecentTransactions
 - [ ] getDSBlockListing 
 - [ ] getTxBlockListing 
