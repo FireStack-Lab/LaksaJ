@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 import java.util.Objects;
 
 public class JsonRPCClient {
@@ -117,17 +118,46 @@ public class JsonRPCClient {
         return rep.getResult().balance;
     }
 
-    //Contract-related methods
+    //Contract-related methods todo need test
     public String getSmartContractCode(String address) throws IOException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetSmartContractCode").params(new String[]{address}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
-        System.out.println(resultString);
         Type type = new TypeToken<Rep<ContractResult>>() {
         }.getType();
         Rep<ContractResult> rep = gson.fromJson(resultString, type);
         Assert.checkNonNull(rep.getResult(), "result is null, check your contract address!");
         return rep.getResult().code;
+    }
+
+    public List<Contract> getSmartContracts(String address) throws IOException {
+        Req req = Req.builder().id("1").jsonrpc("2.0").method("GetSmartContracts").params(new String[]{address}).build();
+        Response response = client.newCall(buildRequest(req)).execute();
+        String resultString = Objects.requireNonNull(response.body()).string();
+        Type type = new TypeToken<Rep<List<Contract>>>() {
+        }.getType();
+        Rep<List<Contract>> rep = gson.fromJson(resultString, type);
+        return rep.getResult();
+    }
+
+    public List<Contract.State> getSmartContractState(String address) throws IOException {
+        Req req = Req.builder().id("1").jsonrpc("2.0").method("GetSmartContractState").params(new String[]{address}).build();
+        Response response = client.newCall(buildRequest(req)).execute();
+        String resultString = Objects.requireNonNull(response.body()).string();
+        Type type = new TypeToken<List<Contract.State>>() {
+        }.getType();
+        Rep<List<Contract.State>> rep = gson.fromJson(resultString, type);
+        return rep.getResult();
+    }
+
+    public List<Contract.State> getSmartContractInit(String address) throws IOException {
+        Req req = Req.builder().id("1").jsonrpc("2.0").method("GetSmartContractInit").params(new String[]{address}).build();
+        Response response = client.newCall(buildRequest(req)).execute();
+        String resultString = Objects.requireNonNull(response.body()).string();
+        Type type = new TypeToken<Rep<List<Contract.State>>>() {
+        }.getType();
+        Rep<List<Contract.State>> rep = gson.fromJson(resultString, type);
+        return rep.getResult();
     }
 
     //Transaction-related methods
