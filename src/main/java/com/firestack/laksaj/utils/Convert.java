@@ -27,7 +27,7 @@ public final class Convert {
 
   public enum Unit {
     Qa("qa", 0),
-    Li("li", 16),
+    Li("li", 6),
     ZIL("zil", 12);
 
     private String name;
