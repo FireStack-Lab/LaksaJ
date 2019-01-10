@@ -14,7 +14,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.Objects;
 
-public class JsonRPCClient {
+public class Provider {
 
     private final OkHttpClient client = new OkHttpClient();
     private final Gson gson = new Gson();
@@ -22,7 +22,7 @@ public class JsonRPCClient {
             = MediaType.get("application/json; charset=utf-8");
     private String url;
 
-    public JsonRPCClient(String url) {
+    public Provider(String url) {
         this.url = url;
     }
 
