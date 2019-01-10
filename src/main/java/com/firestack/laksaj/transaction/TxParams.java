@@ -20,5 +20,4 @@ public class TxParams {
     private Optional<Integer> nonce;
     private Optional<String> pubKey;
     private Optional<String> signature;
-
 }

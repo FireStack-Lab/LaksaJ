@@ -1,6 +1,7 @@
 package com.firestack.laksaj.jsonrpc;
 
 import com.firestack.laksaj.blockchain.*;
+import com.firestack.laksaj.transaction.Transaction;
 import org.junit.Assert;
 import org.junit.Test;
 
