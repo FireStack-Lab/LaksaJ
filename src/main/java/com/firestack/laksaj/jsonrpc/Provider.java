@@ -1,6 +1,7 @@
 package com.firestack.laksaj.jsonrpc;
 
 import com.firestack.laksaj.blockchain.*;
+import com.firestack.laksaj.transaction.Transaction;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.sun.tools.javac.util.Assert;

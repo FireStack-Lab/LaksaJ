@@ -1,6 +1,7 @@
-package com.firestack.laksaj.blockchain;
+package com.firestack.laksaj.transaction;
 
 
+import com.firestack.laksaj.blockchain.TransactionReceipt;
 import lombok.Data;
 import lombok.experimental.Builder;
 
@@ -16,4 +17,5 @@ public class Transaction {
     private String gasLimit;
     private String signature;
     private TransactionReceipt receipt;
+
 }
