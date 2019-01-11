@@ -22,7 +22,7 @@ The project is still under development.
 - [ ] verifySignature
 - [x] createAccount
 - [x] encryptPrivateKey
-- [ ] decryptPrivateKey
+- [x] decryptPrivateKey
 
 ### JSON-RPC API
 - [x] getBalance
