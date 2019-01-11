@@ -17,9 +17,10 @@ The project is still under development.
 - [x] getPublicKeyFromPrivateKey
 - [x] getAddressFromPublicKey
 - [x] getAddressFromPrivateKey
-- [ ] IsAddress
-- [ ] SignTransaction
-- [ ] VerifySignature
+- [ ] isAddress
+- [ ] signTransaction
+- [ ] verifySignature
+- [x] createAccount
 
 ### JSON-RPC API
 - [x] getBalance
