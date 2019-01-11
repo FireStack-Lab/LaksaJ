@@ -21,7 +21,7 @@ The project is still under development.
 - [ ] signTransaction
 - [ ] verifySignature
 - [x] createAccount
-- [ ] encryptPrivateKey
+- [x] encryptPrivateKey
 - [ ] decryptPrivateKey
 
 ### JSON-RPC API
