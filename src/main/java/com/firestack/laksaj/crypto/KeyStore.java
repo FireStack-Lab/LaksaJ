@@ -135,6 +135,43 @@ public class KeyStore {
         }
     }
 
+    public String decryptPrivateKey(String encryptJson, String passphrase) throws Exception {
+        EncryptStruct encryptStruct = gson.fromJson(encryptJson, EncryptStruct.class);
+        byte[] ciphertext = ByteUtil.hexStringToByteArray(encryptStruct.crypto.ciphertext);
+        byte[] iv = ByteUtil.hexStringToByteArray(encryptStruct.crypto.cipherparams.iv);
+        kdfparams kp = encryptStruct.crypto.kdfparams;
+        String kdf = encryptStruct.crypto.kdf;
+        byte[] derivedKey;
+        if (kdf.equals("pbkdf2")) {
+            PBKDF2Params pbkdf2Params = PBKDF2Params.builder()
+                    .salt(ByteUtil.byteArrayToHexString(kp.salt))
+                    .dkLen(32)
+                    .count(262144)
+                    .build();
+            derivedKey = getDerivedKey(passphrase.getBytes(), pbkdf2Params);
+        } else {
+            ScryptParams scryptParams = ScryptParams.builder()
+                    .salt(ByteUtil.byteArrayToHexString(kp.salt))
+                    .dkLen(32)
+                    .p(1)
+                    .r(8)
+                    .n(8192)
+                    .build();
+            derivedKey = getDerivedKey(passphrase.getBytes(), scryptParams);
+        }
+        String mac = ByteUtil.byteArrayToHexString(generateMac(derivedKey, ciphertext));
+        if (!mac.toUpperCase().equals(encryptStruct.crypto.mac)) {
+            throw new IllegalAccessException("Failed to decrypt.");
+        }
+        IvParameterSpec ivParameterSpec = new IvParameterSpec(iv);
+        Cipher cipher = Cipher.getInstance("AES/CTR/NoPadding");
+        byte[] encryptKey = Arrays.copyOfRange(derivedKey, 0, 16);
+        SecretKeySpec secretKeySpec = new SecretKeySpec(encryptKey, "AES");
+        cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, ivParameterSpec);
+        return ByteUtil.byteArrayToHexString(cipher.doFinal(ciphertext));
+
+    }
+
     private byte[] generateMac(byte[] derivedKey, byte[] cipherText) {
         byte[] result = new byte[16 + cipherText.length];
 
