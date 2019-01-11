@@ -9,5 +9,5 @@ import lombok.experimental.Builder;
 public class TransactionReceipt {
     private boolean success;
     private String cumulative_gas;
-//    private EventLogEntry[] eventLogs;
+    private String epoch_num;
 }
