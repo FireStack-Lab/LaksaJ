@@ -2,7 +2,6 @@ package com.firestack.laksaj.crypto;
 
 import com.firestack.laksaj.utils.ByteUtil;
 import com.firestack.laksaj.utils.HashUtil;
-import com.google.common.hash.Hashing;
 import org.bouncycastle.asn1.x9.X9ECParameters;
 import org.bouncycastle.crypto.ec.CustomNamedCurves;
 import org.bouncycastle.crypto.params.ECDomainParameters;
