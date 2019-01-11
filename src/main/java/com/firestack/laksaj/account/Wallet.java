@@ -32,4 +32,13 @@ public class Wallet {
         }
         return account.getAddress();
     }
+
+    public String addByPrivateKey(String privateKey) {
+        Account account = new Account(privateKey);
+        this.accounts.add(account);
+        if (!defaultAccount.isPresent()) {
+            defaultAccount = Optional.of(accounts.get(0));
+        }
+        return account.getAddress();
+    }
 }
