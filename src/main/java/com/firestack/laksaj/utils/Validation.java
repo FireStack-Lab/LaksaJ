@@ -10,4 +10,20 @@ public class Validation {
         Matcher matcher = pattern.matcher(str);
         return matcher.matches();
     }
+
+    public static boolean isAddress(String address) {
+        return isByteString(address, 40);
+    }
+
+    public static boolean isPublicKey(String publicKey) {
+        return isByteString(publicKey,66);
+    }
+
+    public static boolean isPrivateKey(String privateKey) {
+        return isByteString(privateKey,64);
+    }
+
+    public static boolean isSignature(String signature) {
+        return isByteString(signature,128);
+    }
 }
