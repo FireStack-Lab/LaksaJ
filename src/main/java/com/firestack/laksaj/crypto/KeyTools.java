@@ -18,6 +18,7 @@ public class KeyTools {
      */
     public static final ECDomainParameters CURVE;
     private static final X9ECParameters CURVE_PARAMS = CustomNamedCurves.getByName("secp256k1");
+    private static final KeyStore keystore = KeyStore.defaultKeyStore();
 
 
     static {
@@ -70,5 +71,9 @@ public class KeyTools {
             privateKeyPoint = privateKeyPoint.mod(CURVE.getN());
         }
         return new FixedPointCombMultiplier().multiply(CURVE.getG(), privateKeyPoint);
+    }
+
+    public static String decryptPrivateKey(String file, String passphrase) throws Exception {
+        return keystore.decryptPrivateKey(file, passphrase);
     }
 }
