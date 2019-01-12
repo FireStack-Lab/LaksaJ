@@ -10,6 +10,8 @@ import org.bouncycastle.math.ec.FixedPointCombMultiplier;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class KeyTools {
 
@@ -19,6 +21,7 @@ public class KeyTools {
     public static final ECDomainParameters CURVE;
     private static final X9ECParameters CURVE_PARAMS = CustomNamedCurves.getByName("secp256k1");
     private static final KeyStore keystore = KeyStore.defaultKeyStore();
+    private static final Pattern pattern = Pattern.compile("^(0x)?[0-9a-f]");
 
 
     static {
@@ -33,6 +36,17 @@ public class KeyTools {
     public static String getAddressFromPrivateKey(String privateKey) {
         String publicKey = getPublicKeyFromPrivateKey(privateKey, true);
         return getAddressFromPublicKey(publicKey);
+    }
+
+    public static boolean isByteString(String address) {
+        System.out.println(address);
+        Matcher matcher = pattern.matcher(address);
+        while (matcher.find()) {
+            System.out.println(matcher.group());
+            System.out.print("start:"+matcher.start());
+            System.out.println(" end:"+matcher.end());
+        }
+        return true;
     }
 
     /**

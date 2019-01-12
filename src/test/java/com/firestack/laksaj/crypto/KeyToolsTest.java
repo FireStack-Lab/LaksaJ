@@ -38,6 +38,4 @@ public class KeyToolsTest {
         String address = KeyTools.getAddressFromPrivateKey(privateKey);
         System.out.println(address);
     }
-
-
 }
