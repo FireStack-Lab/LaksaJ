@@ -2,6 +2,7 @@ package com.firestack.laksaj.account;
 
 import com.firestack.laksaj.crypto.KeyTools;
 import com.firestack.laksaj.jsonrpc.Provider;
+import com.firestack.laksaj.transaction.Transaction;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -70,5 +71,9 @@ public class Wallet {
             }
         }
     }
+
+//    public Transaction signWith(Transaction tx, String account) {
+//
+//    }
 
 }

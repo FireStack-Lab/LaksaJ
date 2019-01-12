@@ -1,7 +1,6 @@
 package com.firestack.laksaj.crypto;
 
 import com.firestack.laksaj.utils.ByteUtil;
-import com.firestack.laksaj.utils.HashUtil;
 import com.google.gson.Gson;
 import lombok.Data;
 import lombok.experimental.Builder;
@@ -12,6 +11,8 @@ import javax.crypto.spec.SecretKeySpec;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.UUID;
+
+import static com.firestack.laksaj.utils.HashUtil.generateMac;
 
 public class KeyStore {
     private PBKDF2Wrapper pbkdf2Wrapper;
@@ -170,14 +171,5 @@ public class KeyStore {
         cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, ivParameterSpec);
         return ByteUtil.byteArrayToHexString(cipher.doFinal(ciphertext));
 
-    }
-
-    private byte[] generateMac(byte[] derivedKey, byte[] cipherText) {
-        byte[] result = new byte[16 + cipherText.length];
-
-        System.arraycopy(derivedKey, 16, result, 0, 16);
-        System.arraycopy(cipherText, 0, result, 16, cipherText.length);
-
-        return HashUtil.sha256(result);
     }
 }
