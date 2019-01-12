@@ -16,7 +16,7 @@ The project is still under development.
 - [x] addByPrivateKey addByKeyStore
 - [x] remove
 - [x] setDefault
-- [ ] signTransaction (default ac********count)
+- [ ] signTransaction (default account)
 - [ ] signTransactionWith (specific account)
 
 ### TransactionFactory
@@ -29,16 +29,10 @@ The project is still under development.
 - [x] generatePrivateKey
 - [x] Schnorr.sign
 - [x] Schnorr.verify
-- [ ] verifyPrivateKey
 - [x] getPublicKeyFromPrivateKey
-- [ ] isPublicjKey
 - [x] getPublicKeyFromPrivateKey
 - [x] getAddressFromPublicKey
 - [x] getAddressFromPrivateKey
-- [ ] isAddress
-- [ ] signTransaction
-- [ ] verifySignature
-- [x] createAccount
 - [x] encryptPrivateKey
 - [x] decryptPrivateKey
 
@@ -58,6 +52,13 @@ The project is still under development.
 - [x] getRecentTransactions
 - [x] getDSBlockListing 
 - [x] getTxBlockListing 
+
+### Validation
+
+- [x] isAddress
+- [x] isPublicjKey
+- [x] isPrivateKey
+- [x] isSignature
 
 ### Util
 
