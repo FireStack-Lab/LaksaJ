@@ -84,7 +84,7 @@ public class KeyStore {
                 .mac(ByteUtil.byteArrayToHexString(mac))
                 .build();
 
-        EncryptStruct struct = EncryptStruct.builder()
+        KeystoreV3 struct = KeystoreV3.builder()
                 .address(address)
                 .crypto(crypto)
                 .id(UUID.randomUUID().toString())
@@ -95,7 +95,7 @@ public class KeyStore {
 
     @Data
     @Builder
-    public static class EncryptStruct {
+    public static class KeystoreV3 {
         private String address;
         private Crypto crypto;
         private String id;
@@ -136,11 +136,11 @@ public class KeyStore {
     }
 
     public String decryptPrivateKey(String encryptJson, String passphrase) throws Exception {
-        EncryptStruct encryptStruct = gson.fromJson(encryptJson, EncryptStruct.class);
-        byte[] ciphertext = ByteUtil.hexStringToByteArray(encryptStruct.crypto.ciphertext);
-        byte[] iv = ByteUtil.hexStringToByteArray(encryptStruct.crypto.cipherparams.iv);
-        kdfparams kp = encryptStruct.crypto.kdfparams;
-        String kdf = encryptStruct.crypto.kdf;
+        KeystoreV3 keystoreV3 = gson.fromJson(encryptJson, KeystoreV3.class);
+        byte[] ciphertext = ByteUtil.hexStringToByteArray(keystoreV3.crypto.ciphertext);
+        byte[] iv = ByteUtil.hexStringToByteArray(keystoreV3.crypto.cipherparams.iv);
+        kdfparams kp = keystoreV3.crypto.kdfparams;
+        String kdf = keystoreV3.crypto.kdf;
         byte[] derivedKey;
         if (kdf.equals("pbkdf2")) {
             PBKDF2Params pbkdf2Params = PBKDF2Params.builder()
@@ -160,7 +160,7 @@ public class KeyStore {
             derivedKey = getDerivedKey(passphrase.getBytes(), scryptParams);
         }
         String mac = ByteUtil.byteArrayToHexString(generateMac(derivedKey, ciphertext));
-        if (!mac.toUpperCase().equals(encryptStruct.crypto.mac)) {
+        if (!mac.toUpperCase().equals(keystoreV3.crypto.mac)) {
             throw new IllegalAccessException("Failed to decrypt.");
         }
         IvParameterSpec ivParameterSpec = new IvParameterSpec(iv);

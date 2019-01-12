@@ -14,4 +14,9 @@ public class Account {
         this.publicKey = KeyTools.getPublicKeyFromPrivateKey(privateKey, false);
         this.address = KeyTools.getAddressFromPublicKey(this.publicKey);
     }
+
+    public static Account fromFile(String file, String passphrase) throws Exception {
+        String privateKey = KeyTools.decryptPrivateKey(file, passphrase);
+        return new Account(privateKey);
+    }
 }

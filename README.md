@@ -5,7 +5,17 @@ The project is still under development.
 
 ## Supports
 
+### Account API
+
+- [x] fromFile
+- [ ] toFile
+
 ### Wallet API
+
+- [x] createAccount
+- [x] addByPrivateKey addByKeyStore
+
+### Crypto API
 
 - [x] getDerivedKey (PBKDF2 and Scrypt)
 - [x] generatePrivateKey

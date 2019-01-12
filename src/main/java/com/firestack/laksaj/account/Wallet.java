@@ -41,4 +41,14 @@ public class Wallet {
         }
         return account.getAddress();
     }
+
+    public String addByKeyStore(String keystore, String passphrase) throws Exception {
+        Account account = Account.fromFile(keystore, passphrase);
+        this.accounts.add(account);
+
+        if (!defaultAccount.isPresent()) {
+            defaultAccount = Optional.of(accounts.get(0));
+        }
+        return account.getAddress();
+    }
 }
