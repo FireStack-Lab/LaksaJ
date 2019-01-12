@@ -8,12 +8,16 @@ The project is still under development.
 ### Account API
 
 - [x] fromFile
-- [ ] toFile
+- [x] toFile
 
 ### Wallet API
 
 - [x] createAccount
 - [x] addByPrivateKey addByKeyStore
+- [x] remove
+- [x] setDefault
+- [ ] signTransaction
+- [ ] signTransactionWith
 
 ### Crypto API
 

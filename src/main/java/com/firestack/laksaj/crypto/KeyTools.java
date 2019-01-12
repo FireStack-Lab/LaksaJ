@@ -76,4 +76,8 @@ public class KeyTools {
     public static String decryptPrivateKey(String file, String passphrase) throws Exception {
         return keystore.decryptPrivateKey(file, passphrase);
     }
+
+    public static String encryptPrivateKey(String privateKey, String passphrase, KDFType type) throws Exception {
+        return keystore.encryptPrivateKey(privateKey, passphrase, type);
+    }
 }

@@ -3,20 +3,21 @@ package com.firestack.laksaj.account;
 import com.firestack.laksaj.crypto.KeyTools;
 import com.firestack.laksaj.jsonrpc.Provider;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 public class Wallet {
-    private List<Account> accounts;
+    private Map<String, Account> accounts = new HashMap<>();
     private Provider provider;
     private Optional<Account> defaultAccount;
 
-    public Wallet(List<Account> accounts, Provider provider) {
+    public Wallet(Map<String, Account> accounts, Provider provider) {
         this.accounts = accounts;
         this.provider = provider;
 
         if (accounts.size() > 0) {
-            defaultAccount = Optional.of(accounts.get(0));
+            defaultAccount = Optional.of(accounts.values().iterator().next());
         } else {
             Optional.empty();
         }
@@ -25,30 +26,49 @@ public class Wallet {
     public String createAccount() {
         String privateString = KeyTools.generatePrivateKey();
         Account account = new Account(privateString);
-        this.accounts.add(account);
+        this.accounts.put(account.getAddress(), account);
 
         if (!defaultAccount.isPresent()) {
-            defaultAccount = Optional.of(accounts.get(0));
+            defaultAccount = Optional.of(account);
         }
         return account.getAddress();
     }
 
     public String addByPrivateKey(String privateKey) {
         Account account = new Account(privateKey);
-        this.accounts.add(account);
+        this.accounts.put(account.getAddress(), account);
         if (!defaultAccount.isPresent()) {
-            defaultAccount = Optional.of(accounts.get(0));
+            defaultAccount = Optional.of(account);
         }
         return account.getAddress();
     }
 
     public String addByKeyStore(String keystore, String passphrase) throws Exception {
         Account account = Account.fromFile(keystore, passphrase);
-        this.accounts.add(account);
+        this.accounts.put(account.getAddress(), account);
 
         if (!defaultAccount.isPresent()) {
-            defaultAccount = Optional.of(accounts.get(0));
+            defaultAccount = Optional.of(account);
         }
         return account.getAddress();
     }
+
+    public void setDefault(String address) {
+        this.defaultAccount = Optional.of(accounts.get(address));
+    }
+
+    public void remove(String address) {
+        Account toRemove = accounts.get(address);
+        if (null != toRemove) {
+            accounts.remove(address);
+            if (defaultAccount.isPresent() && defaultAccount.get().getAddress().equals(toRemove.getAddress())) {
+                if (!accounts.values().isEmpty()) {
+                    defaultAccount = Optional.of(accounts.values().iterator().next());
+                } else {
+                    defaultAccount = Optional.empty();
+                }
+            }
+        }
+    }
+
 }
