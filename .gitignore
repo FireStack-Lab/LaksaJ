@@ -2,3 +2,5 @@
 gradle/
 out/
 testaccount
+gradlew
+gradlew.bat
