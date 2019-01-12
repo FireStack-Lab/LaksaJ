@@ -21,7 +21,12 @@ The project is still under development.
 
 ### TransactionFactory
 
-- [ ] sendTransaction 
+- [ ] sendTransaction
+
+### ContractFactory
+
+- [ ] deploy
+- [ ] call
 
 ### Crypto API
 
