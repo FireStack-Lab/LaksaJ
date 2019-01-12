@@ -16,8 +16,12 @@ The project is still under development.
 - [x] addByPrivateKey addByKeyStore
 - [x] remove
 - [x] setDefault
-- [ ] signTransaction
-- [ ] signTransactionWith
+- [ ] signTransaction (default ac********count)
+- [ ] signTransactionWith (specific account)
+
+### TransactionFactory
+
+- [ ] sendTransaction 
 
 ### Crypto API
 
@@ -45,7 +49,6 @@ The project is still under development.
 - [x] getLatestDsBlock
 - [x] getLatestTxBlock
 - [x] getTransaction
-- [ ] createTransaction
 - [x] getSmartContracts
 - [x] getSmartContractState
 - [x] getSmartContractCode
@@ -55,5 +58,12 @@ The project is still under development.
 - [x] getRecentTransactions
 - [x] getDSBlockListing 
 - [x] getTxBlockListing 
+
+### Util
+
+- [x] byteArrayToHexString
+- [x] hexStringToByteArray
+- [x] generateMac
+
 
 
