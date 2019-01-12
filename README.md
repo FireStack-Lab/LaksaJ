@@ -64,6 +64,7 @@ The project is still under development.
 - [x] byteArrayToHexString
 - [x] hexStringToByteArray
 - [x] generateMac
+- [x] isByteString
 
 
 
