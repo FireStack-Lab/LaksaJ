@@ -71,6 +71,7 @@ The project is still under development.
 - [x] hexStringToByteArray
 - [x] generateMac
 - [x] isByteString
+- [x] encodeTransactionProto
 
 
 
