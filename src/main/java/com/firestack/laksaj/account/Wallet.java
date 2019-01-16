@@ -25,6 +25,7 @@ public class Wallet {
 
     public Wallet() {
         defaultAccount = Optional.empty();
+        provider = new Provider("https://api.zilliqa.com/");
     }
 
     public Wallet(Map<String, Account> accounts, Provider provider) {
@@ -112,7 +113,7 @@ public class Wallet {
         if (Objects.isNull(signer)) {
             throw new IllegalArgumentException("account not exists");
         }
-        if (tx.getNonce().isEmpty()) {
+        if (Objects.isNull(tx.getNonce()) || tx.getNonce().isEmpty()) {
             try {
                 result = this.provider.getBalance(signer.getAddress());
                 tx.setNonce(result.getNonce());
@@ -125,13 +126,9 @@ public class Wallet {
         byte[] message = tx.bytes();
         byte[] privateKey = ByteUtil.hexStringToByteArray(signer.getPrivateKey());
         byte[] publicKey = ByteUtil.hexStringToByteArray(signer.getPublicKey());
-        System.out.println(ByteUtil.byteArrayToHexString(message));
-        System.out.println(ByteUtil.byteArrayToHexString(privateKey));
-        System.out.println(ByteUtil.byteArrayToHexString(publicKey));
-        Signature signature = Schnorr.sign(message,privateKey,publicKey);
-        tx.setSignature(signature.toString());
+        Signature signature = Schnorr.sign(message, privateKey, publicKey);
+        tx.setSignature(signature.toString().toLowerCase());
         return tx;
     }
-
 
 }

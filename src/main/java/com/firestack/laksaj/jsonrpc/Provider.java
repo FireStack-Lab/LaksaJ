@@ -164,11 +164,10 @@ public class Provider {
 
     //Transaction-related methods
     public CreateTxResult createTransaction(TransactionPayload payload) throws IOException {
-        String pl = gson.toJson(payload);
-        System.out.println("payload is: " + pl);
-        Req req = Req.builder().id("1").jsonrpc("2.0").method("CreateTransaction").params(new String[]{pl}).build();
+        Req req = Req.builder().id("1").jsonrpc("2.0").method("CreateTransaction").params(new Object[]{payload}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
+        System.out.println(resultString);
         Type type = new TypeToken<Rep<CreateTxResult>>() {
         }.getType();
         Rep<CreateTxResult> rep = gson.fromJson(resultString, type);
@@ -200,6 +199,7 @@ public class Provider {
 
     private Request buildRequest(Req req) throws MalformedURLException {
         RequestBody body = RequestBody.create(JSON, gson.toJson(req));
+        System.out.println("body is:" + gson.toJson(req));
         return new Request.Builder()
                 .post(body)
                 .url(new URL(this.url))
@@ -221,5 +221,13 @@ public class Provider {
     public static class CreateTxResult {
         private String Info;
         private String TranID;
+
+        @Override
+        public String toString() {
+            return "CreateTxResult{" +
+                    "Info='" + Info + '\'' +
+                    ", TranID='" + TranID + '\'' +
+                    '}';
+        }
     }
 }

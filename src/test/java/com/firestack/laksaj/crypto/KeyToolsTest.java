@@ -31,7 +31,7 @@ public class KeyToolsTest {
         publicKey = KeyTools.getPublicKeyFromPrivateKey(privateKey, false);
         Assert.assertEquals(publicKey.toLowerCase(), "04cfa555bb63231d167f643f1a23ba66e6ca1458d416ddb9941e95b5fd28df0ac513075403c996efbbc15d187868857e31cf7be4d109b4f8cb3fd40499839f150a");
         privateKey = "e19d05c5452598e24caad4a0d85a49146f7be089515c905ae6a19e8a578a6930";
-        System.out.println(KeyTools.getPublicKeyFromPrivateKey(privateKey,true));
+        System.out.println(KeyTools.getPublicKeyFromPrivateKey(privateKey, true));
     }
 
     @Test
@@ -39,5 +39,12 @@ public class KeyToolsTest {
         String privateKey = "B4EB8E8B343E2CCE46DB4E7571EC1D9654693CCA200BC41CC20148355CA62ED9";
         String address = KeyTools.getAddressFromPrivateKey(privateKey);
         System.out.println(address);
+    }
+
+    @Test
+    public void getAddressFromPublicKey() {
+        String address = KeyTools.getAddressFromPrivateKey("0246e7178dc8253201101e18fd6f6eb9972451d121fc57aa2a06dd5c111e58dc6a");
+        Assert.assertEquals(address, "64AD03F7751872CB81549648A92C965CCCBA9838");
+        System.out.println(KeyTools.getPublicKeyFromPrivateKey("0246e7178dc8253201101e18fd6f6eb9972451d121fc57aa2a06dd5c111e58dc6a",true));
     }
 }
