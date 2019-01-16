@@ -79,9 +79,9 @@ public class ProviderTest {
     @Test
     public void getBalance() throws IOException {
         Provider client = new Provider("https://api.zilliqa.com/");
-        String balance = client.getBalance("E9C49CAF0D0BC9D7C769391E8BDA2028F824CF3D".toLowerCase());
-        System.out.println(balance);
-        Assert.assertNotNull(balance);
+        Provider.BalanceResult balance = client.getBalance("E9C49CAF0D0BC9D7C769391E8BDA2028F824CF3D".toLowerCase());
+        System.out.println(balance.getBalance());
+        Assert.assertNotNull(balance.getBalance());
     }
 
     @Test
