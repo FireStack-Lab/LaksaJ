@@ -43,7 +43,7 @@ public class Schnorr {
 
         BigInteger r = hash(Q, pk, m).mod(spec.getN());
         BigInteger h = r;
-        BigInteger s = h.multiply(new BigInteger(privateKey)).mod(spec.getN());
+        BigInteger s = h.multiply(new BigInteger(1, privateKey)).mod(spec.getN());
         s = k.subtract(s).mod(spec.getN());
         System.out.println(r);
         System.out.println(s);
