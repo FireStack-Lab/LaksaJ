@@ -24,8 +24,8 @@ public class Schnorr {
     public static Signature sign(byte[] message, byte[] privateKey, byte[] publicKey) {
         int len = spec.getN().bitLength() / 8;
         HmacDrbg drbg = getDRBG(message);
-//        BigInteger k = new BigInteger(drbg.nextBytes(len));
-        BigInteger k = new BigInteger(ByteUtil.hexStringToByteArray("4b33d1e9da7e4f5378cd498e6e68a62d91a52c7a4ae38dd871a5feef8b83189b"));
+        BigInteger k = new BigInteger(drbg.nextBytes(len));
+//        BigInteger k = new BigInteger(ByteUtil.hexStringToByteArray("4b33d1e9da7e4f5378cd498e6e68a62d91a52c7a4ae38dd871a5feef8b83189b"));
         return trySign(privateKey, publicKey, message, k);
     }
 
@@ -47,8 +47,8 @@ public class Schnorr {
         BigInteger h = r;
         BigInteger s = h.multiply(new BigInteger(1, privateKey)).mod(spec.getN());
         s = k.subtract(s).mod(spec.getN());
-        System.out.println("R is: " + r);
-        System.out.println("S is: " + s);
+        System.out.println("R is: " + r.toString());
+        System.out.println("S is: " + s.toString());
         return Signature.builder().r(r).s(s).build();
 
     }
@@ -79,7 +79,7 @@ public class Schnorr {
 
         byte[] hashByte = HashUtil.sha256(B);
 
-        return new BigInteger(hashByte);
+        return new BigInteger(1,hashByte);
     }
 
     static boolean verify(List<Integer> message, BigInteger R, BigInteger S, byte[] publicKey) {
