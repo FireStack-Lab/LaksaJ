@@ -14,8 +14,8 @@ public class WalletTest {
         String address = wallet.addByPrivateKey("e19d05c5452598e24caad4a0d85a49146f7be089515c905ae6a19e8a578a6930".toUpperCase());
         System.out.println("address is: " + address);
         Transaction transaction = Transaction.builder()
-                .version(String.valueOf(pack(62,1)))
-                .toAddr("2E3C9B415B19AE4035503A06192A0FAD76E04243")
+                .version(String.valueOf(pack(62,8)))
+                .toAddr("2E3C9B415B19AE4035503A06192A0FAD76E04243".toLowerCase())
                 .senderPubKey("0246e7178dc8253201101e18fd6f6eb9972451d121fc57aa2a06dd5c111e58dc6a".toLowerCase())
                 .amount("1000000000000")
                 .gasPrice("1000000000")
