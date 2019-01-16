@@ -31,6 +31,14 @@ public class SchnorrTest {
                 ByteUtil.hexStringToByteArray(message), new BigInteger(k, 16));
         Assert.assertEquals(signature.getR().toString(16).toUpperCase(), "4B73D4D919D7B4DEF330391899EA02023851CABE044E34E18EAE3E10588CECCD");
         Assert.assertEquals(signature.getS().toString(16).toUpperCase(), "D5DE85C4BDEA5910DC36AEF5660774D65291322C1E87FDA0D00C864E8C5FED29");
+
+        publicKey = "0246e7178dc8253201101e18fd6f6eb9972451d121fc57aa2a06dd5c111e58dc6a";
+        privateKey = "e19d05c5452598e24caad4a0d85a49146f7be089515c905ae6a19e8a578a6930";
+        message = "080010001a142e3c9b415b19ae4035503a06192a0fad76e0424322230a210246e7178dc8253201101e18fd6f6eb9972451d121fc57aa2a06dd5c111e58dc6a2a120a100000000000000000000000000000271032120a100000000000000000000000000000006438e80742004a00";
+        k = "4b33d1e9da7e4f5378cd498e6e68a62d91a52c7a4ae38dd871a5feef8b83189b";
+        signature = Schnorr.trySign(ByteUtil.hexStringToByteArray(privateKey), ByteUtil.hexStringToByteArray(publicKey),
+                ByteUtil.hexStringToByteArray(message), new BigInteger(k, 16));
+        System.out.println(signature);
     }
 
     @Test
@@ -56,16 +64,6 @@ public class SchnorrTest {
         }
         result = Schnorr.verify(messageList, new BigInteger(R, 16), new BigInteger(S, 16), ByteUtil.hexStringToByteArray(publicKey));
         Assert.assertTrue(result);
-
-        message = "080110f4021a14d90f2e538ce0df89c8273cad3b63ec44a3c4ed8222230a2103d8e6450e260f80983bcd4fadb6cbc132ae7feb552dda45f94b48c80b86c6c3be2a120a100000000000000000000000000000037832120a100000000000000000000000003b9aca00380a42004aa4027b225f746167223a226e65774c6f636b222c22706172616d73223a5b7b22766e616d65223a227265636569766572222c2274797065223a2242795374723230222c2276616c7565223a22307831323334353637383930313233343536373839303132333435363738393031323334353637383930227d2c7b22766e616d65223a226856616c7565222c2274797065223a2242795374723332222c2276616c756522202020203a22307863613937383131326361316262646361666163323331623339613233646334646137383665666638313437633465373262393830373738356166656534376262227d2c7b22766e616d65223a226e4c6f636b4e756d222c2274797065223a2255696e74313238222c2276616c7565223a22313030303030227d5d7d";
-        R = "67EB3FED0398B3BF7DA3AEDF8F58B7DFD7B8C1508D24631D40B03B4368D230A8";
-        S = "41F7EED0F9508F4315D77A57EB238FB7615A37613D2F38B638BC9DFF65FE6FA0";
-        publicKey = KeyTools.getPublicKeyFromPrivateKey("db11cfa086b92497c8ed5a4cc6edb3a5bfe3a640c43ffb9fc6aa0873c56f2ee3",false);
-        messageList = new ArrayList<>();
-        for (byte m : ByteUtil.hexStringToByteArray(message)) {
-            messageList.add((int) m);
-        }
-        result = Schnorr.verify(messageList, new BigInteger(R, 16), new BigInteger(S, 16), ByteUtil.hexStringToByteArray(publicKey));
     }
 
     @Test
@@ -74,7 +72,6 @@ public class SchnorrTest {
         byte[] bytes = Schnorr.getDRBG(ByteUtil.hexStringToByteArray(message)).nextBytes(32);
         System.out.println(ByteUtil.byteArrayToHexString(bytes).toUpperCase());
     }
-
 
 
 }

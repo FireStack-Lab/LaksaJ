@@ -43,8 +43,8 @@ public class KeyTools {
         Matcher matcher = pattern.matcher(address);
         while (matcher.find()) {
             System.out.println(matcher.group());
-            System.out.print("start:"+matcher.start());
-            System.out.println(" end:"+matcher.end());
+            System.out.print("start:" + matcher.start());
+            System.out.println(" end:" + matcher.end());
         }
         return true;
     }
@@ -54,7 +54,8 @@ public class KeyTools {
      * @return
      */
     public static String getPublicKeyFromPrivateKey(String privateKey, boolean compressed) {
-        BigInteger bigInteger = new BigInteger(privateKey, 16);
+        byte[] pk = ByteUtil.hexStringToByteArray(privateKey);
+        BigInteger bigInteger = new BigInteger(1, pk);
         ECPoint point = getPublicPointFromPrivate(bigInteger);
         return ByteUtil.byteArrayToHexString(point.getEncoded(compressed));
     }

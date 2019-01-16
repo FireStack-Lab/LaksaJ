@@ -1,5 +1,6 @@
 package com.firestack.laksaj.crypto;
 
+import com.firestack.laksaj.utils.ByteUtil;
 import com.firestack.laksaj.utils.HashUtil;
 import org.bouncycastle.jce.ECNamedCurveTable;
 import org.bouncycastle.jce.spec.ECNamedCurveParameterSpec;
@@ -23,7 +24,8 @@ public class Schnorr {
     public static Signature sign(byte[] message, byte[] privateKey, byte[] publicKey) {
         int len = spec.getN().bitLength() / 8;
         HmacDrbg drbg = getDRBG(message);
-        BigInteger k = new BigInteger(drbg.nextBytes(len));
+//        BigInteger k = new BigInteger(drbg.nextBytes(len));
+        BigInteger k = new BigInteger(ByteUtil.hexStringToByteArray("4b33d1e9da7e4f5378cd498e6e68a62d91a52c7a4ae38dd871a5feef8b83189b"));
         return trySign(privateKey, publicKey, message, k);
     }
 

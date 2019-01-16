@@ -1,28 +1,42 @@
 package com.firestack.laksaj.account;
 
+import com.firestack.laksaj.jsonrpc.Provider;
 import com.firestack.laksaj.transaction.Transaction;
+import com.firestack.laksaj.transaction.TransactionFactory;
 import org.junit.Test;
+
+import java.io.IOException;
 
 public class WalletTest {
     @Test
-    public void sign() {
+    public void sign() throws IOException {
         Wallet wallet = new Wallet();
-        String address = wallet.addByPrivateKey("e19d05c5452598e24caad4a0d85a49146f7be089515c905ae6a19e8a578a6930");
+        String address = wallet.addByPrivateKey("e19d05c5452598e24caad4a0d85a49146f7be089515c905ae6a19e8a578a6930".toUpperCase());
         System.out.println("address is: " + address);
         Transaction transaction = Transaction.builder()
-                .version("4063233")
-                .toAddr("2E3c9B415b19AE4035503a06192A0fAd76E04243")
-                .nonce("24")
-                .senderPubKey("0246e7178dc8253201101e18fd6f6eb9972451d121fc57aa2a06dd5c111e58dc6a")
-                .amount("24000000000000")
+                .version(String.valueOf(pack(62,1)))
+                .toAddr("2E3C9B415B19AE4035503A06192A0FAD76E04243")
+                .senderPubKey("0246e7178dc8253201101e18fd6f6eb9972451d121fc57aa2a06dd5c111e58dc6a".toLowerCase())
+                .amount("1000000000000")
                 .gasPrice("1000000000")
                 .gasLimit("1")
                 .code("")
                 .data("")
+                .provider(new Provider("https://api.zilliqa.com/"))
                 .build();
         transaction = wallet.sign(transaction);
         System.out.println("signature is: " + transaction.getSignature());
+        Provider.CreateTxResult result = TransactionFactory.sendTransaction(transaction);
+        System.out.println(result);
+    }
 
+    int pack(int a, int b) {
+        return (a << 16) + b;
+    }
+
+    @Test
+    public void f() {
+        System.out.println(pack(2,1));
     }
 }
 

@@ -39,8 +39,8 @@ public class Transaction {
                 .gasLimit(this.gasLimit)
                 .signature(this.signature)
                 .receipt(this.receipt)
-                .senderPubKey(this.senderPubKey)
-                .toAddr(this.toAddr)
+                .senderPubKey(this.senderPubKey.toLowerCase())
+                .toAddr(this.toAddr.toUpperCase())
                 .code(Optional.of(this.code))
                 .data(Optional.of(this.data))
                 .build();
@@ -49,15 +49,15 @@ public class Transaction {
     public TransactionPayload toTransactionPayload() {
         return TransactionPayload.builder()
                 .version(Integer.parseInt(this.version))
-                .nonce(Integer.parseInt(this.nonce))
-                .toAddr(this.toAddr)
+                .nonce(Integer.valueOf(this.nonce))
+                .toAddr("0x"+this.toAddr.toUpperCase())
                 .amount(this.amount)
-                .pubKey(this.senderPubKey)
+                .pubKey(this.senderPubKey.toLowerCase())
                 .gasPrice(this.gasPrice)
                 .gasLimit(this.gasLimit)
                 .code(this.code)
                 .data(this.data)
-                .signature(this.signature)
+                .signature(this.signature.toLowerCase())
                 .build();
     }
 
@@ -65,7 +65,6 @@ public class Transaction {
         TxParams txParams = toTransactionParam();
         TransactionUtil util = new TransactionUtil();
         byte[] bytes = util.encodeTransactionProto(txParams);
-        System.out.println("encodes is:" + ByteUtil.byteArrayToHexString(bytes));
         return bytes;
     }
 }
