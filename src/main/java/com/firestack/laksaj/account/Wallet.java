@@ -1,6 +1,8 @@
 package com.firestack.laksaj.account;
 
 import com.firestack.laksaj.crypto.KeyTools;
+import com.firestack.laksaj.crypto.Schnorr;
+import com.firestack.laksaj.crypto.Signature;
 import com.firestack.laksaj.jsonrpc.Provider;
 import com.firestack.laksaj.transaction.Transaction;
 import com.firestack.laksaj.transaction.TxParams;
@@ -20,6 +22,10 @@ public class Wallet {
     private Map<String, Account> accounts = new HashMap<>();
     private Provider provider;
     private Optional<Account> defaultAccount;
+
+    public Wallet() {
+        defaultAccount = Optional.empty();
+    }
 
     public Wallet(Map<String, Account> accounts, Provider provider) {
         this.accounts = accounts;
@@ -116,7 +122,14 @@ public class Wallet {
         }
 
         tx.setSenderPubKey(signer.getPublicKey());
-        tx.setSignature(ByteUtil.byteArrayToHexString(tx.bytes()));
+        byte[] message = tx.bytes();
+        byte[] privateKey = ByteUtil.hexStringToByteArray(signer.getPrivateKey());
+        byte[] publicKey = ByteUtil.hexStringToByteArray(signer.getPublicKey());
+        System.out.println(ByteUtil.byteArrayToHexString(message));
+        System.out.println(ByteUtil.byteArrayToHexString(privateKey));
+        System.out.println(ByteUtil.byteArrayToHexString(publicKey));
+        Signature signature = Schnorr.sign(message,privateKey,publicKey);
+        tx.setSignature(signature.toString());
         return tx;
     }
 

@@ -3,6 +3,7 @@ package com.firestack.laksaj.transaction;
 
 import com.firestack.laksaj.blockchain.TransactionReceipt;
 import com.firestack.laksaj.jsonrpc.Provider;
+import com.firestack.laksaj.utils.ByteUtil;
 import com.firestack.laksaj.utils.TransactionUtil;
 import lombok.Data;
 import lombok.experimental.Builder;
@@ -45,9 +46,26 @@ public class Transaction {
                 .build();
     }
 
+    public TransactionPayload toTransactionPayload() {
+        return TransactionPayload.builder()
+                .version(Integer.parseInt(this.version))
+                .nonce(Integer.parseInt(this.nonce))
+                .toAddr(this.toAddr)
+                .amount(this.amount)
+                .pubKey(this.senderPubKey)
+                .gasPrice(this.gasPrice)
+                .gasLimit(this.gasLimit)
+                .code(this.code)
+                .data(this.data)
+                .signature(this.signature)
+                .build();
+    }
+
     public byte[] bytes() {
         TxParams txParams = toTransactionParam();
         TransactionUtil util = new TransactionUtil();
-        return util.encodeTransactionProto(txParams);
+        byte[] bytes = util.encodeTransactionProto(txParams);
+        System.out.println("encodes is:" + ByteUtil.byteArrayToHexString(bytes));
+        return bytes;
     }
 }

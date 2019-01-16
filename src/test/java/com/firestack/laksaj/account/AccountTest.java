@@ -1,4 +1,4 @@
 package com.firestack.laksaj.account;
 
-public class Account {
+public class AccountTest {
 }

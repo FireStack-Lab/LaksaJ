@@ -45,8 +45,8 @@ public class Schnorr {
         BigInteger h = r;
         BigInteger s = h.multiply(new BigInteger(1, privateKey)).mod(spec.getN());
         s = k.subtract(s).mod(spec.getN());
-        System.out.println(r);
-        System.out.println(s);
+        System.out.println("R is: " + r);
+        System.out.println("S is: " + s);
         return Signature.builder().r(r).s(s).build();
 
     }

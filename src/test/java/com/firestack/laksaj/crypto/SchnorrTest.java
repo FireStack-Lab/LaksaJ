@@ -66,10 +66,6 @@ public class SchnorrTest {
             messageList.add((int) m);
         }
         result = Schnorr.verify(messageList, new BigInteger(R, 16), new BigInteger(S, 16), ByteUtil.hexStringToByteArray(publicKey));
-
-
-
-
     }
 
     @Test

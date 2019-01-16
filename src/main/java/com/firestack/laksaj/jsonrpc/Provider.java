@@ -2,6 +2,7 @@ package com.firestack.laksaj.jsonrpc;
 
 import com.firestack.laksaj.blockchain.*;
 import com.firestack.laksaj.transaction.Transaction;
+import com.firestack.laksaj.transaction.TransactionPayload;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.sun.tools.javac.util.Assert;
@@ -162,6 +163,20 @@ public class Provider {
     }
 
     //Transaction-related methods
+    public CreateTxResult createTransaction(TransactionPayload payload) throws IOException {
+        String pl = gson.toJson(payload);
+        System.out.println("payload is: " + pl);
+        Req req = Req.builder().id("1").jsonrpc("2.0").method("CreateTransaction").params(new String[]{pl}).build();
+        Response response = client.newCall(buildRequest(req)).execute();
+        String resultString = Objects.requireNonNull(response.body()).string();
+        Type type = new TypeToken<Rep<CreateTxResult>>() {
+        }.getType();
+        Rep<CreateTxResult> rep = gson.fromJson(resultString, type);
+        return rep.getResult();
+
+    }
+
+
     public Transaction getTransaction(String hash) throws IOException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetTransaction").params(new String[]{hash}).build();
         Response response = client.newCall(buildRequest(req)).execute();
@@ -200,5 +215,11 @@ public class Provider {
     @Data
     public static class ContractResult {
         private String code;
+    }
+
+    @Data
+    public static class CreateTxResult {
+        private String Info;
+        private String TranID;
     }
 }
