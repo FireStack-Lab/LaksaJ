@@ -6,6 +6,8 @@ import com.firestack.laksaj.jsonrpc.Provider;
 import lombok.Data;
 import lombok.experimental.Builder;
 
+import java.util.Optional;
+
 @Data
 @Builder
 public class Transaction {
@@ -25,23 +27,20 @@ public class Transaction {
     private Provider provider;
     private TxStatus status;
 
-    public static Transaction buildTransaction(TxParams params, Provider provider, TxStatus status) {
-        return Transaction.builder()
-                .ID(params.getID())
-                .version(params.getVersion())
-                .nonce(params.getNonce())
-                .amount(params.getAmount())
-                .gasPrice(params.getGasPrice())
-                .gasLimit(params.getGasLimit())
-                .signature(params.getSignature())
-                .receipt(params.getReceipt())
-                .senderPubKey(params.getSenderPubKey())
-                .toAddr(params.getToAddr())
-                .code(params.getCode().orElse(""))
-                .data(params.getData().orElse(""))
-                .provider(provider)
-                .status(status)
+    public TxParams toTransactionParam() {
+        return TxParams.builder()
+                .ID(this.ID)
+                .version(this.version)
+                .nonce(this.nonce)
+                .amount(this.amount)
+                .gasPrice(this.gasPrice)
+                .gasLimit(this.gasLimit)
+                .signature(this.signature)
+                .receipt(this.receipt)
+                .senderPubKey(this.senderPubKey)
+                .toAddr(this.toAddr)
+                .code(Optional.of(this.code))
+                .data(Optional.of(this.data))
                 .build();
     }
-
 }
