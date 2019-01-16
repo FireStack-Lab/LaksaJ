@@ -13,11 +13,10 @@ public class TransactionUtil {
     public byte[] encodeTransactionProto(TxParams txParams) {
         BigInteger amount = new BigInteger(txParams.getAmount());
         BigInteger gasPrice = new BigInteger(txParams.getGasPrice());
-
         return Message.ProtoTransactionCoreInfo.newBuilder()
                 .setVersion(Integer.valueOf(txParams.getVersion()))
                 .setNonce(Strings.isNullOrEmpty(txParams.getNonce()) ? 0 : Long.valueOf(txParams.getNonce()))
-                .setToaddr(ByteString.copyFrom(ByteUtil.hexStringToByteArray(txParams.getToAddr())))
+                .setToaddr(ByteString.copyFrom(ByteUtil.hexStringToByteArray(txParams.getToAddr().toLowerCase())))
                 .setSenderpubkey(Message.ByteArray.newBuilder().setData(ByteString.copyFrom(ByteUtil.hexStringToByteArray(txParams.getSenderPubKey()))).build())
                 .setAmount(Message.ByteArray.newBuilder().setData(ByteString.copyFrom(BigIntegers.asUnsignedByteArray(16, amount))).build())
                 .setGasprice(Message.ByteArray.newBuilder().setData(ByteString.copyFrom(BigIntegers.asUnsignedByteArray(16, gasPrice))).build())
