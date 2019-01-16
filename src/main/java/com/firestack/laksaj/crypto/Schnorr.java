@@ -21,7 +21,7 @@ public class Schnorr {
     static final int ENT_LEN = 32;
 
     public static Signature sign(byte[] message, byte[] privateKey, byte[] publicKey) {
-        int len = spec.getN().toByteArray().length;
+        int len = spec.getN().bitLength() / 8;
         HmacDrbg drbg = getDRBG(message);
         BigInteger k = new BigInteger(drbg.nextBytes(len));
         return trySign(privateKey, publicKey, message, k);

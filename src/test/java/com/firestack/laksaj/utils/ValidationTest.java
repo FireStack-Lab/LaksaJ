@@ -3,8 +3,6 @@ package com.firestack.laksaj.utils;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.math.BigInteger;
-
 public class ValidationTest {
 
     @Test

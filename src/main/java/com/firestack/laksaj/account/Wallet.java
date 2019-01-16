@@ -1,6 +1,7 @@
 package com.firestack.laksaj.account;
 
 import com.firestack.laksaj.crypto.KeyTools;
+import com.firestack.laksaj.crypto.Schnorr;
 import com.firestack.laksaj.jsonrpc.Provider;
 import com.firestack.laksaj.transaction.Transaction;
 import com.firestack.laksaj.transaction.TxParams;
@@ -78,20 +79,17 @@ public class Wallet {
 //    public Transaction signWith(Transaction tx, String account) {
 //        Account signer = accounts.get(account);
 //        Provider.BalanceResult result;
-//        TxParams txParams = tx.toTransactionParam();
 //        if (Objects.isNull(signer)) {
 //            throw new IllegalArgumentException("account not exists");
 //        }
 //        if (tx.getNonce().isEmpty()) {
 //            try {
 //                result = this.provider.getBalance(account);
-//                txParams.setNonce(result.getNonce());
+//                tx.setNonce(result.getNonce());
 //            } catch (IOException e) {
 //                throw new IllegalArgumentException("cannot get nonce", e);
 //            }
 //        }
-//        txParams.setSenderPubKey(signer.getPublicKey());
-//        txParams.setSignature();
 //
 //    }
 
