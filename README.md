@@ -16,8 +16,8 @@ The project is still under development.
 - [x] addByPrivateKey addByKeyStore
 - [x] remove
 - [x] setDefault
-- [ ] signTransaction (default account)
-- [ ] signTransactionWith (specific account)
+- [x] signTransaction (default account)
+- [x] signTransactionWith (specific account)
 
 ### TransactionFactory
 

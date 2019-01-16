@@ -30,6 +30,8 @@ public class KeyToolsTest {
         privateKey = "b776d8f068d11b3c3f5b94db0fb30efea05b73ddb9af1bbd5da8182d94245f0b";
         publicKey = KeyTools.getPublicKeyFromPrivateKey(privateKey, false);
         Assert.assertEquals(publicKey.toLowerCase(), "04cfa555bb63231d167f643f1a23ba66e6ca1458d416ddb9941e95b5fd28df0ac513075403c996efbbc15d187868857e31cf7be4d109b4f8cb3fd40499839f150a");
+        privateKey = "e19d05c5452598e24caad4a0d85a49146f7be089515c905ae6a19e8a578a6930";
+        System.out.println(KeyTools.getPublicKeyFromPrivateKey(privateKey,true));
     }
 
     @Test
