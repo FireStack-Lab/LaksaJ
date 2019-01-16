@@ -1,6 +1,7 @@
 package com.firestack.laksaj.transaction;
 
 
+import com.firestack.laksaj.account.Account;
 import com.firestack.laksaj.blockchain.TransactionReceipt;
 import com.firestack.laksaj.jsonrpc.Provider;
 import com.firestack.laksaj.utils.ByteUtil;
@@ -39,8 +40,8 @@ public class Transaction {
                 .gasLimit(this.gasLimit)
                 .signature(this.signature)
                 .receipt(this.receipt)
-                .senderPubKey(this.senderPubKey.toLowerCase())
-                .toAddr(this.toAddr.toUpperCase())
+                .senderPubKey(this.senderPubKey)
+                .toAddr(this.toAddr.toLowerCase())
                 .code(Optional.of(this.code))
                 .data(Optional.of(this.data))
                 .build();
@@ -50,7 +51,7 @@ public class Transaction {
         return TransactionPayload.builder()
                 .version(Integer.parseInt(this.version))
                 .nonce(Integer.valueOf(this.nonce))
-                .toAddr("0x"+this.toAddr.toUpperCase())
+                .toAddr(Account.toCheckSumAddress(this.toAddr))
                 .amount(this.amount)
                 .pubKey(this.senderPubKey.toLowerCase())
                 .gasPrice(this.gasPrice)

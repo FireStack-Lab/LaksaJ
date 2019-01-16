@@ -124,8 +124,11 @@ public class Wallet {
 
         tx.setSenderPubKey(signer.getPublicKey());
         byte[] message = tx.bytes();
+        System.out.println("message is: " + ByteUtil.byteArrayToHexString(message));
         byte[] privateKey = ByteUtil.hexStringToByteArray(signer.getPrivateKey());
+        System.out.println("private key is: " + ByteUtil.byteArrayToHexString(privateKey));
         byte[] publicKey = ByteUtil.hexStringToByteArray(signer.getPublicKey());
+        System.out.println("public key is: " + ByteUtil.byteArrayToHexString(publicKey));
         Signature signature = Schnorr.sign(message, privateKey, publicKey);
         tx.setSignature(signature.toString().toLowerCase());
         return tx;

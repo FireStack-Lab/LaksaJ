@@ -1,6 +1,5 @@
 package com.firestack.laksaj.crypto;
 
-import com.firestack.laksaj.utils.ByteUtil;
 import lombok.Data;
 import lombok.experimental.Builder;
 
@@ -14,6 +13,10 @@ public class Signature {
 
     @Override
     public String toString() {
-        return ByteUtil.byteArrayToHexString(r.toByteArray()) + ByteUtil.byteArrayToHexString(s.toByteArray());
+        String rs = r.toString(16);
+        String ss = s.toString(16);
+        System.out.println("r is:" + rs);
+        System.out.println("s is:" + ss);
+        return rs + ss;
     }
 }
