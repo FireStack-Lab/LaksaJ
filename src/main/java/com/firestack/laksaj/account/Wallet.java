@@ -1,10 +1,10 @@
 package com.firestack.laksaj.account;
 
 import com.firestack.laksaj.crypto.KeyTools;
-import com.firestack.laksaj.crypto.Schnorr;
 import com.firestack.laksaj.jsonrpc.Provider;
 import com.firestack.laksaj.transaction.Transaction;
 import com.firestack.laksaj.transaction.TxParams;
+import com.firestack.laksaj.utils.ByteUtil;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -12,6 +12,10 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+
+/**
+ * all address should be upper case
+ */
 public class Wallet {
     private Map<String, Account> accounts = new HashMap<>();
     private Provider provider;
@@ -31,7 +35,7 @@ public class Wallet {
     public String createAccount() {
         String privateString = KeyTools.generatePrivateKey();
         Account account = new Account(privateString);
-        this.accounts.put(account.getAddress(), account);
+        this.accounts.put(account.getAddress().toUpperCase(), account);
 
         if (!defaultAccount.isPresent()) {
             defaultAccount = Optional.of(account);
@@ -75,23 +79,46 @@ public class Wallet {
             }
         }
     }
-//
-//    public Transaction signWith(Transaction tx, String account) {
-//        Account signer = accounts.get(account);
-//        Provider.BalanceResult result;
-//        if (Objects.isNull(signer)) {
-//            throw new IllegalArgumentException("account not exists");
-//        }
-//        if (tx.getNonce().isEmpty()) {
-//            try {
-//                result = this.provider.getBalance(account);
-//                tx.setNonce(result.getNonce());
-//            } catch (IOException e) {
-//                throw new IllegalArgumentException("cannot get nonce", e);
-//            }
-//        }
-//
-//    }
+
+    public Transaction sign(Transaction transaction) {
+
+        TxParams txParams = transaction.toTransactionParam();
+
+        if (Objects.nonNull(txParams) && !txParams.getSenderPubKey().isEmpty()) {
+            String address = KeyTools.getAddressFromPublicKey(txParams.getSenderPubKey()).toUpperCase();
+            Account account = accounts.get(address);
+            if (Objects.isNull(account)) {
+                throw new IllegalArgumentException("Could not sign the transaction with" + address + "  as it does not exist");
+            }
+            return signWith(transaction, account);
+        }
+
+        if (!this.defaultAccount.isPresent()) {
+            throw new IllegalArgumentException("This wallet has no default account.");
+        }
+
+        return this.signWith(transaction, this.defaultAccount.get());
+
+    }
+
+    public Transaction signWith(Transaction tx, Account signer) {
+        Provider.BalanceResult result;
+        if (Objects.isNull(signer)) {
+            throw new IllegalArgumentException("account not exists");
+        }
+        if (tx.getNonce().isEmpty()) {
+            try {
+                result = this.provider.getBalance(signer.getAddress());
+                tx.setNonce(result.getNonce());
+            } catch (IOException e) {
+                throw new IllegalArgumentException("cannot get nonce", e);
+            }
+        }
+
+        tx.setSenderPubKey(signer.getPublicKey());
+        tx.setSignature(ByteUtil.byteArrayToHexString(tx.bytes()));
+        return tx;
+    }
 
 
 }
