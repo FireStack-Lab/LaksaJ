@@ -3,6 +3,8 @@ package com.firestack.laksaj.utils;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.math.BigInteger;
+
 public class ValidationTest {
 
     @Test
@@ -14,4 +16,5 @@ public class ValidationTest {
         result = Validation.isByteString("e9c49caf0d0bc9d7c76g391e8bda2028f824cf3d", 40);
         Assert.assertFalse(result);
     }
+
 }

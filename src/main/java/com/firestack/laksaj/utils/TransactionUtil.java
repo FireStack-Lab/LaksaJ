@@ -14,7 +14,6 @@ public class TransactionUtil {
         BigInteger amount = new BigInteger(txParams.getAmount());
         BigInteger gasPrice = new BigInteger(txParams.getGasPrice());
 
-
         return Message.ProtoTransactionCoreInfo.newBuilder()
                 .setVersion(Integer.valueOf(txParams.getVersion()))
                 .setNonce(Strings.isNullOrEmpty(txParams.getNonce()) ? 0 : Long.valueOf(txParams.getNonce()))

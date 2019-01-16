@@ -2,16 +2,13 @@ package com.firestack.laksaj.account;
 
 import com.firestack.laksaj.crypto.KeyTools;
 import com.firestack.laksaj.jsonrpc.Provider;
-import com.firestack.laksaj.proto.Message;
+import com.firestack.laksaj.transaction.Transaction;
 import com.firestack.laksaj.transaction.TxParams;
-import com.firestack.laksaj.utils.ByteUtil;
-import com.google.common.base.Strings;
-import com.google.protobuf.ByteString;
-import org.bouncycastle.util.BigIntegers;
 
-import java.math.BigInteger;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
 public class Wallet {
@@ -77,11 +74,26 @@ public class Wallet {
             }
         }
     }
-
+//
 //    public Transaction signWith(Transaction tx, String account) {
+//        Account signer = accounts.get(account);
+//        Provider.BalanceResult result;
+//        TxParams txParams = tx.toTransactionParam();
+//        if (Objects.isNull(signer)) {
+//            throw new IllegalArgumentException("account not exists");
+//        }
+//        if (tx.getNonce().isEmpty()) {
+//            try {
+//                result = this.provider.getBalance(account);
+//                txParams.setNonce(result.getNonce());
+//            } catch (IOException e) {
+//                throw new IllegalArgumentException("cannot get nonce", e);
+//            }
+//        }
+//        txParams.setSenderPubKey(signer.getPublicKey());
+//        txParams.setSignature();
 //
 //    }
-
 
 
 }

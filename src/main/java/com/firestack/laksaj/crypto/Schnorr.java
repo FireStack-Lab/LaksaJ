@@ -13,9 +13,21 @@ public class Schnorr {
 
     static final ECNamedCurveParameterSpec spec = ECNamedCurveTable.getParameterSpec("secp256k1");
 
+
     static final int PUBKEY_COMPRESSED_SIZE_BYTES = 33;
 
-    public static Signature sign(byte[] privateKey, byte[] publicKey, byte[] message, BigInteger k) {
+    static final int ALG_LEN = 16;
+
+    static final int ENT_LEN = 32;
+
+    public static Signature sign(byte[] message, byte[] privateKey, byte[] publicKey) {
+        int len = spec.getN().toByteArray().length;
+        HmacDrbg drbg = getDRBG(message);
+        BigInteger k = new BigInteger(drbg.nextBytes(len));
+        return trySign(privateKey, publicKey, message, k);
+    }
+
+    public static Signature trySign(byte[] privateKey, byte[] publicKey, byte[] message, BigInteger k) {
         //todo add some validate
         ECPoint QPoint = spec.getG().multiply(k);
         BigInteger Q = new BigInteger(QPoint.getEncoded(true));
@@ -88,6 +100,18 @@ public class Schnorr {
         System.out.println(R);
         System.out.println(r1);
         return signature.getR().equals(r1);
+    }
+
+    static HmacDrbg getDRBG(byte[] message) {
+        byte[] entropy = KeyTools.generateRandomBytes(ENT_LEN);
+        byte[] pers = new byte[ALG_LEN + ENT_LEN];
+
+        byte[] tmp = KeyTools.generateRandomBytes(ENT_LEN);
+        System.arraycopy(tmp, 0, pers, 0, ENT_LEN);
+        System.arraycopy(entropy, 0, pers, 32, ALG_LEN);
+        HmacDrbg hmacDrbg = new HmacDrbg(entropy, pers);
+        hmacDrbg.hmacDrbgUpdate(message);
+        return hmacDrbg;
     }
 
 

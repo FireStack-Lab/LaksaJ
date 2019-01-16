@@ -108,7 +108,7 @@ public class Provider {
     }
 
     //Account-related methods
-    public String getBalance(String address) throws IOException {
+    public BalanceResult getBalance(String address) throws IOException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetBalance").params(new String[]{address}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
@@ -116,7 +116,7 @@ public class Provider {
         }.getType();
         Rep<BalanceResult> rep = gson.fromJson(resultString, type);
         Assert.checkNonNull(rep.getResult(), "result is null, check your account address!");
-        return rep.getResult().balance;
+        return rep.getResult();
     }
 
     //Contract-related methods todo need test
