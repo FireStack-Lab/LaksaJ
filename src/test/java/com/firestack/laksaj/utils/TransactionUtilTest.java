@@ -16,8 +16,8 @@ public class TransactionUtilTest {
                 .amount("10000")
                 .gasPrice("100")
                 .gasLimit("1000")
-                .code(Optional.empty())
-                .data(Optional.empty())
+                .code("")
+                .data("")
                 .build();
         TransactionUtil util = new TransactionUtil();
         byte[] bytes = util.encodeTransactionProto(txParams);

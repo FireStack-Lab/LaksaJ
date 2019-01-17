@@ -17,8 +17,8 @@ public class TransactionFactory {
                 .receipt(params.getReceipt())
                 .senderPubKey(params.getSenderPubKey())
                 .toAddr(params.getToAddr())
-                .code(params.getCode().orElse(""))
-                .data(params.getData().orElse(""))
+                .code(params.getCode())
+                .data(params.getData())
                 .provider(provider)
                 .status(status)
                 .build();
