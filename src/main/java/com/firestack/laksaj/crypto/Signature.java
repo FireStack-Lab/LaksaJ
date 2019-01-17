@@ -15,8 +15,8 @@ public class Signature {
     public String toString() {
         String rs = r.toString(16);
         String ss = s.toString(16);
-        System.out.println("r is:" + rs);
-        System.out.println("s is:" + ss);
+        System.out.println("R is:" + rs);
+        System.out.println("S is:" + ss);
         return rs + ss;
     }
 }

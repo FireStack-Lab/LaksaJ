@@ -30,7 +30,7 @@ public class Account {
     public static String toCheckSumAddress(String address) {
         address = address.toLowerCase().replace("0x", "");
         String hash = ByteUtil.byteArrayToHexString(HashUtil.sha256(ByteUtil.hexStringToByteArray(address)));
-        StringBuilder ret = new StringBuilder("0x");
+        StringBuilder ret = new StringBuilder("");
         for (int i = 0; i < address.length(); i++) {
             if (Integer.parseInt(String.valueOf(hash.charAt(i)), 16) >= 8) {
                 ret.append(String.valueOf(address.charAt(i)).toUpperCase());

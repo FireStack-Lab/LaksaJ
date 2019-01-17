@@ -64,6 +64,17 @@ public class SchnorrTest {
         }
         result = Schnorr.verify(messageList, new BigInteger(R, 16), new BigInteger(S, 16), ByteUtil.hexStringToByteArray(publicKey));
         Assert.assertTrue(result);
+
+        message = "088880F80110221A15FFDED02FD979FC2E55C0243BD2F52DF022C40ADA1E22230A210246E7178DC8253201101E18FD6F6EB9972451D121FC57AA2A06DD5C111E58DC6A2A120A100000000000000000000000E8D4A5100032120A100000000000000000000000E8D4A51000380142004A00";
+        R = "e61f9e6c60f21c72159e90a4961615ef05edb4f8b2981606cd4419db17d185e2";
+        S = "43cb77b6477a700b288e708da857babe5b7180f9509094c61134ead71118fc86";
+        publicKey = "0246E7178DC8253201101E18FD6F6EB9972451D121FC57AA2A06DD5C111E58DC6A";
+        messageList = new ArrayList<>();
+        for (byte m : ByteUtil.hexStringToByteArray(message)) {
+            messageList.add((int) m);
+        }
+        result = Schnorr.verify(messageList, new BigInteger(R, 16), new BigInteger(S, 16), ByteUtil.hexStringToByteArray(publicKey));
+        Assert.assertTrue(result);
     }
 
     @Test
