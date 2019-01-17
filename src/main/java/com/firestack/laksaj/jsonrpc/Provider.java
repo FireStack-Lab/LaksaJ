@@ -199,7 +199,8 @@ public class Provider {
 
     private Request buildRequest(Req req) throws MalformedURLException {
         RequestBody body = RequestBody.create(JSON, gson.toJson(req));
-        System.out.println("body is:" + gson.toJson(req));
+        System.out.println("body is:");
+        System.out.println(gson.toJson(req));
         return new Request.Builder()
                 .post(body)
                 .url(new URL(this.url))

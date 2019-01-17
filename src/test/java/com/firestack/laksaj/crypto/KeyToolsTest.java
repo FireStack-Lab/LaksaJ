@@ -4,6 +4,8 @@ import com.firestack.laksaj.utils.ByteUtil;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.math.BigInteger;
+
 public class KeyToolsTest {
 
     @Test
@@ -43,8 +45,11 @@ public class KeyToolsTest {
 
     @Test
     public void getAddressFromPublicKey() {
-        String address = KeyTools.getAddressFromPrivateKey("0246e7178dc8253201101e18fd6f6eb9972451d121fc57aa2a06dd5c111e58dc6a");
-        Assert.assertEquals(address, "64AD03F7751872CB81549648A92C965CCCBA9838");
-        System.out.println(KeyTools.getPublicKeyFromPrivateKey("0246e7178dc8253201101e18fd6f6eb9972451d121fc57aa2a06dd5c111e58dc6a",true));
+        System.out.println(KeyTools.getPublicKeyFromPrivateKey("E19D05C5452598E24CAAD4A0D85A49146F7BE089515C905AE6A19E8A578A6930", true));
+    }
+
+    @Test
+    public void f() {
+        System.out.println(Long.parseLong("01",16));
     }
 }
