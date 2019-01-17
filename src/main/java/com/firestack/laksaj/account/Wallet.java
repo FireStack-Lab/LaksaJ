@@ -116,15 +116,14 @@ public class Wallet {
         if (Objects.isNull(tx.getNonce()) || tx.getNonce().isEmpty()) {
             try {
                 result = this.provider.getBalance(signer.getAddress());
-                tx.setNonce(result.getNonce());
+                tx.setNonce(String.valueOf(Integer.valueOf(result.getNonce()) + 1));
             } catch (IOException e) {
                 throw new IllegalArgumentException("cannot get nonce", e);
             }
         }
-
         tx.setSenderPubKey(signer.getPublicKey());
         byte[] message = tx.bytes();
-        System.out.println("message is: " + ByteUtil.byteArrayToHexString(message));
+        System.out.println("message is: " + ByteUtil.byteArrayToHexString(message).toLowerCase());
         byte[] privateKey = ByteUtil.hexStringToByteArray(signer.getPrivateKey());
         System.out.println("private key is: " + ByteUtil.byteArrayToHexString(privateKey));
         byte[] publicKey = ByteUtil.hexStringToByteArray(signer.getPublicKey());

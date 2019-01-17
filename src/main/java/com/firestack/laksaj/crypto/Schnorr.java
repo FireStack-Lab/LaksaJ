@@ -24,9 +24,9 @@ public class Schnorr {
     public static Signature sign(byte[] message, byte[] privateKey, byte[] publicKey) {
         int len = spec.getN().bitLength() / 8;
         HmacDrbg drbg = getDRBG(message);
-        BigInteger k = new BigInteger(drbg.nextBytes(len));
-        System.out.println("K is: " + ByteUtil.byteArrayToHexString(k.toByteArray()));
-//        BigInteger k = new BigInteger(ByteUtil.hexStringToByteArray("4b33d1e9da7e4f5378cd498e6e68a62d91a52c7a4ae38dd871a5feef8b83189b"));
+//        BigInteger k = new BigInteger(drbg.nextBytes(len));
+//        System.out.println("K is: " + ByteUtil.byteArrayToHexString(k.toByteArray()));
+        BigInteger k = new BigInteger(ByteUtil.hexStringToByteArray("4b33d1e9da7e4f5378cd498e6e68a62d91a52c7a4ae38dd871a5feef8b83189b"));
         return trySign(privateKey, publicKey, message, k);
     }
 
