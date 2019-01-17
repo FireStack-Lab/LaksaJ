@@ -21,8 +21,8 @@ public class TransactionUtil {
                 .setAmount(Message.ByteArray.newBuilder().setData(ByteString.copyFrom(BigIntegers.asUnsignedByteArray(16, amount))).build())
                 .setGasprice(Message.ByteArray.newBuilder().setData(ByteString.copyFrom(BigIntegers.asUnsignedByteArray(16, gasPrice))).build())
                 .setGaslimit(Long.valueOf(txParams.getGasLimit()))
-                .setCode(ByteString.copyFrom(txParams.getCode().orElse("").getBytes()))
-                .setData(ByteString.copyFrom(txParams.getData().orElse("").getBytes()))
+                .setCode(ByteString.copyFrom(txParams.getCode().getBytes()))
+                .setData(ByteString.copyFrom(txParams.getData().getBytes()))
                 .build().toByteArray();
     }
 

@@ -4,8 +4,6 @@ import com.firestack.laksaj.blockchain.TransactionReceipt;
 import lombok.Data;
 import lombok.experimental.Builder;
 
-import java.util.Optional;
-
 @Data
 @Builder
 public class TxParams {
@@ -19,6 +17,6 @@ public class TxParams {
     private TransactionReceipt receipt;
     private String senderPubKey;
     private String toAddr;
-    private Optional<String> code;
-    private Optional<String> data;
+    private String code;
+    private String data;
 }
