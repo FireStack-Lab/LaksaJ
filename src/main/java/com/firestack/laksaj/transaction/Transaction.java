@@ -50,7 +50,6 @@ public class Transaction {
                 .version(Integer.parseInt(this.version))
                 .nonce(Integer.valueOf(this.nonce))
                 .toAddr(Account.toCheckSumAddress(this.toAddr).substring(2))
-//                .toAddr("0x4BAF5faDA8e5Db92C3d3242618c5B47133AE003C")
                 .amount(this.amount)
                 .pubKey(this.senderPubKey.toLowerCase())
                 .gasPrice(this.gasPrice)
