@@ -21,7 +21,7 @@ The project is still under development.
 
 ### TransactionFactory
 
-- [ ] sendTransaction
+- [x] sendTransaction (testing...)
 
 ### ContractFactory
 
@@ -72,6 +72,7 @@ The project is still under development.
 - [x] generateMac
 - [x] isByteString
 - [x] encodeTransactionProto
+- [x] toChecksumAddress
 
 
 
