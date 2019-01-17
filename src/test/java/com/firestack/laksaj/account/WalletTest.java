@@ -7,6 +7,8 @@ import org.junit.Test;
 
 import java.io.IOException;
 
+import static com.firestack.laksaj.account.Wallet.pack;
+
 public class WalletTest {
     @Test
     public void sign() throws IOException {
@@ -29,7 +31,5 @@ public class WalletTest {
         System.out.println(result);
     }
 
-    int pack(int a, int b) {
-        return (a << 16) + b;
-    }
+
 }
