@@ -40,7 +40,7 @@ public class Transaction {
                 .gasLimit(this.gasLimit)
                 .signature(this.signature)
                 .receipt(this.receipt)
-                .senderPubKey(this.senderPubKey)
+                .senderPubKey(this.senderPubKey.toLowerCase())
                 .toAddr(this.toAddr.toLowerCase())
                 .code(Optional.of(this.code))
                 .data(Optional.of(this.data))
