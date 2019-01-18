@@ -3,7 +3,7 @@ package com.firestack.laksaj.crypto;
 import com.firestack.laksaj.utils.ByteUtil;
 import com.google.gson.Gson;
 import lombok.Data;
-import lombok.experimental.Builder;
+import lombok.Builder;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
