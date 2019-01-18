@@ -92,6 +92,15 @@ public class ProviderTest {
     }
 
     @Test
+    public void getMinimumGasPrice() throws  IOException {
+        Provider client = new Provider("https://api.zilliqa.com/");
+        String price = client.getMinimumGasPrice();
+        System.out.println(price);
+
+    }
+
+
+    @Test
     public void getTransaction() throws IOException {
         Provider client = new Provider("https://api.zilliqa.com/");
         Transaction transaction = client.getTransaction("7368CA774642FB2AAB78D540E45BF44E22F2CF69B8B0632FF0317338D29ABAB5");
