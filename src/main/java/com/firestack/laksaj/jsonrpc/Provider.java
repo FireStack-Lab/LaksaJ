@@ -175,6 +175,16 @@ public class Provider {
 
     }
 
+    public String getMinimumGasPrice() throws IOException {
+        Req req = Req.builder().id("1").jsonrpc("2.0").method("GetMinimumGasPrice").params(new String[]{""}).build();
+        Response response = client.newCall(buildRequest(req)).execute();
+        String resultString = Objects.requireNonNull(response.body()).string();
+        Type type = new TypeToken<Rep<String>>() {
+        }.getType();
+        Rep<String> rep = gson.fromJson(resultString, type);
+        return rep.getResult();
+    }
+
 
     public Transaction getTransaction(String hash) throws IOException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetTransaction").params(new String[]{hash}).build();
