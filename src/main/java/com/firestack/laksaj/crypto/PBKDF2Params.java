@@ -1,7 +1,7 @@
 package com.firestack.laksaj.crypto;
 
 import lombok.Data;
-import lombok.experimental.Builder;
+import lombok.Builder;
 
 @Data
 @Builder
