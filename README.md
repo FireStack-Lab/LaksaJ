@@ -57,6 +57,7 @@ The project is still under development.
 - [x] getRecentTransactions
 - [x] getDSBlockListing 
 - [x] getTxBlockListing 
+- [x] getMinimumGasPrice
 
 ### Validation
 
