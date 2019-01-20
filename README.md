@@ -19,9 +19,12 @@ The project is still under development.
 - [x] signTransaction (default account)
 - [x] signTransactionWith (specific account)
 
-### TransactionFactory
+### TransactionFactory Transaction
 
 - [x] sendTransaction (testing...)
+- [x] trackTx
+- [x] confirm
+- [x] isPending isInitialised isConfirmed isRejected
 
 ### ContractFactory
 
