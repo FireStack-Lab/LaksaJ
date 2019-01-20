@@ -9,6 +9,8 @@ import com.google.gson.Gson;
 import lombok.Data;
 import lombok.experimental.Builder;
 
+import java.io.IOException;
+
 @Data
 @Builder
 public class Transaction {
@@ -68,4 +70,41 @@ public class Transaction {
         byte[] bytes = util.encodeTransactionProto(txParams);
         return bytes;
     }
+
+    public boolean isPending() {
+        return this.status.equals(TxStatus.Pending);
+    }
+
+    public boolean isInitialised() {
+        return this.status.equals(TxStatus.Initialised);
+    }
+
+    public boolean isConfirmed() {
+        return this.status.equals(TxStatus.Confirmed);
+    }
+
+    public boolean isRejected() {
+        return this.status.equals(TxStatus.Rejected);
+    }
+
+    public boolean trackTx(String txHash) {
+        Transaction respose;
+        try {
+            respose = this.provider.getTransaction(txHash);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        this.setID(respose.getID());
+        this.setReceipt(respose.getReceipt());
+        if (respose.getReceipt() != null && respose.getReceipt().isSuccess()) {
+            this.setStatus(TxStatus.Confirmed);
+        } else {
+            this.setStatus(TxStatus.Rejected);
+        }
+        return true;
+    }
+
+
 }
