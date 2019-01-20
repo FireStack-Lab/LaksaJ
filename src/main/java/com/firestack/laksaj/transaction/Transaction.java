@@ -87,6 +87,19 @@ public class Transaction {
         return this.status.equals(TxStatus.Rejected);
     }
 
+    public Transaction confirm(String txHash, int maxAttempts, int interval) {
+        this.setStatus(TxStatus.Pending);
+        for (int i = 0; i < maxAttempts; i++) {
+            boolean tracked = this.trackTx(txHash);
+            if (tracked) {
+                this.setStatus(TxStatus.Confirmed);
+                return this;
+            }
+        }
+        this.status = TxStatus.Rejected;
+        return this;
+    }
+
     public boolean trackTx(String txHash) {
         Transaction respose;
         try {
