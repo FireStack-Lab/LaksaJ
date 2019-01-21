@@ -1,19 +1,30 @@
 package com.firestack.laksaj.crypto;
 
 import com.firestack.laksaj.utils.ByteUtil;
-import org.junit.Assert;
-import org.junit.Test;
+
+import org.bouncycastle.math.ec.ECPoint;
+import org.bouncycastle.jce.ECNamedCurveTable;
+import org.bouncycastle.jce.spec.ECNamedCurveParameterSpec;
+import org.web3j.crypto.ECKeyPair;
 
 import java.math.BigInteger;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+
+import org.junit.Assert;
+import org.junit.Test;
+import org.web3j.utils.Numeric;
 
 public class KeyToolsTest {
+    static private final ECNamedCurveParameterSpec secp256k1 = ECNamedCurveTable.getParameterSpec("secp256k1");
 
     @Test
-    public void generatePrivateKey() {
-        String privateKey = KeyTools.generatePrivateKey();
-        System.out.println(privateKey);
-        Assert.assertNotNull(privateKey);
-        Assert.assertEquals(privateKey.length(), 64);
+    public void generateKeyPair() throws InvalidAlgorithmParameterException, NoSuchAlgorithmException, NoSuchProviderException {
+        ECKeyPair keys = KeyTools.generateKeyPair();
+        ECPoint pubKey = secp256k1.getCurve().decodePoint(keys.getPublicKey().toByteArray());
+        Assert.assertEquals(keys.getPrivateKey().compareTo(BigInteger.ZERO), 1);
+        Assert.assertTrue(pubKey.isValid());
     }
 
     @Test
