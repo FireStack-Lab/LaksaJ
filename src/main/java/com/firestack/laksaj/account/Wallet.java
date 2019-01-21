@@ -3,7 +3,7 @@ package com.firestack.laksaj.account;
 import com.firestack.laksaj.crypto.KeyTools;
 import com.firestack.laksaj.crypto.Schnorr;
 import com.firestack.laksaj.crypto.Signature;
-import com.firestack.laksaj.jsonrpc.Provider;
+import com.firestack.laksaj.jsonrpc.HttpProvider;
 import com.firestack.laksaj.transaction.Transaction;
 import com.firestack.laksaj.transaction.TxParams;
 import com.firestack.laksaj.utils.ByteUtil;
@@ -20,15 +20,15 @@ import java.util.Optional;
  */
 public class Wallet {
     private Map<String, Account> accounts = new HashMap<>();
-    private Provider provider;
+    private HttpProvider provider;
     private Optional<Account> defaultAccount;
 
     public Wallet() {
         defaultAccount = Optional.empty();
-        provider = new Provider("https://api.zilliqa.com/");
+        provider = new HttpProvider("https://api.zilliqa.com/");
     }
 
-    public Wallet(Map<String, Account> accounts, Provider provider) {
+    public Wallet(Map<String, Account> accounts, HttpProvider provider) {
         this.accounts = accounts;
         this.provider = provider;
 
@@ -109,7 +109,7 @@ public class Wallet {
     }
 
     public Transaction signWith(Transaction tx, Account signer) {
-        Provider.BalanceResult result;
+        HttpProvider.BalanceResult result;
         if (Objects.isNull(signer)) {
             throw new IllegalArgumentException("account not exists");
         }

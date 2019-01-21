@@ -1,11 +1,11 @@
 package com.firestack.laksaj.transaction;
 
-import com.firestack.laksaj.jsonrpc.Provider;
+import com.firestack.laksaj.jsonrpc.HttpProvider;
 
 import java.io.IOException;
 
 public class TransactionFactory {
-    public static Transaction buildTransaction(TxParams params, Provider provider, TxStatus status) {
+    public static Transaction buildTransaction(TxParams params, HttpProvider provider, TxStatus status) {
         return Transaction.builder()
                 .ID(params.getID())
                 .version(params.getVersion())
@@ -24,7 +24,7 @@ public class TransactionFactory {
                 .build();
     }
 
-    public static Provider.CreateTxResult sendTransaction(Transaction signedTx) throws IOException {
+    public static HttpProvider.CreateTxResult sendTransaction(Transaction signedTx) throws IOException {
         return signedTx.getProvider().createTransaction(signedTx.toTransactionPayload());
     }
 }
