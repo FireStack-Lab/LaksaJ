@@ -9,6 +9,9 @@ import com.firestack.laksaj.transaction.TxParams;
 import com.firestack.laksaj.utils.ByteUtil;
 
 import java.io.IOException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -39,9 +42,8 @@ public class Wallet {
         }
     }
 
-    public String createAccount() {
-        String privateString = KeyTools.generatePrivateKey();
-        Account account = new Account(privateString);
+    public String createAccount() throws InvalidAlgorithmParameterException, NoSuchAlgorithmException, NoSuchProviderException {
+        Account account = new Account(KeyTools.generateKeyPair());
         this.accounts.put(account.getAddress().toUpperCase(), account);
 
         if (!defaultAccount.isPresent()) {
@@ -123,9 +125,7 @@ public class Wallet {
         }
         tx.setSenderPubKey(signer.getPublicKey());
         byte[] message = tx.bytes();
-        byte[] privateKey = ByteUtil.hexStringToByteArray(signer.getPrivateKey());
-        byte[] publicKey = ByteUtil.hexStringToByteArray(signer.getPublicKey());
-        Signature signature = Schnorr.sign(message, privateKey, publicKey);
+        Signature signature = Schnorr.sign(signer.getKeys(), message);
         tx.setSignature(signature.toString().toLowerCase());
         return tx;
     }

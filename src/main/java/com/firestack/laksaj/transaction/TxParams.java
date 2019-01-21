@@ -2,7 +2,7 @@ package com.firestack.laksaj.transaction;
 
 import com.firestack.laksaj.blockchain.TransactionReceipt;
 import lombok.Data;
-import lombok.experimental.Builder;
+import lombok.Builder;
 
 @Data
 @Builder
