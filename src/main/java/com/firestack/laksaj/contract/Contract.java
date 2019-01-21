@@ -6,8 +6,8 @@ import com.firestack.laksaj.transaction.Transaction;
 import com.firestack.laksaj.transaction.TxStatus;
 import com.google.gson.Gson;
 import javafx.util.Pair;
+import lombok.Builder;
 import lombok.Data;
-import lombok.experimental.Builder;
 
 import java.io.IOException;
 import java.util.ArrayList;
