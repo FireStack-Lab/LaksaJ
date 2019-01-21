@@ -20,4 +20,8 @@ public class Signature {
         return rs + ss;
 //        return ss + rs;
     }
+
+    public boolean isNil() {
+        return this.r.equals(BigInteger.ZERO) && this.s.equals(BigInteger.ZERO);
+    }
 }

@@ -2,6 +2,8 @@ package com.firestack.laksaj.crypto;
 
 import com.firestack.laksaj.utils.ByteUtil;
 import com.firestack.laksaj.utils.HashUtil;
+
+import org.web3j.crypto.ECKeyPair;
 import org.bouncycastle.asn1.x9.X9ECParameters;
 import org.bouncycastle.crypto.ec.CustomNamedCurves;
 import org.bouncycastle.crypto.params.ECDomainParameters;
@@ -9,6 +11,9 @@ import org.bouncycastle.math.ec.ECPoint;
 import org.bouncycastle.math.ec.FixedPointCombMultiplier;
 
 import java.math.BigInteger;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -29,8 +34,8 @@ public class KeyTools {
                 CURVE_PARAMS.getH());
     }
 
-    public static String generatePrivateKey() {
-        return ECKeyPairGenerator.generatePrivateKey();
+    public static ECKeyPair generateKeyPair() throws InvalidAlgorithmParameterException, NoSuchAlgorithmException, NoSuchProviderException {
+        return Schnorr.generateKeyPair();
     }
 
     public static String getAddressFromPrivateKey(String privateKey) {

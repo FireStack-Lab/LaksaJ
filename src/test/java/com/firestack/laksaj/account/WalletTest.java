@@ -17,7 +17,7 @@ public class WalletTest {
         Transaction transaction = Transaction.builder()
                 .version(String.valueOf(pack(62, 8)))
                 .toAddr("4baf5fada8e5db92c3d3242618c5b47133ae003c".toLowerCase())
-                .senderPubKey("0246e7178dc8253201101e18fd6f6eb9972451d121fc57aa2a06dd5c111e58dc6a".toLowerCase())
+                .senderPubKey("0246e7178dc8253201101e18fd6f6eb9972451d121fc57aa2a06dd5c111e58dc6a")
                 .amount("10000000")
                 .gasPrice("1000000000")
                 .gasLimit("1")
