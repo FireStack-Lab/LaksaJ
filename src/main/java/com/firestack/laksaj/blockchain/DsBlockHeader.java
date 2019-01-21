@@ -2,7 +2,7 @@ package com.firestack.laksaj.blockchain;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
-import lombok.experimental.Builder;
+import lombok.Builder;
 
 @Data
 @Builder

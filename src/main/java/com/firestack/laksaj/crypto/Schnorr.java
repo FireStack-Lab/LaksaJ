@@ -1,118 +1,160 @@
 package com.firestack.laksaj.crypto;
 
-import com.firestack.laksaj.utils.ByteUtil;
 import com.firestack.laksaj.utils.HashUtil;
+
+import org.bouncycastle.crypto.prng.SP800SecureRandomBuilder;
+import org.bouncycastle.jcajce.provider.asymmetric.ec.BCECPrivateKey;
+import org.bouncycastle.jcajce.provider.asymmetric.ec.BCECPublicKey;
 import org.bouncycastle.jce.ECNamedCurveTable;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import org.bouncycastle.jce.spec.ECNamedCurveGenParameterSpec;
 import org.bouncycastle.jce.spec.ECNamedCurveParameterSpec;
 import org.bouncycastle.math.ec.ECPoint;
+import org.bouncycastle.crypto.digests.SHA256Digest;
+import org.bouncycastle.crypto.macs.HMac;
+import org.web3j.crypto.ECKeyPair;
 
+import java.security.*;
+import java.util.Arrays;
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Schnorr {
-
-    static final ECNamedCurveParameterSpec spec = ECNamedCurveTable.getParameterSpec("secp256k1");
-
-
-    static final int PUBKEY_COMPRESSED_SIZE_BYTES = 33;
-
-    static final int ALG_LEN = 16;
-
-    static final int ENT_LEN = 32;
-
-    public static Signature sign(byte[] message, byte[] privateKey, byte[] publicKey) {
-        int len = spec.getN().bitLength() / 8;
-        HmacDrbg drbg = getDRBG(message);
-        BigInteger k = new BigInteger(1,drbg.nextBytes(len));
-        System.out.println("K is: " + ByteUtil.byteArrayToHexString(k.toByteArray()));
-        return trySign(privateKey, publicKey, message, k);
+    static {
+        if (Security.getProvider(BouncyCastleProvider.PROVIDER_NAME) == null) {
+            Security.addProvider(new BouncyCastleProvider());
+        }
     }
 
-    public static Signature trySign(byte[] privateKey, byte[] publicKey, byte[] message, BigInteger k) {
-        //todo add some validate
-        ECPoint QPoint = spec.getG().multiply(k);
-        BigInteger Q = new BigInteger(QPoint.getEncoded(true));
-        List<Integer> m = new ArrayList<>();
-        for (byte b : message) {
-            m.add((int) b);
+    static private final ECNamedCurveParameterSpec secp256k1 = ECNamedCurveTable.getParameterSpec("secp256k1");
+
+    static private final int PUBKEY_COMPRESSED_SIZE_BYTES = 33;
+
+    static private final byte[] ALG = "Schnorr+SHA256 ".getBytes();
+
+    static private final int ENT_BITS = 256; // 32 bytes of entropy require for the k value
+
+    static ECKeyPair generateKeyPair() throws NoSuchProviderException,
+            NoSuchAlgorithmException, InvalidAlgorithmParameterException {
+        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("EC", BouncyCastleProvider.PROVIDER_NAME);
+        keyPairGenerator.initialize(new ECNamedCurveGenParameterSpec("secp256k1"));
+        KeyPair keyPair = keyPairGenerator.generateKeyPair();
+        BCECPrivateKey privateKey = (BCECPrivateKey) keyPair.getPrivate();
+        BCECPublicKey publicKey = (BCECPublicKey) keyPair.getPublic();
+
+        return new ECKeyPair(privateKey.getD(), new BigInteger(1, publicKey.getQ().getEncoded(true)));
+    }
+
+    public static Signature sign(ECKeyPair kp, byte[] message) {
+        SecureRandom drbg = getDRBG(message);
+        int len = secp256k1.getN().bitLength() / 8;
+        byte[] bytes = new byte[len];
+        drbg.nextBytes(bytes);
+
+        Signature signature = null;
+        while (signature == null) {
+            BigInteger k = new BigInteger(1, bytes);
+            signature = trySign(kp, message, k);
         }
 
-        List<Integer> pk = new ArrayList<>();
-        for (byte p : publicKey) {
-            pk.add((int) p);
+        return signature;
+    }
+
+    public static Signature trySign(ECKeyPair kp, byte[] msg, BigInteger k) throws IllegalArgumentException {
+        BigInteger n = secp256k1.getN();
+        BigInteger privateKey = kp.getPrivateKey();
+        ECPoint publicKey = secp256k1.getCurve().decodePoint(kp.getPublicKey().toByteArray());
+
+        // 1a. check if private key is 0
+        if (privateKey.equals(BigInteger.ZERO)) {
+            throw new IllegalArgumentException("Private key must be >= 0");
         }
 
-        BigInteger r = hash(Q, pk, m).mod(spec.getN());
-        BigInteger h = r;
-        BigInteger s = h.multiply(new BigInteger(1, privateKey)).mod(spec.getN());
-        s = k.subtract(s).mod(spec.getN());
+        // 1b. check if private key is less than curve order, i.e., within [1...n-1]
+        if (privateKey.compareTo(n) >= 0) {
+            throw new IllegalArgumentException("Private key cannot be greater than curve order");
+        }
+
+        // 2. Compute commitment Q = kG, where G is the base point
+        ECPoint Q = secp256k1.getG().multiply(k);
+
+        // 3. Compute the challenge r = H(Q || pubKey || msg)
+        // mod reduce r by the order of secp256k1, n
+        BigInteger r = hash(Q, publicKey, msg).mod(secp256k1.getN());
+
+        if (r.equals(BigInteger.ZERO)) {
+            return null;
+        }
+
+        //4. Compute s = k - r * prv
+        // 4a. Compute r * prv
+        BigInteger s = r.multiply(privateKey).mod(n);
+        // 4b. Compute s = k - r * prv mod n
+        s = k.subtract(s).mod(n);
+
+        if (s.equals(BigInteger.ZERO)) {
+            return null;
+        }
+
         return Signature.builder().r(r).s(s).build();
-
     }
 
+    static private BigInteger hash(ECPoint q, ECPoint pubKey, byte[] msg) {
+        // 33 q + 33 pubKey + variable msgLen
+        int totalLength = PUBKEY_COMPRESSED_SIZE_BYTES * 2 + msg.length;
+        byte[] qCompressed = q.getEncoded(true);
+        byte[] pubKeyCompressed = pubKey.getEncoded(true);
+        byte[] hashInput = new byte[totalLength];
 
-    static BigInteger hash(BigInteger q, List<Integer> pubkey, List<Integer> msg) {
+        Arrays.fill(hashInput, (byte) 0);
+        System.arraycopy(qCompressed, 0, hashInput, 0, PUBKEY_COMPRESSED_SIZE_BYTES);
+        System.arraycopy(pubKeyCompressed, 0, hashInput, PUBKEY_COMPRESSED_SIZE_BYTES, PUBKEY_COMPRESSED_SIZE_BYTES);
+        System.arraycopy(msg, 0, hashInput, PUBKEY_COMPRESSED_SIZE_BYTES * 2, msg.length);
 
+        byte[] hash = HashUtil.sha256(hashInput);
 
-        int totalLength = PUBKEY_COMPRESSED_SIZE_BYTES * 2 + msg.size(); // 33 q + 33 pubkey + variable msgLen
-        byte[] Q = q.toByteArray();
-        byte[] B = new byte[totalLength];
-
-        for (int i = 0; i < totalLength; i++) {
-            B[i] = 0;
-        }
-
-        for (int i = 0; i < Q.length; i++) {
-            B[i] = Q[i];
-        }
-
-        for (int i = 0; i < pubkey.size(); i++) {
-            B[33 + i] = pubkey.get(i).byteValue();
-        }
-
-        for (int i = 0; i < msg.size(); i++) {
-            B[66 + i] = msg.get(i).byteValue();
-        }
-
-        byte[] hashByte = HashUtil.sha256(B);
-
-        return new BigInteger(1, hashByte);
+        return new BigInteger(1, hash);
     }
 
-    static boolean verify(List<Integer> message, BigInteger R, BigInteger S, byte[] publicKey) {
-        //todo add some validate
-        ECPoint publicKeyPoint = spec.getCurve().decodePoint(publicKey);
-        Signature signature = Signature.builder().r(R).s(S).build();
-        ECPoint l = publicKeyPoint.multiply(signature.getR());
-        ECPoint r = spec.getG().multiply(signature.getS());
-        ECPoint QPoint = l.add(r);
-        if (QPoint.isInfinity()) {
+    static boolean verify(byte[] msg, Signature sig, ECPoint publicKey) throws IllegalArgumentException {
+        if (sig.getR().equals(BigInteger.ZERO) || sig.getS().equals(BigInteger.ZERO)) {
+            throw new IllegalArgumentException("Invalid R or S value: cannot be zero.");
+        }
+
+        if (sig.getR().signum() == -1 || sig.getS().signum() == -1) {
+            throw new IllegalArgumentException("Invalid R or S value: cannot be negative.");
+        }
+
+        if (!publicKey.getCurve().equals(secp256k1.getCurve())) {
+            throw new IllegalArgumentException("The public key must be a point on secp256k1.");
+        }
+
+        if (!publicKey.isValid()) {
+            throw new IllegalArgumentException("Invalid public key.");
+        }
+
+        ECPoint l = publicKey.multiply(sig.getR());
+        ECPoint r = secp256k1.getG().multiply(sig.getS());
+        ECPoint Q = l.add(r);
+
+        if (Q.isInfinity() || !Q.isValid()) {
             throw new IllegalArgumentException("Invalid intermediate point.");
         }
-        BigInteger Q = new BigInteger(QPoint.getEncoded(true));
-        List<Integer> m = new ArrayList<>();
-        List<Integer> pk = new ArrayList<>();
-        for (byte p : publicKey) {
-            pk.add((int) p);
+
+        BigInteger r1 = hash(Q, publicKey, msg).mod(secp256k1.getN());
+
+        if (r1.equals(BigInteger.ZERO)) {
+            throw new IllegalArgumentException("Invalid hash.");
         }
-        BigInteger r1 = hash(Q, pk, message).mod(spec.getN());
-        System.out.println(R);
-        System.out.println(r1);
-        return signature.getR().equals(r1);
+
+        return r1.equals(sig.getR());
     }
 
-    static HmacDrbg getDRBG(byte[] message) {
-        byte[] entropy = KeyTools.generateRandomBytes(ENT_LEN);
-        byte[] pers = new byte[ALG_LEN + ENT_LEN];
-
-        byte[] tmp = KeyTools.generateRandomBytes(ENT_LEN);
-        System.arraycopy(tmp, 0, pers, 0, ENT_LEN);
-        System.arraycopy(entropy, 0, pers, 32, ALG_LEN);
-        HmacDrbg hmacDrbg = new HmacDrbg(entropy, pers);
-        hmacDrbg.hmacDrbgUpdate(message);
-        return hmacDrbg;
+    private static SecureRandom getDRBG(byte[] message) {
+        SHA256Digest sha256 = new SHA256Digest();
+        HMac hMac = new HMac(sha256);
+        return new SP800SecureRandomBuilder()
+                .setEntropyBitsRequired(ENT_BITS)
+                .setPersonalizationString(ALG)
+                .buildHMAC(hMac, message, true);
     }
-
-
 }

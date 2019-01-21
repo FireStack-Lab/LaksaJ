@@ -1,7 +1,7 @@
 package com.firestack.laksaj.crypto;
 
 import lombok.Data;
-import lombok.experimental.Builder;
+import lombok.Builder;
 
 import java.math.BigInteger;
 
@@ -19,5 +19,9 @@ public class Signature {
         System.out.println("S is:" + ss);
         return rs + ss;
 //        return ss + rs;
+    }
+
+    public boolean isNil() {
+        return this.r.equals(BigInteger.ZERO) && this.s.equals(BigInteger.ZERO);
     }
 }

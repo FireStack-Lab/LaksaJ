@@ -3,7 +3,7 @@ package com.firestack.laksaj.blockchain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.Builder;
+import lombok.Builder;
 
 @Data
 @Builder

@@ -7,7 +7,7 @@ import com.firestack.laksaj.jsonrpc.HttpProvider;
 import com.firestack.laksaj.utils.TransactionUtil;
 import com.google.gson.Gson;
 import lombok.Data;
-import lombok.experimental.Builder;
+import lombok.Builder;
 
 import java.io.IOException;
 

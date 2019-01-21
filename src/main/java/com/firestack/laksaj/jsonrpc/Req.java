@@ -1,7 +1,7 @@
 package com.firestack.laksaj.jsonrpc;
 
 import lombok.Data;
-import lombok.experimental.Builder;
+import lombok.Builder;
 
 @Data
 @Builder

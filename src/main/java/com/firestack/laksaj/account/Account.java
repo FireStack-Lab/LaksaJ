@@ -5,20 +5,25 @@ import com.firestack.laksaj.crypto.KeyTools;
 import com.firestack.laksaj.utils.ByteUtil;
 import com.firestack.laksaj.utils.HashUtil;
 import lombok.Data;
+import org.web3j.crypto.ECKeyPair;
 
 import java.math.BigInteger;
 
 @Data
 public class Account {
-    private String privateKey;
-    private String publicKey;
+    private ECKeyPair keys;
     private String address;
 
-    public Account(String privateKey) {
-        this.privateKey = privateKey;
-        this.publicKey = KeyTools.getPublicKeyFromPrivateKey(privateKey, true);
-        this.address = KeyTools.getAddressFromPublicKey(this.publicKey);
+    public Account(ECKeyPair keys) {
+        this.keys = keys;
+        this.address = KeyTools.getAddressFromPublicKey(this.keys.getPublicKey().toString(16));
     }
+
+    public Account(String privateKey) {
+        String publicKey = KeyTools.getPublicKeyFromPrivateKey(privateKey, true);
+        this.address = KeyTools.getAddressFromPublicKey(publicKey);
+        this.keys = new ECKeyPair(new BigInteger(privateKey, 16), new BigInteger(publicKey, 16));
+    };
 
     public static Account fromFile(String file, String passphrase) throws Exception {
         String privateKey = KeyTools.decryptPrivateKey(file, passphrase);
@@ -27,6 +32,14 @@ public class Account {
 
     public String toFile(String privateKey, String passphrase, KDFType type) throws Exception {
         return KeyTools.encryptPrivateKey(privateKey, passphrase, type);
+    }
+
+    public String getPublicKey() {
+        return ByteUtil.byteArrayToHexString(this.keys.getPublicKey().toByteArray());
+    }
+
+    public String getPrivateKey() {
+        return ByteUtil.byteArrayToHexString(this.keys.getPrivateKey().toByteArray());
     }
 
     public static String toCheckSumAddress(String address) {
