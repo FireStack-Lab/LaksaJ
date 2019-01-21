@@ -1,6 +1,6 @@
 package com.firestack.laksaj.account;
 
-import com.firestack.laksaj.jsonrpc.Provider;
+import com.firestack.laksaj.jsonrpc.HttpProvider;
 import com.firestack.laksaj.transaction.Transaction;
 import com.firestack.laksaj.transaction.TransactionFactory;
 import org.junit.Test;
@@ -23,11 +23,11 @@ public class WalletTest {
                 .gasLimit("1")
                 .code("")
                 .data("")
-                .provider(new Provider("https://api.zilliqa.com/"))
+                .provider(new HttpProvider("https://api.zilliqa.com/"))
                 .build();
         transaction = wallet.sign(transaction);
         System.out.println("signature is: " + transaction.getSignature());
-        Provider.CreateTxResult result = TransactionFactory.sendTransaction(transaction);
+        HttpProvider.CreateTxResult result = TransactionFactory.sendTransaction(transaction);
         System.out.println(result);
     }
 

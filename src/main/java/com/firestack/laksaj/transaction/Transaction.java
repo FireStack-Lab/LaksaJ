@@ -3,7 +3,7 @@ package com.firestack.laksaj.transaction;
 
 import com.firestack.laksaj.account.Account;
 import com.firestack.laksaj.blockchain.TransactionReceipt;
-import com.firestack.laksaj.jsonrpc.Provider;
+import com.firestack.laksaj.jsonrpc.HttpProvider;
 import com.firestack.laksaj.utils.TransactionUtil;
 import com.google.gson.Gson;
 import lombok.Data;
@@ -27,7 +27,7 @@ public class Transaction {
     private String code;
     private String data;
 
-    private Provider provider;
+    private HttpProvider provider;
     private TxStatus status;
 
     public TxParams toTransactionParam() {
@@ -101,17 +101,17 @@ public class Transaction {
     }
 
     public boolean trackTx(String txHash) {
-        Transaction respose;
+        Transaction response;
         try {
-            respose = this.provider.getTransaction(txHash);
+            response = this.provider.getTransaction(txHash);
         } catch (IOException e) {
             e.printStackTrace();
             return false;
         }
 
-        this.setID(respose.getID());
-        this.setReceipt(respose.getReceipt());
-        if (respose.getReceipt() != null && respose.getReceipt().isSuccess()) {
+        this.setID(response.getID());
+        this.setReceipt(response.getReceipt());
+        if (response.getReceipt() != null && response.getReceipt().isSuccess()) {
             this.setStatus(TxStatus.Confirmed);
         } else {
             this.setStatus(TxStatus.Rejected);

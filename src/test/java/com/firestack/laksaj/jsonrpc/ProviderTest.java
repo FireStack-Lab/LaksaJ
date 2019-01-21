@@ -12,14 +12,14 @@ public class ProviderTest {
 
     @Test
     public void getNetWorkId() throws IOException {
-        Provider client = new Provider("https://api.zilliqa.com/");
+        HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
         String networkId = client.getNetworkId();
         Assert.assertEquals("TestNet", networkId);
     }
 
     @Test
     public void getDSBlockListing() throws IOException {
-        Provider client = new Provider("https://api.zilliqa.com/");
+        HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
         BlockList blockList = client.getDSBlockListing(1);
         System.out.println(blockList);
         Assert.assertNotNull(blockList);
@@ -27,7 +27,7 @@ public class ProviderTest {
 
     @Test
     public void getTxBlockListing() throws IOException {
-        Provider client = new Provider("https://api.zilliqa.com/");
+        HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
         BlockList blockList = client.getTxBlockListing(1);
         System.out.println(blockList);
         Assert.assertNotNull(blockList);
@@ -35,7 +35,7 @@ public class ProviderTest {
 
     @Test
     public void getBlockchainInfo() throws IOException {
-        Provider client = new Provider("https://api.zilliqa.com/");
+        HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
         BlockchainInfo blockchainInfo = client.getBlockchainInfo();
         System.out.println(blockchainInfo);
         Assert.assertNotNull(blockchainInfo);
@@ -44,7 +44,7 @@ public class ProviderTest {
 
     @Test
     public void getDsBlock() throws IOException {
-        Provider client = new Provider("https://api.zilliqa.com/");
+        HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
         DsBlock dsBlock = client.getDsBlock("1");
         System.out.println(dsBlock);
         Assert.assertNotNull(dsBlock);
@@ -53,7 +53,7 @@ public class ProviderTest {
 
     @Test
     public void getTxBlock() throws IOException {
-        Provider client = new Provider("https://api.zilliqa.com/");
+        HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
         TxBlock txBlock = client.getTxBlock("40");
         System.out.println(txBlock);
         Assert.assertNotNull(txBlock);
@@ -62,7 +62,7 @@ public class ProviderTest {
 
     @Test
     public void getLatestDsBlock() throws IOException {
-        Provider client = new Provider("https://api.zilliqa.com/");
+        HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
         DsBlock dsBlock = client.getLatestDsBlock();
         Assert.assertNotNull(dsBlock);
         System.out.println(dsBlock);
@@ -70,7 +70,7 @@ public class ProviderTest {
 
     @Test
     public void getLatestTxBlock() throws IOException {
-        Provider client = new Provider("https://api.zilliqa.com/");
+        HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
         TxBlock txBlock = client.getLatestTxBlock();
         System.out.println(txBlock);
         Assert.assertNotNull(txBlock);
@@ -78,22 +78,22 @@ public class ProviderTest {
 
     @Test
     public void getBalance() throws IOException {
-        Provider client = new Provider("https://api.zilliqa.com/");
-        Provider.BalanceResult balance = client.getBalance("E9C49CAF0D0BC9D7C769391E8BDA2028F824CF3D".toLowerCase());
+        HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
+        HttpProvider.BalanceResult balance = client.getBalance("E9C49CAF0D0BC9D7C769391E8BDA2028F824CF3D".toLowerCase());
         System.out.println(balance.getBalance());
         Assert.assertNotNull(balance.getBalance());
     }
 
     @Test
     public void getSmartContractCode() throws IOException {
-        Provider client = new Provider("https://api.zilliqa.com/");
+        HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
         String code = client.getSmartContractCode("8cb841ef4f1f61d44271e167557e160434bd6d63");
         System.out.println(code);
     }
 
     @Test
-    public void getMinimumGasPrice() throws  IOException {
-        Provider client = new Provider("https://api.zilliqa.com/");
+    public void getMinimumGasPrice() throws IOException {
+        HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
         String price = client.getMinimumGasPrice();
         System.out.println(price);
 
@@ -102,14 +102,14 @@ public class ProviderTest {
 
     @Test
     public void getTransaction() throws IOException {
-        Provider client = new Provider("https://api.zilliqa.com/");
+        HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
         Transaction transaction = client.getTransaction("7368CA774642FB2AAB78D540E45BF44E22F2CF69B8B0632FF0317338D29ABAB5");
         System.out.println(transaction);
     }
 
     @Test
     public void getRecentTransactions() throws IOException {
-        Provider client = new Provider("https://api.zilliqa.com/");
+        HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
         TransactionList transactionList = client.getRecentTransactions();
         System.out.println(transactionList);
     }

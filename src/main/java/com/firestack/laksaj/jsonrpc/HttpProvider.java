@@ -16,7 +16,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.Objects;
 
-public class Provider {
+public class HttpProvider {
 
     private final OkHttpClient client = new OkHttpClient();
     private final Gson gson = new Gson();
@@ -24,7 +24,7 @@ public class Provider {
             = MediaType.get("application/json; charset=utf-8");
     private String url;
 
-    public Provider(String url) {
+    public HttpProvider(String url) {
         this.url = url;
     }
 

@@ -26,10 +26,13 @@ The project is still under development.
 - [x] confirm
 - [x] isPending isInitialised isConfirmed isRejected
 
-### ContractFactory
+### ContractFactory Contract
 
-- [ ] deploy
-- [ ] call
+- [x] deploy (need test)
+- [x] call (need test)
+- [x] isInitialised isDeployed isRejected
+- [x] getState
+
 
 ### Crypto API
 
