@@ -80,6 +80,7 @@ The project is still under development.
 - [x] isByteString
 - [x] encodeTransactionProto
 - [x] toChecksumAddress
+- [x] isValidChecksumAddress
 
 
 
