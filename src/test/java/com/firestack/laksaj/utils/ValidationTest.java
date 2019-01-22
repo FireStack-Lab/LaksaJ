@@ -15,4 +15,10 @@ public class ValidationTest {
         Assert.assertFalse(result);
     }
 
+    @Test
+    public void isValidChecksumAddress() {
+        Assert.assertTrue(Validation.isValidChecksumAddress("0x4BAF5faDA8e5Db92C3d3242618c5B47133AE003C"));
+        Assert.assertFalse(Validation.isValidChecksumAddress("0x4BAF5FaDA8e5Db92C3d3242618c5B47133AE003C"));
+    }
+
 }

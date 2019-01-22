@@ -6,7 +6,6 @@ import com.firestack.laksaj.crypto.Signature;
 import com.firestack.laksaj.jsonrpc.HttpProvider;
 import com.firestack.laksaj.transaction.Transaction;
 import com.firestack.laksaj.transaction.TxParams;
-import com.firestack.laksaj.utils.ByteUtil;
 
 import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
