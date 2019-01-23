@@ -10,6 +10,7 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +49,7 @@ public class Contract {
         }
     }
 
-    public Pair<Transaction, Contract> deploy(DeployParams params, int attempts, int interval) {
+    public Pair<Transaction, Contract> deploy(DeployParams params, int attempts, int interval) throws NoSuchAlgorithmException {
         if (null == this.code || this.code.isEmpty() || null == this.init || this.init.length == 0) {
             throw new IllegalArgumentException("Cannot deploy without code or initialisation parameters.");
         }

@@ -3,10 +3,12 @@ package com.firestack.laksaj.contract;
 import com.firestack.laksaj.account.Wallet;
 import com.firestack.laksaj.jsonrpc.HttpProvider;
 import com.firestack.laksaj.transaction.Transaction;
+import com.google.common.io.ByteSink;
 import javafx.util.Pair;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,7 +17,7 @@ import static com.firestack.laksaj.account.Wallet.pack;
 public class ContractTest {
 
     @Test
-    public void deploy() {
+    public void deploy() throws NoSuchAlgorithmException {
         String code = "scilla_version 0\n" +
                 "\n" +
                 "    (* HelloWorld contract *)\n" +
@@ -141,12 +143,12 @@ public class ContractTest {
 
 
     @Test
-    public void getAddressForContract() {
+    public void getAddressForContract() throws NoSuchAlgorithmException {
         Transaction transaction = Transaction.builder().build();
-        transaction.setSenderPubKey("0x0246E7178DC8253201101E18FD6F6EB9972451D121FC57AA2A06DD5C111E58DC6A");
-        transaction.setNonce("11");
+        transaction.setSenderPubKey("0246E7178DC8253201101E18FD6F6EB9972451D121FC57AA2A06DD5C111E58DC6A");
+        transaction.setNonce("19");
         String address = ContractFactory.getAddressForContract(transaction);
-        Assert.assertEquals(address.toLowerCase(), "a7c88a90eb79740fc730397557f77f36fd52a04c");
+        Assert.assertEquals(address.toLowerCase(), "8f14cb1735b2b5fba397bea1c223d65d12b9a887");
     }
 
 
