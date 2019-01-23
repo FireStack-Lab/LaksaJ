@@ -133,7 +133,7 @@ public class ContractTest {
         wallet.addByPrivateKey("e19d05c5452598e24caad4a0d85a49146f7be089515c905ae6a19e8a578a6930");
         ContractFactory factory = ContractFactory.builder().provider(new HttpProvider("https://api.zilliqa.com/")).signer(wallet).build();
         Contract contract = factory.atContract("a7c88a90eb79740fc730397557f77f36fd52a04c", code, (Value[]) init.toArray(), "");
-        CallParams params = CallParams.builder().version(String.valueOf(pack(2, 8))).gasPrice("1000000000").gasLimit("10000").code("").senderPubKey("0246e7178dc8253201101e18fd6f6eb9972451d121fc57aa2a06dd5c111e58dc6a").amount("0").build();
+        CallParams params = CallParams.builder().version(String.valueOf(pack(2, 8))).gasPrice("1000000000").gasLimit("10000").senderPubKey("0246e7178dc8253201101e18fd6f6eb9972451d121fc57aa2a06dd5c111e58dc6a").amount("0").build();
         contract.call(Transition.builder().name("getHello").params(new Field[]{}).build(), (Value[]) init.toArray(), params, 300, 3);
 
 
