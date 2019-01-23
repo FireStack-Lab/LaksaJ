@@ -11,7 +11,6 @@ import lombok.Data;
 
 import java.io.IOException;
 import java.time.Duration;
-import java.time.temporal.TemporalUnit;
 
 import static java.time.temporal.ChronoUnit.SECONDS;
 
@@ -45,7 +44,7 @@ public class Transaction {
                 .signature(this.signature)
                 .receipt(this.receipt)
                 .senderPubKey(this.senderPubKey.toLowerCase())
-                .toAddr(this.toAddr.toLowerCase())
+                .toAddr(this.toAddr == null ? "0000000000000000000000000000000000000000" : this.toAddr.toLowerCase())
                 .code(this.code)
                 .data(this.data)
                 .build();
