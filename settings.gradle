@@ -1,2 +1,3 @@
 rootProject.name = 'laksaj'
+include 'example'
 
