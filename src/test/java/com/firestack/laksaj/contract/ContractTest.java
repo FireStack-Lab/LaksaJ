@@ -150,6 +150,4 @@ public class ContractTest {
         String address = ContractFactory.getAddressForContract(transaction);
         Assert.assertEquals(address.toLowerCase(), "8f14cb1735b2b5fba397bea1c223d65d12b9a887");
     }
-
-
 }
