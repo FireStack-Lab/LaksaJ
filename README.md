@@ -85,19 +85,13 @@ The project is still under development.
 ## Build 
 
 
-you can build jar using following command:
-
-we will publish our sdk to https://mvnrepository.com
-
-```
-gradle build test
-```
-
-or, skip the test
+you can build jar using following command :
 
 ```
 gradle build -x test
 ```
+
+we will publish our sdk to https://mvnrepository.com
 
 
 
