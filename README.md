@@ -32,6 +32,7 @@ The project is still under development.
 - [x] call
 - [x] isInitialised isDeployed isRejected
 - [x] getState
+- [x] getAddressForContract
 
 
 ### Crypto API
