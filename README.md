@@ -82,5 +82,23 @@ The project is still under development.
 - [x] toChecksumAddress
 - [x] isValidChecksumAddress
 
+## Build 
+
+
+you can build jar using following command:
+
+we will publish our sdk to https://mvnrepository.com
+
+```
+gradle build test
+```
+
+or, skip the test
+
+```
+gradle build -x test
+```
+
+
 
 

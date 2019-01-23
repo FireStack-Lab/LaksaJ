@@ -5,3 +5,4 @@ testaccount
 gradlew
 gradlew.bat
 .idea
+build/
