@@ -29,7 +29,7 @@ The project is still under development.
 ### ContractFactory Contract
 
 - [x] deploy
-- [x] call (need test)
+- [x] call
 - [x] isInitialised isDeployed isRejected
 - [x] getState
 
