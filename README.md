@@ -92,7 +92,38 @@ you can build jar using following command :
 gradle build -x test
 ```
 
-we will publish our sdk to https://mvnrepository.com
+and you can also try our snapshot version by 
+
+
+gradle: (please see our example project)
+
+```
+repositories {
+    mavenCentral()
+    maven {
+        url "https://oss.sonatype.org/content/groups/public"
+    }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile group: 'org.firestack', name: 'laksaj', version: '0.0.1-SNAPSHOT'
+}
+
+```
+
+
+
+maven: 
+
+```
+<dependency>
+  <groupId>org.firestack</groupId>
+  <artifactId>laksaj</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+</dependency>
+```
+
 
 
 
