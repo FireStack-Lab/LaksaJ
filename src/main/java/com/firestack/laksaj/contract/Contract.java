@@ -102,7 +102,7 @@ public class Contract {
                 .senderPubKey(params.getSenderPubKey())
                 .data(gson.toJson(data.builder()._tag(transition).params(args).build()))
                 .provider(this.provider)
-                .toAddr(NIL_ADDRESS)
+                .toAddr(this.address)
                 .code(this.code.replace("/\\", ""))
                 .build();
         return this.prepareTx(transaction, attempts, interval);
