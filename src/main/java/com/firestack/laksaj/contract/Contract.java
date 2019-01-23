@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+@Data
 public class Contract {
     public static String NIL_ADDRESS = "0000000000000000000000000000000000000000";
 
@@ -37,6 +38,7 @@ public class Contract {
             this.address = address;
             this.init = init;
             this.state = state;
+            this.code = code;
             this.contractStatus = ContractStatus.Deployed;
         } else {
             this.abi = abi;
@@ -60,7 +62,7 @@ public class Contract {
                 .senderPubKey(params.getSenderPubKey())
                 .toAddr(NIL_ADDRESS)
                 .amount("0")
-                .code(this.code.replace("/\\",""))
+                .code(this.code.replace("/\\", ""))
                 .data(gson.toJson(this.init))
                 .provider(this.provider)
                 .build();
@@ -85,7 +87,7 @@ public class Contract {
     }
 
     public Transaction call(Transition transition, Value[] args, CallParams params, int attempts, int interval) {
-        if (null != this.address || this.address.isEmpty()) {
+        if (null == this.address || this.address.isEmpty()) {
             throw new IllegalArgumentException("Contract has not been deployed!");
         }
 
@@ -100,6 +102,8 @@ public class Contract {
                 .senderPubKey(params.getSenderPubKey())
                 .data(gson.toJson(data.builder()._tag(transition).params(args).build()))
                 .provider(this.provider)
+                .toAddr(NIL_ADDRESS)
+                .code(this.code.replace("/\\", ""))
                 .build();
         return this.prepareTx(transaction, attempts, interval);
 

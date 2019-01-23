@@ -13,4 +13,5 @@ public class CallParams {
     private String gasPrice;
     private String gasLimit;
     private String senderPubKey;
+    private String code;
 }
