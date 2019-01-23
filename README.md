@@ -21,14 +21,14 @@ The project is still under development.
 
 ### TransactionFactory Transaction
 
-- [x] sendTransaction (testing...)
+- [x] sendTransaction
 - [x] trackTx
 - [x] confirm
 - [x] isPending isInitialised isConfirmed isRejected
 
 ### ContractFactory Contract
 
-- [x] deploy (need test)
+- [x] deploy
 - [x] call (need test)
 - [x] isInitialised isDeployed isRejected
 - [x] getState

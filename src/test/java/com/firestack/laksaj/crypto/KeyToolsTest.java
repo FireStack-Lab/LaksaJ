@@ -49,9 +49,9 @@ public class KeyToolsTest {
 
     @Test
     public void getAddressFromPrivateKey() {
-        String privateKey = "B4EB8E8B343E2CCE46DB4E7571EC1D9654693CCA200BC41CC20148355CA62ED9";
+        String privateKey = "e19d05c5452598e24caad4a0d85a49146f7be089515c905ae6a19e8a578a6930";
         String address = KeyTools.getAddressFromPrivateKey(privateKey);
-        System.out.println(address);
+        System.out.println(address.toLowerCase());
     }
 
     @Test
