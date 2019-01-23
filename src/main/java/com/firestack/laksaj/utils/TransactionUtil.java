@@ -26,7 +26,7 @@ public class TransactionUtil {
         }
 
         if (null != txParams.getData() && !txParams.getData().isEmpty()){
-            builder.setCode(ByteString.copyFrom(txParams.getCode().getBytes()));
+            builder.setData(ByteString.copyFrom(txParams.getData().getBytes()));
         }
 
         return builder.build().toByteArray();

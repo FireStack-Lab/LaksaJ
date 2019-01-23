@@ -19,7 +19,7 @@ public class Contract {
 
     private ContractFactory contractFactory;
     private Value[] init;
-    private ABI abi;
+    private String abi;
     private List<com.firestack.laksaj.blockchain.Contract.State> state;
     private String address;
     private String code;
@@ -28,7 +28,7 @@ public class Contract {
     private Wallet signer;
     private HttpProvider provider;
 
-    public Contract(ContractFactory factory, String code, ABI abi, String address, Value[] init, List<com.firestack.laksaj.blockchain.Contract.State> state) {
+    public Contract(ContractFactory factory, String code, String abi, String address, Value[] init, List<com.firestack.laksaj.blockchain.Contract.State> state) {
         this.contractFactory = factory;
         this.provider = factory.getProvider();
         this.signer = factory.getSigner();
@@ -60,7 +60,7 @@ public class Contract {
                 .senderPubKey(params.getSenderPubKey())
                 .toAddr(NIL_ADDRESS)
                 .amount("0")
-                .code(this.code)
+                .code(this.code.replace("/\\",""))
                 .data(gson.toJson(this.init))
                 .provider(this.provider)
                 .build();
@@ -114,6 +114,8 @@ public class Contract {
         } catch (IOException e) {
             e.printStackTrace();
             tx.setStatus(TxStatus.Rejected);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
         return tx;
     }

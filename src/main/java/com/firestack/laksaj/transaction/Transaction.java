@@ -6,10 +6,14 @@ import com.firestack.laksaj.blockchain.TransactionReceipt;
 import com.firestack.laksaj.jsonrpc.HttpProvider;
 import com.firestack.laksaj.utils.TransactionUtil;
 import com.google.gson.Gson;
-import lombok.Data;
 import lombok.Builder;
+import lombok.Data;
 
 import java.io.IOException;
+import java.time.Duration;
+import java.time.temporal.TemporalUnit;
+
+import static java.time.temporal.ChronoUnit.SECONDS;
 
 @Data
 @Builder
@@ -87,10 +91,12 @@ public class Transaction {
         return this.status.equals(TxStatus.Rejected);
     }
 
-    public Transaction confirm(String txHash, int maxAttempts, int interval) {
+    public Transaction confirm(String txHash, int maxAttempts, int interval) throws InterruptedException {
         this.setStatus(TxStatus.Pending);
         for (int i = 0; i < maxAttempts; i++) {
             boolean tracked = this.trackTx(txHash);
+            Thread.sleep(Duration.of(interval, SECONDS).toMillis());
+
             if (tracked) {
                 this.setStatus(TxStatus.Confirmed);
                 return this;
@@ -101,20 +107,31 @@ public class Transaction {
     }
 
     public boolean trackTx(String txHash) {
+        System.out.println("tracking transaction: " + txHash);
         Transaction response;
         try {
             response = this.provider.getTransaction(txHash);
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println("transaction not confirmed yet");
             return false;
         }
+
+        if (null == response) {
+            System.out.println("transaction not confirmed yet");
+            return false;
+        }
+
 
         this.setID(response.getID());
         this.setReceipt(response.getReceipt());
         if (response.getReceipt() != null && response.getReceipt().isSuccess()) {
+            System.out.println("Transaction confirmed!");
             this.setStatus(TxStatus.Confirmed);
         } else {
             this.setStatus(TxStatus.Rejected);
+            System.out.println("Transaction rejected!");
+
         }
         return true;
     }
