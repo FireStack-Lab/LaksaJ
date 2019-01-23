@@ -534,95 +534,95 @@ public final class Message {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>required uint32 version = 1;</code>
+     * <code>optional uint32 version = 1;</code>
      */
     boolean hasVersion();
     /**
-     * <code>required uint32 version = 1;</code>
+     * <code>optional uint32 version = 1;</code>
      */
     int getVersion();
 
     /**
-     * <code>required uint64 nonce = 2;</code>
+     * <code>optional uint64 nonce = 2;</code>
      */
     boolean hasNonce();
     /**
-     * <code>required uint64 nonce = 2;</code>
+     * <code>optional uint64 nonce = 2;</code>
      */
     long getNonce();
 
     /**
-     * <code>required bytes toaddr = 3;</code>
+     * <code>optional bytes toaddr = 3;</code>
      */
     boolean hasToaddr();
     /**
-     * <code>required bytes toaddr = 3;</code>
+     * <code>optional bytes toaddr = 3;</code>
      */
     com.google.protobuf.ByteString getToaddr();
 
     /**
-     * <code>required .com.firestack.laksaj.proto.ByteArray senderpubkey = 4;</code>
+     * <code>optional .com.firestack.laksaj.proto.ByteArray senderpubkey = 4;</code>
      */
     boolean hasSenderpubkey();
     /**
-     * <code>required .com.firestack.laksaj.proto.ByteArray senderpubkey = 4;</code>
+     * <code>optional .com.firestack.laksaj.proto.ByteArray senderpubkey = 4;</code>
      */
     com.firestack.laksaj.proto.Message.ByteArray getSenderpubkey();
     /**
-     * <code>required .com.firestack.laksaj.proto.ByteArray senderpubkey = 4;</code>
+     * <code>optional .com.firestack.laksaj.proto.ByteArray senderpubkey = 4;</code>
      */
     com.firestack.laksaj.proto.Message.ByteArrayOrBuilder getSenderpubkeyOrBuilder();
 
     /**
-     * <code>required .com.firestack.laksaj.proto.ByteArray amount = 5;</code>
+     * <code>optional .com.firestack.laksaj.proto.ByteArray amount = 5;</code>
      */
     boolean hasAmount();
     /**
-     * <code>required .com.firestack.laksaj.proto.ByteArray amount = 5;</code>
+     * <code>optional .com.firestack.laksaj.proto.ByteArray amount = 5;</code>
      */
     com.firestack.laksaj.proto.Message.ByteArray getAmount();
     /**
-     * <code>required .com.firestack.laksaj.proto.ByteArray amount = 5;</code>
+     * <code>optional .com.firestack.laksaj.proto.ByteArray amount = 5;</code>
      */
     com.firestack.laksaj.proto.Message.ByteArrayOrBuilder getAmountOrBuilder();
 
     /**
-     * <code>required .com.firestack.laksaj.proto.ByteArray gasprice = 6;</code>
+     * <code>optional .com.firestack.laksaj.proto.ByteArray gasprice = 6;</code>
      */
     boolean hasGasprice();
     /**
-     * <code>required .com.firestack.laksaj.proto.ByteArray gasprice = 6;</code>
+     * <code>optional .com.firestack.laksaj.proto.ByteArray gasprice = 6;</code>
      */
     com.firestack.laksaj.proto.Message.ByteArray getGasprice();
     /**
-     * <code>required .com.firestack.laksaj.proto.ByteArray gasprice = 6;</code>
+     * <code>optional .com.firestack.laksaj.proto.ByteArray gasprice = 6;</code>
      */
     com.firestack.laksaj.proto.Message.ByteArrayOrBuilder getGaspriceOrBuilder();
 
     /**
-     * <code>required uint64 gaslimit = 7;</code>
+     * <code>optional uint64 gaslimit = 7;</code>
      */
     boolean hasGaslimit();
     /**
-     * <code>required uint64 gaslimit = 7;</code>
+     * <code>optional uint64 gaslimit = 7;</code>
      */
     long getGaslimit();
 
     /**
-     * <code>required bytes code = 8;</code>
+     * <code>optional bytes code = 8;</code>
      */
     boolean hasCode();
     /**
-     * <code>required bytes code = 8;</code>
+     * <code>optional bytes code = 8;</code>
      */
     com.google.protobuf.ByteString getCode();
 
     /**
-     * <code>required bytes data = 9;</code>
+     * <code>optional bytes data = 9;</code>
      */
     boolean hasData();
     /**
-     * <code>required bytes data = 9;</code>
+     * <code>optional bytes data = 9;</code>
      */
     com.google.protobuf.ByteString getData();
   }
@@ -776,13 +776,13 @@ public final class Message {
     public static final int VERSION_FIELD_NUMBER = 1;
     private int version_;
     /**
-     * <code>required uint32 version = 1;</code>
+     * <code>optional uint32 version = 1;</code>
      */
     public boolean hasVersion() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>required uint32 version = 1;</code>
+     * <code>optional uint32 version = 1;</code>
      */
     public int getVersion() {
       return version_;
@@ -791,13 +791,13 @@ public final class Message {
     public static final int NONCE_FIELD_NUMBER = 2;
     private long nonce_;
     /**
-     * <code>required uint64 nonce = 2;</code>
+     * <code>optional uint64 nonce = 2;</code>
      */
     public boolean hasNonce() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>required uint64 nonce = 2;</code>
+     * <code>optional uint64 nonce = 2;</code>
      */
     public long getNonce() {
       return nonce_;
@@ -806,13 +806,13 @@ public final class Message {
     public static final int TOADDR_FIELD_NUMBER = 3;
     private com.google.protobuf.ByteString toaddr_;
     /**
-     * <code>required bytes toaddr = 3;</code>
+     * <code>optional bytes toaddr = 3;</code>
      */
     public boolean hasToaddr() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>required bytes toaddr = 3;</code>
+     * <code>optional bytes toaddr = 3;</code>
      */
     public com.google.protobuf.ByteString getToaddr() {
       return toaddr_;
@@ -821,19 +821,19 @@ public final class Message {
     public static final int SENDERPUBKEY_FIELD_NUMBER = 4;
     private com.firestack.laksaj.proto.Message.ByteArray senderpubkey_;
     /**
-     * <code>required .com.firestack.laksaj.proto.ByteArray senderpubkey = 4;</code>
+     * <code>optional .com.firestack.laksaj.proto.ByteArray senderpubkey = 4;</code>
      */
     public boolean hasSenderpubkey() {
       return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     /**
-     * <code>required .com.firestack.laksaj.proto.ByteArray senderpubkey = 4;</code>
+     * <code>optional .com.firestack.laksaj.proto.ByteArray senderpubkey = 4;</code>
      */
     public com.firestack.laksaj.proto.Message.ByteArray getSenderpubkey() {
       return senderpubkey_ == null ? com.firestack.laksaj.proto.Message.ByteArray.getDefaultInstance() : senderpubkey_;
     }
     /**
-     * <code>required .com.firestack.laksaj.proto.ByteArray senderpubkey = 4;</code>
+     * <code>optional .com.firestack.laksaj.proto.ByteArray senderpubkey = 4;</code>
      */
     public com.firestack.laksaj.proto.Message.ByteArrayOrBuilder getSenderpubkeyOrBuilder() {
       return senderpubkey_ == null ? com.firestack.laksaj.proto.Message.ByteArray.getDefaultInstance() : senderpubkey_;
@@ -842,19 +842,19 @@ public final class Message {
     public static final int AMOUNT_FIELD_NUMBER = 5;
     private com.firestack.laksaj.proto.Message.ByteArray amount_;
     /**
-     * <code>required .com.firestack.laksaj.proto.ByteArray amount = 5;</code>
+     * <code>optional .com.firestack.laksaj.proto.ByteArray amount = 5;</code>
      */
     public boolean hasAmount() {
       return ((bitField0_ & 0x00000010) == 0x00000010);
     }
     /**
-     * <code>required .com.firestack.laksaj.proto.ByteArray amount = 5;</code>
+     * <code>optional .com.firestack.laksaj.proto.ByteArray amount = 5;</code>
      */
     public com.firestack.laksaj.proto.Message.ByteArray getAmount() {
       return amount_ == null ? com.firestack.laksaj.proto.Message.ByteArray.getDefaultInstance() : amount_;
     }
     /**
-     * <code>required .com.firestack.laksaj.proto.ByteArray amount = 5;</code>
+     * <code>optional .com.firestack.laksaj.proto.ByteArray amount = 5;</code>
      */
     public com.firestack.laksaj.proto.Message.ByteArrayOrBuilder getAmountOrBuilder() {
       return amount_ == null ? com.firestack.laksaj.proto.Message.ByteArray.getDefaultInstance() : amount_;
@@ -863,19 +863,19 @@ public final class Message {
     public static final int GASPRICE_FIELD_NUMBER = 6;
     private com.firestack.laksaj.proto.Message.ByteArray gasprice_;
     /**
-     * <code>required .com.firestack.laksaj.proto.ByteArray gasprice = 6;</code>
+     * <code>optional .com.firestack.laksaj.proto.ByteArray gasprice = 6;</code>
      */
     public boolean hasGasprice() {
       return ((bitField0_ & 0x00000020) == 0x00000020);
     }
     /**
-     * <code>required .com.firestack.laksaj.proto.ByteArray gasprice = 6;</code>
+     * <code>optional .com.firestack.laksaj.proto.ByteArray gasprice = 6;</code>
      */
     public com.firestack.laksaj.proto.Message.ByteArray getGasprice() {
       return gasprice_ == null ? com.firestack.laksaj.proto.Message.ByteArray.getDefaultInstance() : gasprice_;
     }
     /**
-     * <code>required .com.firestack.laksaj.proto.ByteArray gasprice = 6;</code>
+     * <code>optional .com.firestack.laksaj.proto.ByteArray gasprice = 6;</code>
      */
     public com.firestack.laksaj.proto.Message.ByteArrayOrBuilder getGaspriceOrBuilder() {
       return gasprice_ == null ? com.firestack.laksaj.proto.Message.ByteArray.getDefaultInstance() : gasprice_;
@@ -884,13 +884,13 @@ public final class Message {
     public static final int GASLIMIT_FIELD_NUMBER = 7;
     private long gaslimit_;
     /**
-     * <code>required uint64 gaslimit = 7;</code>
+     * <code>optional uint64 gaslimit = 7;</code>
      */
     public boolean hasGaslimit() {
       return ((bitField0_ & 0x00000040) == 0x00000040);
     }
     /**
-     * <code>required uint64 gaslimit = 7;</code>
+     * <code>optional uint64 gaslimit = 7;</code>
      */
     public long getGaslimit() {
       return gaslimit_;
@@ -899,13 +899,13 @@ public final class Message {
     public static final int CODE_FIELD_NUMBER = 8;
     private com.google.protobuf.ByteString code_;
     /**
-     * <code>required bytes code = 8;</code>
+     * <code>optional bytes code = 8;</code>
      */
     public boolean hasCode() {
       return ((bitField0_ & 0x00000080) == 0x00000080);
     }
     /**
-     * <code>required bytes code = 8;</code>
+     * <code>optional bytes code = 8;</code>
      */
     public com.google.protobuf.ByteString getCode() {
       return code_;
@@ -914,13 +914,13 @@ public final class Message {
     public static final int DATA_FIELD_NUMBER = 9;
     private com.google.protobuf.ByteString data_;
     /**
-     * <code>required bytes data = 9;</code>
+     * <code>optional bytes data = 9;</code>
      */
     public boolean hasData() {
       return ((bitField0_ & 0x00000100) == 0x00000100);
     }
     /**
-     * <code>required bytes data = 9;</code>
+     * <code>optional bytes data = 9;</code>
      */
     public com.google.protobuf.ByteString getData() {
       return data_;
@@ -933,53 +933,23 @@ public final class Message {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      if (!hasVersion()) {
-        memoizedIsInitialized = 0;
-        return false;
+      if (hasSenderpubkey()) {
+        if (!getSenderpubkey().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
       }
-      if (!hasNonce()) {
-        memoizedIsInitialized = 0;
-        return false;
+      if (hasAmount()) {
+        if (!getAmount().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
       }
-      if (!hasToaddr()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasSenderpubkey()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasAmount()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasGasprice()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasGaslimit()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasCode()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasData()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!getSenderpubkey().isInitialized()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!getAmount().isInitialized()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!getGasprice().isInitialized()) {
-        memoizedIsInitialized = 0;
-        return false;
+      if (hasGasprice()) {
+        if (!getGasprice().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
       }
       memoizedIsInitialized = 1;
       return true;
@@ -1495,41 +1465,20 @@ public final class Message {
 
       @java.lang.Override
       public final boolean isInitialized() {
-        if (!hasVersion()) {
-          return false;
+        if (hasSenderpubkey()) {
+          if (!getSenderpubkey().isInitialized()) {
+            return false;
+          }
         }
-        if (!hasNonce()) {
-          return false;
+        if (hasAmount()) {
+          if (!getAmount().isInitialized()) {
+            return false;
+          }
         }
-        if (!hasToaddr()) {
-          return false;
-        }
-        if (!hasSenderpubkey()) {
-          return false;
-        }
-        if (!hasAmount()) {
-          return false;
-        }
-        if (!hasGasprice()) {
-          return false;
-        }
-        if (!hasGaslimit()) {
-          return false;
-        }
-        if (!hasCode()) {
-          return false;
-        }
-        if (!hasData()) {
-          return false;
-        }
-        if (!getSenderpubkey().isInitialized()) {
-          return false;
-        }
-        if (!getAmount().isInitialized()) {
-          return false;
-        }
-        if (!getGasprice().isInitialized()) {
-          return false;
+        if (hasGasprice()) {
+          if (!getGasprice().isInitialized()) {
+            return false;
+          }
         }
         return true;
       }
@@ -1556,19 +1505,19 @@ public final class Message {
 
       private int version_ ;
       /**
-       * <code>required uint32 version = 1;</code>
+       * <code>optional uint32 version = 1;</code>
        */
       public boolean hasVersion() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>required uint32 version = 1;</code>
+       * <code>optional uint32 version = 1;</code>
        */
       public int getVersion() {
         return version_;
       }
       /**
-       * <code>required uint32 version = 1;</code>
+       * <code>optional uint32 version = 1;</code>
        */
       public Builder setVersion(int value) {
         bitField0_ |= 0x00000001;
@@ -1577,7 +1526,7 @@ public final class Message {
         return this;
       }
       /**
-       * <code>required uint32 version = 1;</code>
+       * <code>optional uint32 version = 1;</code>
        */
       public Builder clearVersion() {
         bitField0_ = (bitField0_ & ~0x00000001);
@@ -1588,19 +1537,19 @@ public final class Message {
 
       private long nonce_ ;
       /**
-       * <code>required uint64 nonce = 2;</code>
+       * <code>optional uint64 nonce = 2;</code>
        */
       public boolean hasNonce() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>required uint64 nonce = 2;</code>
+       * <code>optional uint64 nonce = 2;</code>
        */
       public long getNonce() {
         return nonce_;
       }
       /**
-       * <code>required uint64 nonce = 2;</code>
+       * <code>optional uint64 nonce = 2;</code>
        */
       public Builder setNonce(long value) {
         bitField0_ |= 0x00000002;
@@ -1609,7 +1558,7 @@ public final class Message {
         return this;
       }
       /**
-       * <code>required uint64 nonce = 2;</code>
+       * <code>optional uint64 nonce = 2;</code>
        */
       public Builder clearNonce() {
         bitField0_ = (bitField0_ & ~0x00000002);
@@ -1620,19 +1569,19 @@ public final class Message {
 
       private com.google.protobuf.ByteString toaddr_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>required bytes toaddr = 3;</code>
+       * <code>optional bytes toaddr = 3;</code>
        */
       public boolean hasToaddr() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>required bytes toaddr = 3;</code>
+       * <code>optional bytes toaddr = 3;</code>
        */
       public com.google.protobuf.ByteString getToaddr() {
         return toaddr_;
       }
       /**
-       * <code>required bytes toaddr = 3;</code>
+       * <code>optional bytes toaddr = 3;</code>
        */
       public Builder setToaddr(com.google.protobuf.ByteString value) {
         if (value == null) {
@@ -1644,7 +1593,7 @@ public final class Message {
         return this;
       }
       /**
-       * <code>required bytes toaddr = 3;</code>
+       * <code>optional bytes toaddr = 3;</code>
        */
       public Builder clearToaddr() {
         bitField0_ = (bitField0_ & ~0x00000004);
@@ -1657,13 +1606,13 @@ public final class Message {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.firestack.laksaj.proto.Message.ByteArray, com.firestack.laksaj.proto.Message.ByteArray.Builder, com.firestack.laksaj.proto.Message.ByteArrayOrBuilder> senderpubkeyBuilder_;
       /**
-       * <code>required .com.firestack.laksaj.proto.ByteArray senderpubkey = 4;</code>
+       * <code>optional .com.firestack.laksaj.proto.ByteArray senderpubkey = 4;</code>
        */
       public boolean hasSenderpubkey() {
         return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ByteArray senderpubkey = 4;</code>
+       * <code>optional .com.firestack.laksaj.proto.ByteArray senderpubkey = 4;</code>
        */
       public com.firestack.laksaj.proto.Message.ByteArray getSenderpubkey() {
         if (senderpubkeyBuilder_ == null) {
@@ -1673,7 +1622,7 @@ public final class Message {
         }
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ByteArray senderpubkey = 4;</code>
+       * <code>optional .com.firestack.laksaj.proto.ByteArray senderpubkey = 4;</code>
        */
       public Builder setSenderpubkey(com.firestack.laksaj.proto.Message.ByteArray value) {
         if (senderpubkeyBuilder_ == null) {
@@ -1689,7 +1638,7 @@ public final class Message {
         return this;
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ByteArray senderpubkey = 4;</code>
+       * <code>optional .com.firestack.laksaj.proto.ByteArray senderpubkey = 4;</code>
        */
       public Builder setSenderpubkey(
           com.firestack.laksaj.proto.Message.ByteArray.Builder builderForValue) {
@@ -1703,7 +1652,7 @@ public final class Message {
         return this;
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ByteArray senderpubkey = 4;</code>
+       * <code>optional .com.firestack.laksaj.proto.ByteArray senderpubkey = 4;</code>
        */
       public Builder mergeSenderpubkey(com.firestack.laksaj.proto.Message.ByteArray value) {
         if (senderpubkeyBuilder_ == null) {
@@ -1723,7 +1672,7 @@ public final class Message {
         return this;
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ByteArray senderpubkey = 4;</code>
+       * <code>optional .com.firestack.laksaj.proto.ByteArray senderpubkey = 4;</code>
        */
       public Builder clearSenderpubkey() {
         if (senderpubkeyBuilder_ == null) {
@@ -1736,7 +1685,7 @@ public final class Message {
         return this;
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ByteArray senderpubkey = 4;</code>
+       * <code>optional .com.firestack.laksaj.proto.ByteArray senderpubkey = 4;</code>
        */
       public com.firestack.laksaj.proto.Message.ByteArray.Builder getSenderpubkeyBuilder() {
         bitField0_ |= 0x00000008;
@@ -1744,7 +1693,7 @@ public final class Message {
         return getSenderpubkeyFieldBuilder().getBuilder();
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ByteArray senderpubkey = 4;</code>
+       * <code>optional .com.firestack.laksaj.proto.ByteArray senderpubkey = 4;</code>
        */
       public com.firestack.laksaj.proto.Message.ByteArrayOrBuilder getSenderpubkeyOrBuilder() {
         if (senderpubkeyBuilder_ != null) {
@@ -1755,7 +1704,7 @@ public final class Message {
         }
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ByteArray senderpubkey = 4;</code>
+       * <code>optional .com.firestack.laksaj.proto.ByteArray senderpubkey = 4;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.firestack.laksaj.proto.Message.ByteArray, com.firestack.laksaj.proto.Message.ByteArray.Builder, com.firestack.laksaj.proto.Message.ByteArrayOrBuilder> 
@@ -1775,13 +1724,13 @@ public final class Message {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.firestack.laksaj.proto.Message.ByteArray, com.firestack.laksaj.proto.Message.ByteArray.Builder, com.firestack.laksaj.proto.Message.ByteArrayOrBuilder> amountBuilder_;
       /**
-       * <code>required .com.firestack.laksaj.proto.ByteArray amount = 5;</code>
+       * <code>optional .com.firestack.laksaj.proto.ByteArray amount = 5;</code>
        */
       public boolean hasAmount() {
         return ((bitField0_ & 0x00000010) == 0x00000010);
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ByteArray amount = 5;</code>
+       * <code>optional .com.firestack.laksaj.proto.ByteArray amount = 5;</code>
        */
       public com.firestack.laksaj.proto.Message.ByteArray getAmount() {
         if (amountBuilder_ == null) {
@@ -1791,7 +1740,7 @@ public final class Message {
         }
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ByteArray amount = 5;</code>
+       * <code>optional .com.firestack.laksaj.proto.ByteArray amount = 5;</code>
        */
       public Builder setAmount(com.firestack.laksaj.proto.Message.ByteArray value) {
         if (amountBuilder_ == null) {
@@ -1807,7 +1756,7 @@ public final class Message {
         return this;
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ByteArray amount = 5;</code>
+       * <code>optional .com.firestack.laksaj.proto.ByteArray amount = 5;</code>
        */
       public Builder setAmount(
           com.firestack.laksaj.proto.Message.ByteArray.Builder builderForValue) {
@@ -1821,7 +1770,7 @@ public final class Message {
         return this;
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ByteArray amount = 5;</code>
+       * <code>optional .com.firestack.laksaj.proto.ByteArray amount = 5;</code>
        */
       public Builder mergeAmount(com.firestack.laksaj.proto.Message.ByteArray value) {
         if (amountBuilder_ == null) {
@@ -1841,7 +1790,7 @@ public final class Message {
         return this;
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ByteArray amount = 5;</code>
+       * <code>optional .com.firestack.laksaj.proto.ByteArray amount = 5;</code>
        */
       public Builder clearAmount() {
         if (amountBuilder_ == null) {
@@ -1854,7 +1803,7 @@ public final class Message {
         return this;
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ByteArray amount = 5;</code>
+       * <code>optional .com.firestack.laksaj.proto.ByteArray amount = 5;</code>
        */
       public com.firestack.laksaj.proto.Message.ByteArray.Builder getAmountBuilder() {
         bitField0_ |= 0x00000010;
@@ -1862,7 +1811,7 @@ public final class Message {
         return getAmountFieldBuilder().getBuilder();
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ByteArray amount = 5;</code>
+       * <code>optional .com.firestack.laksaj.proto.ByteArray amount = 5;</code>
        */
       public com.firestack.laksaj.proto.Message.ByteArrayOrBuilder getAmountOrBuilder() {
         if (amountBuilder_ != null) {
@@ -1873,7 +1822,7 @@ public final class Message {
         }
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ByteArray amount = 5;</code>
+       * <code>optional .com.firestack.laksaj.proto.ByteArray amount = 5;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.firestack.laksaj.proto.Message.ByteArray, com.firestack.laksaj.proto.Message.ByteArray.Builder, com.firestack.laksaj.proto.Message.ByteArrayOrBuilder> 
@@ -1893,13 +1842,13 @@ public final class Message {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.firestack.laksaj.proto.Message.ByteArray, com.firestack.laksaj.proto.Message.ByteArray.Builder, com.firestack.laksaj.proto.Message.ByteArrayOrBuilder> gaspriceBuilder_;
       /**
-       * <code>required .com.firestack.laksaj.proto.ByteArray gasprice = 6;</code>
+       * <code>optional .com.firestack.laksaj.proto.ByteArray gasprice = 6;</code>
        */
       public boolean hasGasprice() {
         return ((bitField0_ & 0x00000020) == 0x00000020);
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ByteArray gasprice = 6;</code>
+       * <code>optional .com.firestack.laksaj.proto.ByteArray gasprice = 6;</code>
        */
       public com.firestack.laksaj.proto.Message.ByteArray getGasprice() {
         if (gaspriceBuilder_ == null) {
@@ -1909,7 +1858,7 @@ public final class Message {
         }
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ByteArray gasprice = 6;</code>
+       * <code>optional .com.firestack.laksaj.proto.ByteArray gasprice = 6;</code>
        */
       public Builder setGasprice(com.firestack.laksaj.proto.Message.ByteArray value) {
         if (gaspriceBuilder_ == null) {
@@ -1925,7 +1874,7 @@ public final class Message {
         return this;
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ByteArray gasprice = 6;</code>
+       * <code>optional .com.firestack.laksaj.proto.ByteArray gasprice = 6;</code>
        */
       public Builder setGasprice(
           com.firestack.laksaj.proto.Message.ByteArray.Builder builderForValue) {
@@ -1939,7 +1888,7 @@ public final class Message {
         return this;
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ByteArray gasprice = 6;</code>
+       * <code>optional .com.firestack.laksaj.proto.ByteArray gasprice = 6;</code>
        */
       public Builder mergeGasprice(com.firestack.laksaj.proto.Message.ByteArray value) {
         if (gaspriceBuilder_ == null) {
@@ -1959,7 +1908,7 @@ public final class Message {
         return this;
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ByteArray gasprice = 6;</code>
+       * <code>optional .com.firestack.laksaj.proto.ByteArray gasprice = 6;</code>
        */
       public Builder clearGasprice() {
         if (gaspriceBuilder_ == null) {
@@ -1972,7 +1921,7 @@ public final class Message {
         return this;
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ByteArray gasprice = 6;</code>
+       * <code>optional .com.firestack.laksaj.proto.ByteArray gasprice = 6;</code>
        */
       public com.firestack.laksaj.proto.Message.ByteArray.Builder getGaspriceBuilder() {
         bitField0_ |= 0x00000020;
@@ -1980,7 +1929,7 @@ public final class Message {
         return getGaspriceFieldBuilder().getBuilder();
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ByteArray gasprice = 6;</code>
+       * <code>optional .com.firestack.laksaj.proto.ByteArray gasprice = 6;</code>
        */
       public com.firestack.laksaj.proto.Message.ByteArrayOrBuilder getGaspriceOrBuilder() {
         if (gaspriceBuilder_ != null) {
@@ -1991,7 +1940,7 @@ public final class Message {
         }
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ByteArray gasprice = 6;</code>
+       * <code>optional .com.firestack.laksaj.proto.ByteArray gasprice = 6;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.firestack.laksaj.proto.Message.ByteArray, com.firestack.laksaj.proto.Message.ByteArray.Builder, com.firestack.laksaj.proto.Message.ByteArrayOrBuilder> 
@@ -2009,19 +1958,19 @@ public final class Message {
 
       private long gaslimit_ ;
       /**
-       * <code>required uint64 gaslimit = 7;</code>
+       * <code>optional uint64 gaslimit = 7;</code>
        */
       public boolean hasGaslimit() {
         return ((bitField0_ & 0x00000040) == 0x00000040);
       }
       /**
-       * <code>required uint64 gaslimit = 7;</code>
+       * <code>optional uint64 gaslimit = 7;</code>
        */
       public long getGaslimit() {
         return gaslimit_;
       }
       /**
-       * <code>required uint64 gaslimit = 7;</code>
+       * <code>optional uint64 gaslimit = 7;</code>
        */
       public Builder setGaslimit(long value) {
         bitField0_ |= 0x00000040;
@@ -2030,7 +1979,7 @@ public final class Message {
         return this;
       }
       /**
-       * <code>required uint64 gaslimit = 7;</code>
+       * <code>optional uint64 gaslimit = 7;</code>
        */
       public Builder clearGaslimit() {
         bitField0_ = (bitField0_ & ~0x00000040);
@@ -2041,19 +1990,19 @@ public final class Message {
 
       private com.google.protobuf.ByteString code_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>required bytes code = 8;</code>
+       * <code>optional bytes code = 8;</code>
        */
       public boolean hasCode() {
         return ((bitField0_ & 0x00000080) == 0x00000080);
       }
       /**
-       * <code>required bytes code = 8;</code>
+       * <code>optional bytes code = 8;</code>
        */
       public com.google.protobuf.ByteString getCode() {
         return code_;
       }
       /**
-       * <code>required bytes code = 8;</code>
+       * <code>optional bytes code = 8;</code>
        */
       public Builder setCode(com.google.protobuf.ByteString value) {
         if (value == null) {
@@ -2065,7 +2014,7 @@ public final class Message {
         return this;
       }
       /**
-       * <code>required bytes code = 8;</code>
+       * <code>optional bytes code = 8;</code>
        */
       public Builder clearCode() {
         bitField0_ = (bitField0_ & ~0x00000080);
@@ -2076,19 +2025,19 @@ public final class Message {
 
       private com.google.protobuf.ByteString data_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>required bytes data = 9;</code>
+       * <code>optional bytes data = 9;</code>
        */
       public boolean hasData() {
         return ((bitField0_ & 0x00000100) == 0x00000100);
       }
       /**
-       * <code>required bytes data = 9;</code>
+       * <code>optional bytes data = 9;</code>
        */
       public com.google.protobuf.ByteString getData() {
         return data_;
       }
       /**
-       * <code>required bytes data = 9;</code>
+       * <code>optional bytes data = 9;</code>
        */
       public Builder setData(com.google.protobuf.ByteString value) {
         if (value == null) {
@@ -2100,7 +2049,7 @@ public final class Message {
         return this;
       }
       /**
-       * <code>required bytes data = 9;</code>
+       * <code>optional bytes data = 9;</code>
        */
       public Builder clearData() {
         bitField0_ = (bitField0_ & ~0x00000100);
@@ -2166,37 +2115,37 @@ public final class Message {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>required bytes tranid = 1;</code>
+     * <code>optional bytes tranid = 1;</code>
      */
     boolean hasTranid();
     /**
-     * <code>required bytes tranid = 1;</code>
+     * <code>optional bytes tranid = 1;</code>
      */
     com.google.protobuf.ByteString getTranid();
 
     /**
-     * <code>required .com.firestack.laksaj.proto.ProtoTransactionCoreInfo info = 2;</code>
+     * <code>optional .com.firestack.laksaj.proto.ProtoTransactionCoreInfo info = 2;</code>
      */
     boolean hasInfo();
     /**
-     * <code>required .com.firestack.laksaj.proto.ProtoTransactionCoreInfo info = 2;</code>
+     * <code>optional .com.firestack.laksaj.proto.ProtoTransactionCoreInfo info = 2;</code>
      */
     com.firestack.laksaj.proto.Message.ProtoTransactionCoreInfo getInfo();
     /**
-     * <code>required .com.firestack.laksaj.proto.ProtoTransactionCoreInfo info = 2;</code>
+     * <code>optional .com.firestack.laksaj.proto.ProtoTransactionCoreInfo info = 2;</code>
      */
     com.firestack.laksaj.proto.Message.ProtoTransactionCoreInfoOrBuilder getInfoOrBuilder();
 
     /**
-     * <code>required .com.firestack.laksaj.proto.ByteArray signature = 3;</code>
+     * <code>optional .com.firestack.laksaj.proto.ByteArray signature = 3;</code>
      */
     boolean hasSignature();
     /**
-     * <code>required .com.firestack.laksaj.proto.ByteArray signature = 3;</code>
+     * <code>optional .com.firestack.laksaj.proto.ByteArray signature = 3;</code>
      */
     com.firestack.laksaj.proto.Message.ByteArray getSignature();
     /**
-     * <code>required .com.firestack.laksaj.proto.ByteArray signature = 3;</code>
+     * <code>optional .com.firestack.laksaj.proto.ByteArray signature = 3;</code>
      */
     com.firestack.laksaj.proto.Message.ByteArrayOrBuilder getSignatureOrBuilder();
   }
@@ -2307,13 +2256,13 @@ public final class Message {
     public static final int TRANID_FIELD_NUMBER = 1;
     private com.google.protobuf.ByteString tranid_;
     /**
-     * <code>required bytes tranid = 1;</code>
+     * <code>optional bytes tranid = 1;</code>
      */
     public boolean hasTranid() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>required bytes tranid = 1;</code>
+     * <code>optional bytes tranid = 1;</code>
      */
     public com.google.protobuf.ByteString getTranid() {
       return tranid_;
@@ -2322,19 +2271,19 @@ public final class Message {
     public static final int INFO_FIELD_NUMBER = 2;
     private com.firestack.laksaj.proto.Message.ProtoTransactionCoreInfo info_;
     /**
-     * <code>required .com.firestack.laksaj.proto.ProtoTransactionCoreInfo info = 2;</code>
+     * <code>optional .com.firestack.laksaj.proto.ProtoTransactionCoreInfo info = 2;</code>
      */
     public boolean hasInfo() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>required .com.firestack.laksaj.proto.ProtoTransactionCoreInfo info = 2;</code>
+     * <code>optional .com.firestack.laksaj.proto.ProtoTransactionCoreInfo info = 2;</code>
      */
     public com.firestack.laksaj.proto.Message.ProtoTransactionCoreInfo getInfo() {
       return info_ == null ? com.firestack.laksaj.proto.Message.ProtoTransactionCoreInfo.getDefaultInstance() : info_;
     }
     /**
-     * <code>required .com.firestack.laksaj.proto.ProtoTransactionCoreInfo info = 2;</code>
+     * <code>optional .com.firestack.laksaj.proto.ProtoTransactionCoreInfo info = 2;</code>
      */
     public com.firestack.laksaj.proto.Message.ProtoTransactionCoreInfoOrBuilder getInfoOrBuilder() {
       return info_ == null ? com.firestack.laksaj.proto.Message.ProtoTransactionCoreInfo.getDefaultInstance() : info_;
@@ -2343,19 +2292,19 @@ public final class Message {
     public static final int SIGNATURE_FIELD_NUMBER = 3;
     private com.firestack.laksaj.proto.Message.ByteArray signature_;
     /**
-     * <code>required .com.firestack.laksaj.proto.ByteArray signature = 3;</code>
+     * <code>optional .com.firestack.laksaj.proto.ByteArray signature = 3;</code>
      */
     public boolean hasSignature() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>required .com.firestack.laksaj.proto.ByteArray signature = 3;</code>
+     * <code>optional .com.firestack.laksaj.proto.ByteArray signature = 3;</code>
      */
     public com.firestack.laksaj.proto.Message.ByteArray getSignature() {
       return signature_ == null ? com.firestack.laksaj.proto.Message.ByteArray.getDefaultInstance() : signature_;
     }
     /**
-     * <code>required .com.firestack.laksaj.proto.ByteArray signature = 3;</code>
+     * <code>optional .com.firestack.laksaj.proto.ByteArray signature = 3;</code>
      */
     public com.firestack.laksaj.proto.Message.ByteArrayOrBuilder getSignatureOrBuilder() {
       return signature_ == null ? com.firestack.laksaj.proto.Message.ByteArray.getDefaultInstance() : signature_;
@@ -2368,25 +2317,17 @@ public final class Message {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      if (!hasTranid()) {
-        memoizedIsInitialized = 0;
-        return false;
+      if (hasInfo()) {
+        if (!getInfo().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
       }
-      if (!hasInfo()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasSignature()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!getInfo().isInitialized()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!getSignature().isInitialized()) {
-        memoizedIsInitialized = 0;
-        return false;
+      if (hasSignature()) {
+        if (!getSignature().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
       }
       memoizedIsInitialized = 1;
       return true;
@@ -2741,20 +2682,15 @@ public final class Message {
 
       @java.lang.Override
       public final boolean isInitialized() {
-        if (!hasTranid()) {
-          return false;
+        if (hasInfo()) {
+          if (!getInfo().isInitialized()) {
+            return false;
+          }
         }
-        if (!hasInfo()) {
-          return false;
-        }
-        if (!hasSignature()) {
-          return false;
-        }
-        if (!getInfo().isInitialized()) {
-          return false;
-        }
-        if (!getSignature().isInitialized()) {
-          return false;
+        if (hasSignature()) {
+          if (!getSignature().isInitialized()) {
+            return false;
+          }
         }
         return true;
       }
@@ -2781,19 +2717,19 @@ public final class Message {
 
       private com.google.protobuf.ByteString tranid_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>required bytes tranid = 1;</code>
+       * <code>optional bytes tranid = 1;</code>
        */
       public boolean hasTranid() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>required bytes tranid = 1;</code>
+       * <code>optional bytes tranid = 1;</code>
        */
       public com.google.protobuf.ByteString getTranid() {
         return tranid_;
       }
       /**
-       * <code>required bytes tranid = 1;</code>
+       * <code>optional bytes tranid = 1;</code>
        */
       public Builder setTranid(com.google.protobuf.ByteString value) {
         if (value == null) {
@@ -2805,7 +2741,7 @@ public final class Message {
         return this;
       }
       /**
-       * <code>required bytes tranid = 1;</code>
+       * <code>optional bytes tranid = 1;</code>
        */
       public Builder clearTranid() {
         bitField0_ = (bitField0_ & ~0x00000001);
@@ -2818,13 +2754,13 @@ public final class Message {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.firestack.laksaj.proto.Message.ProtoTransactionCoreInfo, com.firestack.laksaj.proto.Message.ProtoTransactionCoreInfo.Builder, com.firestack.laksaj.proto.Message.ProtoTransactionCoreInfoOrBuilder> infoBuilder_;
       /**
-       * <code>required .com.firestack.laksaj.proto.ProtoTransactionCoreInfo info = 2;</code>
+       * <code>optional .com.firestack.laksaj.proto.ProtoTransactionCoreInfo info = 2;</code>
        */
       public boolean hasInfo() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ProtoTransactionCoreInfo info = 2;</code>
+       * <code>optional .com.firestack.laksaj.proto.ProtoTransactionCoreInfo info = 2;</code>
        */
       public com.firestack.laksaj.proto.Message.ProtoTransactionCoreInfo getInfo() {
         if (infoBuilder_ == null) {
@@ -2834,7 +2770,7 @@ public final class Message {
         }
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ProtoTransactionCoreInfo info = 2;</code>
+       * <code>optional .com.firestack.laksaj.proto.ProtoTransactionCoreInfo info = 2;</code>
        */
       public Builder setInfo(com.firestack.laksaj.proto.Message.ProtoTransactionCoreInfo value) {
         if (infoBuilder_ == null) {
@@ -2850,7 +2786,7 @@ public final class Message {
         return this;
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ProtoTransactionCoreInfo info = 2;</code>
+       * <code>optional .com.firestack.laksaj.proto.ProtoTransactionCoreInfo info = 2;</code>
        */
       public Builder setInfo(
           com.firestack.laksaj.proto.Message.ProtoTransactionCoreInfo.Builder builderForValue) {
@@ -2864,7 +2800,7 @@ public final class Message {
         return this;
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ProtoTransactionCoreInfo info = 2;</code>
+       * <code>optional .com.firestack.laksaj.proto.ProtoTransactionCoreInfo info = 2;</code>
        */
       public Builder mergeInfo(com.firestack.laksaj.proto.Message.ProtoTransactionCoreInfo value) {
         if (infoBuilder_ == null) {
@@ -2884,7 +2820,7 @@ public final class Message {
         return this;
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ProtoTransactionCoreInfo info = 2;</code>
+       * <code>optional .com.firestack.laksaj.proto.ProtoTransactionCoreInfo info = 2;</code>
        */
       public Builder clearInfo() {
         if (infoBuilder_ == null) {
@@ -2897,7 +2833,7 @@ public final class Message {
         return this;
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ProtoTransactionCoreInfo info = 2;</code>
+       * <code>optional .com.firestack.laksaj.proto.ProtoTransactionCoreInfo info = 2;</code>
        */
       public com.firestack.laksaj.proto.Message.ProtoTransactionCoreInfo.Builder getInfoBuilder() {
         bitField0_ |= 0x00000002;
@@ -2905,7 +2841,7 @@ public final class Message {
         return getInfoFieldBuilder().getBuilder();
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ProtoTransactionCoreInfo info = 2;</code>
+       * <code>optional .com.firestack.laksaj.proto.ProtoTransactionCoreInfo info = 2;</code>
        */
       public com.firestack.laksaj.proto.Message.ProtoTransactionCoreInfoOrBuilder getInfoOrBuilder() {
         if (infoBuilder_ != null) {
@@ -2916,7 +2852,7 @@ public final class Message {
         }
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ProtoTransactionCoreInfo info = 2;</code>
+       * <code>optional .com.firestack.laksaj.proto.ProtoTransactionCoreInfo info = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.firestack.laksaj.proto.Message.ProtoTransactionCoreInfo, com.firestack.laksaj.proto.Message.ProtoTransactionCoreInfo.Builder, com.firestack.laksaj.proto.Message.ProtoTransactionCoreInfoOrBuilder> 
@@ -2936,13 +2872,13 @@ public final class Message {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.firestack.laksaj.proto.Message.ByteArray, com.firestack.laksaj.proto.Message.ByteArray.Builder, com.firestack.laksaj.proto.Message.ByteArrayOrBuilder> signatureBuilder_;
       /**
-       * <code>required .com.firestack.laksaj.proto.ByteArray signature = 3;</code>
+       * <code>optional .com.firestack.laksaj.proto.ByteArray signature = 3;</code>
        */
       public boolean hasSignature() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ByteArray signature = 3;</code>
+       * <code>optional .com.firestack.laksaj.proto.ByteArray signature = 3;</code>
        */
       public com.firestack.laksaj.proto.Message.ByteArray getSignature() {
         if (signatureBuilder_ == null) {
@@ -2952,7 +2888,7 @@ public final class Message {
         }
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ByteArray signature = 3;</code>
+       * <code>optional .com.firestack.laksaj.proto.ByteArray signature = 3;</code>
        */
       public Builder setSignature(com.firestack.laksaj.proto.Message.ByteArray value) {
         if (signatureBuilder_ == null) {
@@ -2968,7 +2904,7 @@ public final class Message {
         return this;
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ByteArray signature = 3;</code>
+       * <code>optional .com.firestack.laksaj.proto.ByteArray signature = 3;</code>
        */
       public Builder setSignature(
           com.firestack.laksaj.proto.Message.ByteArray.Builder builderForValue) {
@@ -2982,7 +2918,7 @@ public final class Message {
         return this;
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ByteArray signature = 3;</code>
+       * <code>optional .com.firestack.laksaj.proto.ByteArray signature = 3;</code>
        */
       public Builder mergeSignature(com.firestack.laksaj.proto.Message.ByteArray value) {
         if (signatureBuilder_ == null) {
@@ -3002,7 +2938,7 @@ public final class Message {
         return this;
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ByteArray signature = 3;</code>
+       * <code>optional .com.firestack.laksaj.proto.ByteArray signature = 3;</code>
        */
       public Builder clearSignature() {
         if (signatureBuilder_ == null) {
@@ -3015,7 +2951,7 @@ public final class Message {
         return this;
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ByteArray signature = 3;</code>
+       * <code>optional .com.firestack.laksaj.proto.ByteArray signature = 3;</code>
        */
       public com.firestack.laksaj.proto.Message.ByteArray.Builder getSignatureBuilder() {
         bitField0_ |= 0x00000004;
@@ -3023,7 +2959,7 @@ public final class Message {
         return getSignatureFieldBuilder().getBuilder();
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ByteArray signature = 3;</code>
+       * <code>optional .com.firestack.laksaj.proto.ByteArray signature = 3;</code>
        */
       public com.firestack.laksaj.proto.Message.ByteArrayOrBuilder getSignatureOrBuilder() {
         if (signatureBuilder_ != null) {
@@ -3034,7 +2970,7 @@ public final class Message {
         }
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ByteArray signature = 3;</code>
+       * <code>optional .com.firestack.laksaj.proto.ByteArray signature = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.firestack.laksaj.proto.Message.ByteArray, com.firestack.laksaj.proto.Message.ByteArray.Builder, com.firestack.laksaj.proto.Message.ByteArrayOrBuilder> 
@@ -3107,20 +3043,20 @@ public final class Message {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>required bytes receipt = 1;</code>
+     * <code>optional bytes receipt = 1;</code>
      */
     boolean hasReceipt();
     /**
-     * <code>required bytes receipt = 1;</code>
+     * <code>optional bytes receipt = 1;</code>
      */
     com.google.protobuf.ByteString getReceipt();
 
     /**
-     * <code>required uint64 cumgas = 2;</code>
+     * <code>optional uint64 cumgas = 2;</code>
      */
     boolean hasCumgas();
     /**
-     * <code>required uint64 cumgas = 2;</code>
+     * <code>optional uint64 cumgas = 2;</code>
      */
     long getCumgas();
   }
@@ -3211,13 +3147,13 @@ public final class Message {
     public static final int RECEIPT_FIELD_NUMBER = 1;
     private com.google.protobuf.ByteString receipt_;
     /**
-     * <code>required bytes receipt = 1;</code>
+     * <code>optional bytes receipt = 1;</code>
      */
     public boolean hasReceipt() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>required bytes receipt = 1;</code>
+     * <code>optional bytes receipt = 1;</code>
      */
     public com.google.protobuf.ByteString getReceipt() {
       return receipt_;
@@ -3226,13 +3162,13 @@ public final class Message {
     public static final int CUMGAS_FIELD_NUMBER = 2;
     private long cumgas_;
     /**
-     * <code>required uint64 cumgas = 2;</code>
+     * <code>optional uint64 cumgas = 2;</code>
      */
     public boolean hasCumgas() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>required uint64 cumgas = 2;</code>
+     * <code>optional uint64 cumgas = 2;</code>
      */
     public long getCumgas() {
       return cumgas_;
@@ -3245,14 +3181,6 @@ public final class Message {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      if (!hasReceipt()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasCumgas()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -3564,12 +3492,6 @@ public final class Message {
 
       @java.lang.Override
       public final boolean isInitialized() {
-        if (!hasReceipt()) {
-          return false;
-        }
-        if (!hasCumgas()) {
-          return false;
-        }
         return true;
       }
 
@@ -3595,19 +3517,19 @@ public final class Message {
 
       private com.google.protobuf.ByteString receipt_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>required bytes receipt = 1;</code>
+       * <code>optional bytes receipt = 1;</code>
        */
       public boolean hasReceipt() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>required bytes receipt = 1;</code>
+       * <code>optional bytes receipt = 1;</code>
        */
       public com.google.protobuf.ByteString getReceipt() {
         return receipt_;
       }
       /**
-       * <code>required bytes receipt = 1;</code>
+       * <code>optional bytes receipt = 1;</code>
        */
       public Builder setReceipt(com.google.protobuf.ByteString value) {
         if (value == null) {
@@ -3619,7 +3541,7 @@ public final class Message {
         return this;
       }
       /**
-       * <code>required bytes receipt = 1;</code>
+       * <code>optional bytes receipt = 1;</code>
        */
       public Builder clearReceipt() {
         bitField0_ = (bitField0_ & ~0x00000001);
@@ -3630,19 +3552,19 @@ public final class Message {
 
       private long cumgas_ ;
       /**
-       * <code>required uint64 cumgas = 2;</code>
+       * <code>optional uint64 cumgas = 2;</code>
        */
       public boolean hasCumgas() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>required uint64 cumgas = 2;</code>
+       * <code>optional uint64 cumgas = 2;</code>
        */
       public long getCumgas() {
         return cumgas_;
       }
       /**
-       * <code>required uint64 cumgas = 2;</code>
+       * <code>optional uint64 cumgas = 2;</code>
        */
       public Builder setCumgas(long value) {
         bitField0_ |= 0x00000002;
@@ -3651,7 +3573,7 @@ public final class Message {
         return this;
       }
       /**
-       * <code>required uint64 cumgas = 2;</code>
+       * <code>optional uint64 cumgas = 2;</code>
        */
       public Builder clearCumgas() {
         bitField0_ = (bitField0_ & ~0x00000002);
@@ -3717,28 +3639,28 @@ public final class Message {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>required .com.firestack.laksaj.proto.ProtoTransaction transaction = 1;</code>
+     * <code>optional .com.firestack.laksaj.proto.ProtoTransaction transaction = 1;</code>
      */
     boolean hasTransaction();
     /**
-     * <code>required .com.firestack.laksaj.proto.ProtoTransaction transaction = 1;</code>
+     * <code>optional .com.firestack.laksaj.proto.ProtoTransaction transaction = 1;</code>
      */
     com.firestack.laksaj.proto.Message.ProtoTransaction getTransaction();
     /**
-     * <code>required .com.firestack.laksaj.proto.ProtoTransaction transaction = 1;</code>
+     * <code>optional .com.firestack.laksaj.proto.ProtoTransaction transaction = 1;</code>
      */
     com.firestack.laksaj.proto.Message.ProtoTransactionOrBuilder getTransactionOrBuilder();
 
     /**
-     * <code>required .com.firestack.laksaj.proto.ProtoTransactionReceipt receipt = 2;</code>
+     * <code>optional .com.firestack.laksaj.proto.ProtoTransactionReceipt receipt = 2;</code>
      */
     boolean hasReceipt();
     /**
-     * <code>required .com.firestack.laksaj.proto.ProtoTransactionReceipt receipt = 2;</code>
+     * <code>optional .com.firestack.laksaj.proto.ProtoTransactionReceipt receipt = 2;</code>
      */
     com.firestack.laksaj.proto.Message.ProtoTransactionReceipt getReceipt();
     /**
-     * <code>required .com.firestack.laksaj.proto.ProtoTransactionReceipt receipt = 2;</code>
+     * <code>optional .com.firestack.laksaj.proto.ProtoTransactionReceipt receipt = 2;</code>
      */
     com.firestack.laksaj.proto.Message.ProtoTransactionReceiptOrBuilder getReceiptOrBuilder();
   }
@@ -3843,19 +3765,19 @@ public final class Message {
     public static final int TRANSACTION_FIELD_NUMBER = 1;
     private com.firestack.laksaj.proto.Message.ProtoTransaction transaction_;
     /**
-     * <code>required .com.firestack.laksaj.proto.ProtoTransaction transaction = 1;</code>
+     * <code>optional .com.firestack.laksaj.proto.ProtoTransaction transaction = 1;</code>
      */
     public boolean hasTransaction() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>required .com.firestack.laksaj.proto.ProtoTransaction transaction = 1;</code>
+     * <code>optional .com.firestack.laksaj.proto.ProtoTransaction transaction = 1;</code>
      */
     public com.firestack.laksaj.proto.Message.ProtoTransaction getTransaction() {
       return transaction_ == null ? com.firestack.laksaj.proto.Message.ProtoTransaction.getDefaultInstance() : transaction_;
     }
     /**
-     * <code>required .com.firestack.laksaj.proto.ProtoTransaction transaction = 1;</code>
+     * <code>optional .com.firestack.laksaj.proto.ProtoTransaction transaction = 1;</code>
      */
     public com.firestack.laksaj.proto.Message.ProtoTransactionOrBuilder getTransactionOrBuilder() {
       return transaction_ == null ? com.firestack.laksaj.proto.Message.ProtoTransaction.getDefaultInstance() : transaction_;
@@ -3864,19 +3786,19 @@ public final class Message {
     public static final int RECEIPT_FIELD_NUMBER = 2;
     private com.firestack.laksaj.proto.Message.ProtoTransactionReceipt receipt_;
     /**
-     * <code>required .com.firestack.laksaj.proto.ProtoTransactionReceipt receipt = 2;</code>
+     * <code>optional .com.firestack.laksaj.proto.ProtoTransactionReceipt receipt = 2;</code>
      */
     public boolean hasReceipt() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>required .com.firestack.laksaj.proto.ProtoTransactionReceipt receipt = 2;</code>
+     * <code>optional .com.firestack.laksaj.proto.ProtoTransactionReceipt receipt = 2;</code>
      */
     public com.firestack.laksaj.proto.Message.ProtoTransactionReceipt getReceipt() {
       return receipt_ == null ? com.firestack.laksaj.proto.Message.ProtoTransactionReceipt.getDefaultInstance() : receipt_;
     }
     /**
-     * <code>required .com.firestack.laksaj.proto.ProtoTransactionReceipt receipt = 2;</code>
+     * <code>optional .com.firestack.laksaj.proto.ProtoTransactionReceipt receipt = 2;</code>
      */
     public com.firestack.laksaj.proto.Message.ProtoTransactionReceiptOrBuilder getReceiptOrBuilder() {
       return receipt_ == null ? com.firestack.laksaj.proto.Message.ProtoTransactionReceipt.getDefaultInstance() : receipt_;
@@ -3889,21 +3811,11 @@ public final class Message {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      if (!hasTransaction()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasReceipt()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!getTransaction().isInitialized()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!getReceipt().isInitialized()) {
-        memoizedIsInitialized = 0;
-        return false;
+      if (hasTransaction()) {
+        if (!getTransaction().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
       }
       memoizedIsInitialized = 1;
       return true;
@@ -4233,17 +4145,10 @@ public final class Message {
 
       @java.lang.Override
       public final boolean isInitialized() {
-        if (!hasTransaction()) {
-          return false;
-        }
-        if (!hasReceipt()) {
-          return false;
-        }
-        if (!getTransaction().isInitialized()) {
-          return false;
-        }
-        if (!getReceipt().isInitialized()) {
-          return false;
+        if (hasTransaction()) {
+          if (!getTransaction().isInitialized()) {
+            return false;
+          }
         }
         return true;
       }
@@ -4272,13 +4177,13 @@ public final class Message {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.firestack.laksaj.proto.Message.ProtoTransaction, com.firestack.laksaj.proto.Message.ProtoTransaction.Builder, com.firestack.laksaj.proto.Message.ProtoTransactionOrBuilder> transactionBuilder_;
       /**
-       * <code>required .com.firestack.laksaj.proto.ProtoTransaction transaction = 1;</code>
+       * <code>optional .com.firestack.laksaj.proto.ProtoTransaction transaction = 1;</code>
        */
       public boolean hasTransaction() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ProtoTransaction transaction = 1;</code>
+       * <code>optional .com.firestack.laksaj.proto.ProtoTransaction transaction = 1;</code>
        */
       public com.firestack.laksaj.proto.Message.ProtoTransaction getTransaction() {
         if (transactionBuilder_ == null) {
@@ -4288,7 +4193,7 @@ public final class Message {
         }
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ProtoTransaction transaction = 1;</code>
+       * <code>optional .com.firestack.laksaj.proto.ProtoTransaction transaction = 1;</code>
        */
       public Builder setTransaction(com.firestack.laksaj.proto.Message.ProtoTransaction value) {
         if (transactionBuilder_ == null) {
@@ -4304,7 +4209,7 @@ public final class Message {
         return this;
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ProtoTransaction transaction = 1;</code>
+       * <code>optional .com.firestack.laksaj.proto.ProtoTransaction transaction = 1;</code>
        */
       public Builder setTransaction(
           com.firestack.laksaj.proto.Message.ProtoTransaction.Builder builderForValue) {
@@ -4318,7 +4223,7 @@ public final class Message {
         return this;
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ProtoTransaction transaction = 1;</code>
+       * <code>optional .com.firestack.laksaj.proto.ProtoTransaction transaction = 1;</code>
        */
       public Builder mergeTransaction(com.firestack.laksaj.proto.Message.ProtoTransaction value) {
         if (transactionBuilder_ == null) {
@@ -4338,7 +4243,7 @@ public final class Message {
         return this;
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ProtoTransaction transaction = 1;</code>
+       * <code>optional .com.firestack.laksaj.proto.ProtoTransaction transaction = 1;</code>
        */
       public Builder clearTransaction() {
         if (transactionBuilder_ == null) {
@@ -4351,7 +4256,7 @@ public final class Message {
         return this;
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ProtoTransaction transaction = 1;</code>
+       * <code>optional .com.firestack.laksaj.proto.ProtoTransaction transaction = 1;</code>
        */
       public com.firestack.laksaj.proto.Message.ProtoTransaction.Builder getTransactionBuilder() {
         bitField0_ |= 0x00000001;
@@ -4359,7 +4264,7 @@ public final class Message {
         return getTransactionFieldBuilder().getBuilder();
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ProtoTransaction transaction = 1;</code>
+       * <code>optional .com.firestack.laksaj.proto.ProtoTransaction transaction = 1;</code>
        */
       public com.firestack.laksaj.proto.Message.ProtoTransactionOrBuilder getTransactionOrBuilder() {
         if (transactionBuilder_ != null) {
@@ -4370,7 +4275,7 @@ public final class Message {
         }
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ProtoTransaction transaction = 1;</code>
+       * <code>optional .com.firestack.laksaj.proto.ProtoTransaction transaction = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.firestack.laksaj.proto.Message.ProtoTransaction, com.firestack.laksaj.proto.Message.ProtoTransaction.Builder, com.firestack.laksaj.proto.Message.ProtoTransactionOrBuilder> 
@@ -4390,13 +4295,13 @@ public final class Message {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.firestack.laksaj.proto.Message.ProtoTransactionReceipt, com.firestack.laksaj.proto.Message.ProtoTransactionReceipt.Builder, com.firestack.laksaj.proto.Message.ProtoTransactionReceiptOrBuilder> receiptBuilder_;
       /**
-       * <code>required .com.firestack.laksaj.proto.ProtoTransactionReceipt receipt = 2;</code>
+       * <code>optional .com.firestack.laksaj.proto.ProtoTransactionReceipt receipt = 2;</code>
        */
       public boolean hasReceipt() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ProtoTransactionReceipt receipt = 2;</code>
+       * <code>optional .com.firestack.laksaj.proto.ProtoTransactionReceipt receipt = 2;</code>
        */
       public com.firestack.laksaj.proto.Message.ProtoTransactionReceipt getReceipt() {
         if (receiptBuilder_ == null) {
@@ -4406,7 +4311,7 @@ public final class Message {
         }
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ProtoTransactionReceipt receipt = 2;</code>
+       * <code>optional .com.firestack.laksaj.proto.ProtoTransactionReceipt receipt = 2;</code>
        */
       public Builder setReceipt(com.firestack.laksaj.proto.Message.ProtoTransactionReceipt value) {
         if (receiptBuilder_ == null) {
@@ -4422,7 +4327,7 @@ public final class Message {
         return this;
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ProtoTransactionReceipt receipt = 2;</code>
+       * <code>optional .com.firestack.laksaj.proto.ProtoTransactionReceipt receipt = 2;</code>
        */
       public Builder setReceipt(
           com.firestack.laksaj.proto.Message.ProtoTransactionReceipt.Builder builderForValue) {
@@ -4436,7 +4341,7 @@ public final class Message {
         return this;
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ProtoTransactionReceipt receipt = 2;</code>
+       * <code>optional .com.firestack.laksaj.proto.ProtoTransactionReceipt receipt = 2;</code>
        */
       public Builder mergeReceipt(com.firestack.laksaj.proto.Message.ProtoTransactionReceipt value) {
         if (receiptBuilder_ == null) {
@@ -4456,7 +4361,7 @@ public final class Message {
         return this;
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ProtoTransactionReceipt receipt = 2;</code>
+       * <code>optional .com.firestack.laksaj.proto.ProtoTransactionReceipt receipt = 2;</code>
        */
       public Builder clearReceipt() {
         if (receiptBuilder_ == null) {
@@ -4469,7 +4374,7 @@ public final class Message {
         return this;
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ProtoTransactionReceipt receipt = 2;</code>
+       * <code>optional .com.firestack.laksaj.proto.ProtoTransactionReceipt receipt = 2;</code>
        */
       public com.firestack.laksaj.proto.Message.ProtoTransactionReceipt.Builder getReceiptBuilder() {
         bitField0_ |= 0x00000002;
@@ -4477,7 +4382,7 @@ public final class Message {
         return getReceiptFieldBuilder().getBuilder();
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ProtoTransactionReceipt receipt = 2;</code>
+       * <code>optional .com.firestack.laksaj.proto.ProtoTransactionReceipt receipt = 2;</code>
        */
       public com.firestack.laksaj.proto.Message.ProtoTransactionReceiptOrBuilder getReceiptOrBuilder() {
         if (receiptBuilder_ != null) {
@@ -4488,7 +4393,7 @@ public final class Message {
         }
       }
       /**
-       * <code>required .com.firestack.laksaj.proto.ProtoTransactionReceipt receipt = 2;</code>
+       * <code>optional .com.firestack.laksaj.proto.ProtoTransactionReceipt receipt = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.firestack.laksaj.proto.Message.ProtoTransactionReceipt, com.firestack.laksaj.proto.Message.ProtoTransactionReceipt.Builder, com.firestack.laksaj.proto.Message.ProtoTransactionReceiptOrBuilder> 
@@ -4592,22 +4497,22 @@ public final class Message {
     java.lang.String[] descriptorData = {
       "\n\rmessage.proto\022\032com.firestack.laksaj.pr" +
       "oto\"\031\n\tByteArray\022\014\n\004data\030\001 \002(\014\"\245\002\n\030Proto" +
-      "TransactionCoreInfo\022\017\n\007version\030\001 \002(\r\022\r\n\005" +
-      "nonce\030\002 \002(\004\022\016\n\006toaddr\030\003 \002(\014\022;\n\014senderpub" +
-      "key\030\004 \002(\0132%.com.firestack.laksaj.proto.B" +
-      "yteArray\0225\n\006amount\030\005 \002(\0132%.com.firestack" +
-      ".laksaj.proto.ByteArray\0227\n\010gasprice\030\006 \002(" +
+      "TransactionCoreInfo\022\017\n\007version\030\001 \001(\r\022\r\n\005" +
+      "nonce\030\002 \001(\004\022\016\n\006toaddr\030\003 \001(\014\022;\n\014senderpub" +
+      "key\030\004 \001(\0132%.com.firestack.laksaj.proto.B" +
+      "yteArray\0225\n\006amount\030\005 \001(\0132%.com.firestack" +
+      ".laksaj.proto.ByteArray\0227\n\010gasprice\030\006 \001(" +
       "\0132%.com.firestack.laksaj.proto.ByteArray" +
-      "\022\020\n\010gaslimit\030\007 \002(\004\022\014\n\004code\030\010 \002(\014\022\014\n\004data" +
-      "\030\t \002(\014\"\240\001\n\020ProtoTransaction\022\016\n\006tranid\030\001 " +
-      "\002(\014\022B\n\004info\030\002 \002(\01324.com.firestack.laksaj" +
+      "\022\020\n\010gaslimit\030\007 \001(\004\022\014\n\004code\030\010 \001(\014\022\014\n\004data" +
+      "\030\t \001(\014\"\240\001\n\020ProtoTransaction\022\016\n\006tranid\030\001 " +
+      "\001(\014\022B\n\004info\030\002 \001(\01324.com.firestack.laksaj" +
       ".proto.ProtoTransactionCoreInfo\0228\n\tsigna" +
-      "ture\030\003 \002(\0132%.com.firestack.laksaj.proto." +
+      "ture\030\003 \001(\0132%.com.firestack.laksaj.proto." +
       "ByteArray\":\n\027ProtoTransactionReceipt\022\017\n\007" +
-      "receipt\030\001 \002(\014\022\016\n\006cumgas\030\002 \002(\004\"\246\001\n\033ProtoT" +
-      "ransactionWithReceipt\022A\n\013transaction\030\001 \002" +
+      "receipt\030\001 \001(\014\022\016\n\006cumgas\030\002 \001(\004\"\246\001\n\033ProtoT" +
+      "ransactionWithReceipt\022A\n\013transaction\030\001 \001" +
       "(\0132,.com.firestack.laksaj.proto.ProtoTra" +
-      "nsaction\022D\n\007receipt\030\002 \002(\01323.com.firestac" +
+      "nsaction\022D\n\007receipt\030\002 \001(\01323.com.firestac" +
       "k.laksaj.proto.ProtoTransactionReceipt"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
