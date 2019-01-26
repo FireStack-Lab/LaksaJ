@@ -123,7 +123,7 @@ and you can also try our snapshot version by
 
 gradle: (please see our example project)
 
-```
+```groovy
 repositories {
     mavenCentral()
     maven {
@@ -142,7 +142,7 @@ dependencies {
 
 maven: 
 
-```
+```xml
 <dependency>
   <groupId>org.firestack</groupId>
   <artifactId>laksaj</artifactId>
