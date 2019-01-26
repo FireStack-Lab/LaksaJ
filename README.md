@@ -5,7 +5,7 @@ The project is still under development.
 
 ## Quick Start
 
-```
+```java
 package com.firestack.example;
 
 import com.firestack.laksaj.account.Wallet;
