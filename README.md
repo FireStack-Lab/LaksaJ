@@ -5,6 +5,72 @@ The project is still under development.
 
 ## Quick Start
 
+### Generate large amount of addresses
+
+```java
+
+package com.firestack.example;
+
+import com.firestack.laksaj.crypto.KeyTools;
+import com.firestack.laksaj.utils.ByteUtil;
+import org.web3j.crypto.ECKeyPair;
+
+import java.math.BigInteger;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+
+public class GenerateAddress {
+    public static void main(String[] args) throws InvalidAlgorithmParameterException, NoSuchAlgorithmException, NoSuchProviderException {
+        int n = 0;
+        while (n < 100) {
+            System.out.println("--------------------------");
+            System.out.println("generate nth keypair:");
+            ECKeyPair keyPair = KeyTools.generateKeyPair();
+            BigInteger privateInteger = keyPair.getPrivateKey();
+            BigInteger publicInteger = keyPair.getPublicKey();
+            System.out.println("private key is: " + ByteUtil.byteArrayToHexString(privateInteger.toByteArray()));
+            System.out.println("public key is: " + ByteUtil.byteArrayToHexString(publicInteger.toByteArray()));
+            System.out.println("address is: " + KeyTools.getAddressFromPublicKey(ByteUtil.byteArrayToHexString(publicInteger.toByteArray())));
+        }
+    }
+}
+```
+
+### Validate an address
+
+```java
+package com.firestack.example;
+
+import com.firestack.laksaj.utils.Validation;
+
+public class ValidateAddress {
+    public static void main(String[] args) {
+        String address = "2624B9EA4B1CD740630F6BF2FEA82AAC0067070B";
+        boolean isAddress = Validation.isAddress(address);
+        System.out.println("is address: " + isAddress);
+    }
+}
+```
+
+### Validate checksum address 
+
+```java
+package com.firestack.example;
+
+import com.firestack.laksaj.utils.Validation;
+
+public class ValidChecksumAddress {
+    public static void main(String[] args) {
+        String checksumAddress = "0x4BAF5faDA8e5Db92C3d3242618c5B47133AE003C";
+        boolean isChecksumAddress = Validation.isValidChecksumAddress(checksumAddress);
+        System.out.println("is checksum address: " + isChecksumAddress);
+    }
+}
+```
+
+### Transaction operation (include construct transaction, calculate transaction fee, do serialization, sign a transaction, broadcast)
+
 ```java
 package com.firestack.example;
 
@@ -25,7 +91,7 @@ import java.util.List;
 
 import static com.firestack.laksaj.account.Wallet.pack;
 
-public class Main {
+public class TransactionOperation {
     public static void main(String[] args) throws IOException, NoSuchAlgorithmException {
         Wallet wallet = new Wallet();
         String ptivateKey = "e19d05c5452598e24caad4a0d85a49146f7be089515c905ae6a19e8a578a6930";
@@ -55,7 +121,7 @@ public class Main {
         transaction = wallet.sign(transaction);
         System.out.println("signature is: " + transaction.getSignature());
 
-        //send transaction
+        //broadcast transaction
         HttpProvider.CreateTxResult result = TransactionFactory.sendTransaction(transaction);
         System.out.println(result);
 
@@ -92,12 +158,12 @@ public class Main {
                 "      is_owner = builtin eq owner _sender;\n" +
                 "      match is_owner with\n" +
                 "      | False =>\n" +
-                "        msg = {_tag : \"Main\"; _recipient : _sender; _amount : Uint128 0; code : not_owner_code};\n" +
+                "        msg = {_tag : \"TransactionOperation\"; _recipient : _sender; _amount : Uint128 0; code : not_owner_code};\n" +
                 "        msgs = one_msg msg;\n" +
                 "        send msgs\n" +
                 "      | True =>\n" +
                 "        welcome_msg := msg;\n" +
-                "        msg = {_tag : \"Main\"; _recipient : _sender; _amount : Uint128 0; code : set_hello_code};\n" +
+                "        msg = {_tag : \"TransactionOperation\"; _recipient : _sender; _amount : Uint128 0; code : set_hello_code};\n" +
                 "        msgs = one_msg msg;\n" +
                 "        send msgs\n" +
                 "      end\n" +
@@ -120,7 +186,9 @@ public class Main {
         System.out.println("result is: " + deployResult);
     }
 }
+
 ```
+
 
 ## Supports
 
