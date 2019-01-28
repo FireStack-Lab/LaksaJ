@@ -3,11 +3,11 @@ package com.firestack.laksaj.contract;
 import com.firestack.laksaj.account.Wallet;
 import com.firestack.laksaj.jsonrpc.HttpProvider;
 import com.firestack.laksaj.transaction.Transaction;
-import com.google.common.io.ByteSink;
 import javafx.util.Pair;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.List;
@@ -74,7 +74,11 @@ public class ContractTest {
         Contract contract = factory.newContract(code, (Value[]) init.toArray(), "");
         DeployParams deployParams = DeployParams.builder().version(String.valueOf(pack(2, 8))).gasPrice("1000000000").gasLimit("10000").senderPubKey("0246e7178dc8253201101e18fd6f6eb9972451d121fc57aa2a06dd5c111e58dc6a").build();
         Pair<Transaction, Contract> result = contract.deploy(deployParams, 300, 3);
-        System.out.println("result is: " + result);
+
+        System.out.println("result is: " + result.toString());
+
+        String transactionFee = new BigInteger(result.getKey().getReceipt().getCumulative_gas()).multiply(new BigInteger(result.getKey().getGasPrice())).toString();
+        System.out.println("transaction fee is: " + transactionFee);
     }
 
     @Test

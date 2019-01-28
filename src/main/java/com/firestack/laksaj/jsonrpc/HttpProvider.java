@@ -167,7 +167,6 @@ public class HttpProvider {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("CreateTransaction").params(new Object[]{payload}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
-        System.out.println(resultString);
         Type type = new TypeToken<Rep<CreateTxResult>>() {
         }.getType();
         Rep<CreateTxResult> rep = gson.fromJson(resultString, type);
@@ -209,8 +208,6 @@ public class HttpProvider {
 
     private Request buildRequest(Req req) throws MalformedURLException {
         RequestBody body = RequestBody.create(JSON, gson.toJson(req));
-        System.out.println("body is:");
-        System.out.println(gson.toJson(req));
         return new Request.Builder()
                 .post(body)
                 .url(new URL(this.url))

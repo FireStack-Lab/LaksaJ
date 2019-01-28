@@ -184,6 +184,10 @@ public class TransactionOperation {
         //deploy contract, this will take a while to track transaction util it been confirmed or failed
         Pair<Transaction, Contract> deployResult = contract.deploy(deployParams, 300, 3);
         System.out.println("result is: " + deployResult);
+        
+        //calculate transaction fee
+        String transactionFee = new BigInteger(deployResult.getKey().getReceipt().getCumulative_gas()).multiply(new BigInteger(deployResult.getKey().getGasPrice())).toString();
+        System.out.println("transaction fee is: " + transactionFee);
     }
 }
 
@@ -306,7 +310,7 @@ maven:
 <dependency>
   <groupId>org.firestack</groupId>
   <artifactId>laksaj</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.3-SNAPSHOT</version>
 </dependency>
 ```
 
