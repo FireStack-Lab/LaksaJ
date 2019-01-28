@@ -27,8 +27,8 @@ public class WalletTest {
                 .build();
         transaction = wallet.sign(transaction);
         System.out.println("signature is: " + transaction.getSignature());
-//        HttpProvider.CreateTxResult result = TransactionFactory.sendTransaction(transaction);
-//        System.out.println(result);
+        HttpProvider.CreateTxResult result = TransactionFactory.sendTransaction(transaction);
+        System.out.println(result);
     }
 
 

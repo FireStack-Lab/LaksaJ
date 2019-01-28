@@ -104,7 +104,7 @@ public class ProviderTest {
     @Test
     public void getTransaction() throws IOException {
         HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
-        Transaction transaction = client.getTransaction("7368CA774642FB2AAB78D540E45BF44E22F2CF69B8B0632FF0317338D29ABAB5");
+        Transaction transaction = client.getTransaction("0e8d4d5cc5f5a7747fdb004e625da02f177208a93728f72f679ae55e0ba5bc70");
         System.out.println(transaction);
     }
 
