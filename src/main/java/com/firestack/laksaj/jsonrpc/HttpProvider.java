@@ -146,7 +146,7 @@ public class HttpProvider {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetSmartContractState").params(new String[]{address}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
-        Type type = new TypeToken<List<Contract.State>>() {
+        Type type = new TypeToken<Rep<List<Contract.State>>>() {
         }.getType();
         Rep<List<Contract.State>> rep = gson.fromJson(resultString, type);
         return rep.getResult();
