@@ -181,7 +181,7 @@ public class TransactionOperation {
         Contract contract = factory.newContract(code, (Value[]) init.toArray(), "");
         DeployParams deployParams = DeployParams.builder().version(String.valueOf(pack(2, 8))).gasPrice("1000000000").gasLimit("10000").senderPubKey("0246e7178dc8253201101e18fd6f6eb9972451d121fc57aa2a06dd5c111e58dc6a").build();
 
-        //deploy contract, this will take a while to track transaction util it been confirmed or failed
+        //deploy contract, this will take a while to track transaction util it has been confirmed or failed
         Pair<Transaction, Contract> deployResult = contract.deploy(deployParams, 300, 3);
         System.out.println("result is: " + deployResult);
         
