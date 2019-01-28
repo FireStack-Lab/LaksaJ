@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.List;
 
 
 public class ProviderTest {
@@ -112,5 +113,12 @@ public class ProviderTest {
         HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
         TransactionList transactionList = client.getRecentTransactions();
         System.out.println(transactionList);
+    }
+
+    @Test
+    public void getSmartContractState() throws IOException {
+        HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
+        List<Contract.State> stateList =  client.getSmartContractState("D6606D02DFF929593312D8D0D36105E376F95AA0");
+        System.out.println(stateList);
     }
 }
