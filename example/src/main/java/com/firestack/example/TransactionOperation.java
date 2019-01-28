@@ -17,7 +17,7 @@ import java.util.List;
 
 import static com.firestack.laksaj.account.Wallet.pack;
 
-public class Main {
+public class TransactionOperation {
     public static void main(String[] args) throws IOException, NoSuchAlgorithmException {
         Wallet wallet = new Wallet();
         String ptivateKey = "e19d05c5452598e24caad4a0d85a49146f7be089515c905ae6a19e8a578a6930";
@@ -47,7 +47,7 @@ public class Main {
         transaction = wallet.sign(transaction);
         System.out.println("signature is: " + transaction.getSignature());
 
-        //send transaction
+        //broadcast transaction
         HttpProvider.CreateTxResult result = TransactionFactory.sendTransaction(transaction);
         System.out.println(result);
 
@@ -84,12 +84,12 @@ public class Main {
                 "      is_owner = builtin eq owner _sender;\n" +
                 "      match is_owner with\n" +
                 "      | False =>\n" +
-                "        msg = {_tag : \"Main\"; _recipient : _sender; _amount : Uint128 0; code : not_owner_code};\n" +
+                "        msg = {_tag : \"TransactionOperation\"; _recipient : _sender; _amount : Uint128 0; code : not_owner_code};\n" +
                 "        msgs = one_msg msg;\n" +
                 "        send msgs\n" +
                 "      | True =>\n" +
                 "        welcome_msg := msg;\n" +
-                "        msg = {_tag : \"Main\"; _recipient : _sender; _amount : Uint128 0; code : set_hello_code};\n" +
+                "        msg = {_tag : \"TransactionOperation\"; _recipient : _sender; _amount : Uint128 0; code : set_hello_code};\n" +
                 "        msgs = one_msg msg;\n" +
                 "        send msgs\n" +
                 "      end\n" +
