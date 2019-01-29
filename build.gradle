@@ -20,7 +20,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'org.firestack'
             artifactId = 'laksaj'
-            version = '0.0.3-SNAPSHOT'
+            version = '0.0.4-SNAPSHOT'
             from components.java
         }
     }
@@ -28,7 +28,7 @@ publishing {
 
 
 group 'com.firestack'
-version '0.0.3-SNAPSHOT'
+version '0.0.4-SNAPSHOT'
 
 sourceCompatibility = 1.8
 
