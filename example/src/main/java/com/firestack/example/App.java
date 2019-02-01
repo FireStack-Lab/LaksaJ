@@ -1,9 +1,3 @@
-### GetNetworkId
-
-#### Example request:
-
-```java
-
 package com.firestack.example;
 
 import com.firestack.laksaj.jsonrpc.HttpProvider;
@@ -17,11 +11,3 @@ public class App {
         System.out.println(networkId);
     }
 }
- 
-```
-
-#### Example response:
-
-```
-1
-```
