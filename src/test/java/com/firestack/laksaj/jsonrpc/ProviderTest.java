@@ -52,6 +52,16 @@ public class ProviderTest {
         Assert.assertTrue(dsBlock.getHeader().getDifficulty() == 3);
     }
 
+
+    @Test
+    public void getNumDSBlocks() throws IOException {
+        HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
+        String result = client.getNumDSBlocks();
+        System.out.println(result);
+        Assert.assertNotNull(result);
+    }
+
+
     @Test
     public void getTxBlock() throws IOException {
         HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
