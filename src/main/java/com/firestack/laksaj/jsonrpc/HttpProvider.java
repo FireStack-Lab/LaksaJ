@@ -70,6 +70,16 @@ public class HttpProvider {
         return rep.getResult();
     }
 
+    public String getNumDSBlocks() throws IOException {
+        Req req = Req.builder().id("1").jsonrpc("2.0").method("GetNumDSBlocks").params(new String[]{""}).build();
+        Response response = client.newCall(buildRequest(req)).execute();
+        String resultString = Objects.requireNonNull(response.body()).string();
+        Type type = new TypeToken<Rep<String>>() {
+        }.getType();
+        Rep<String> rep = gson.fromJson(resultString, type);
+        return rep.getResult();
+
+    }
 
     public DsBlock getDsBlock(String blockNumber) throws IOException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetDsBlock").params(new String[]{blockNumber}).build();
