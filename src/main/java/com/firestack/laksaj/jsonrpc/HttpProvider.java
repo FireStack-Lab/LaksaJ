@@ -88,6 +88,17 @@ public class HttpProvider {
         }.getType();
         Rep<Double> rep = gson.fromJson(resultString, type);
         return rep.getResult();
+    }
+
+    public BlockList getDSBlockListing() throws IOException {
+        Req req = Req.builder().id("1").jsonrpc("2.0").method("DSBlockListing").params(new Object[]{1}).build();
+        Response response = client.newCall(buildRequest(req)).execute();
+        String resultString = Objects.requireNonNull(response.body()).string();
+        Type type = new TypeToken<Rep<BlockList>>() {
+        }.getType();
+        Rep<BlockList> rep = gson.fromJson(resultString, type);
+        return rep.getResult();
+
 
     }
 
