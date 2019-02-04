@@ -78,6 +78,16 @@ public class HttpProvider {
         }.getType();
         Rep<String> rep = gson.fromJson(resultString, type);
         return rep.getResult();
+    }
+
+    public double getDSBlockRate() throws IOException {
+        Req req = Req.builder().id("1").jsonrpc("2.0").method("GetDSBlockRate").params(new String[]{""}).build();
+        Response response = client.newCall(buildRequest(req)).execute();
+        String resultString = Objects.requireNonNull(response.body()).string();
+        Type type = new TypeToken<Rep<Double>>() {
+        }.getType();
+        Rep<Double> rep = gson.fromJson(resultString, type);
+        return rep.getResult();
 
     }
 

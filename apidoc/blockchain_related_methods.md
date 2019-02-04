@@ -112,6 +112,56 @@ DsBlock(header=DsBlockHeader(blockNumber=16, difficulty=24, diffcultyDS=35, gasP
 
 ### GetNumDSBlocks
 
+#### Example request:
+
+```java
+package com.firestack.laksaj.crypto;
+
+import com.firestack.laksaj.jsonrpc.HttpProvider;
+
+import java.io.IOException;
+
+public class App {
+    public static void main(String[] args) throws IOException {
+        HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
+        String result = client.getNumDSBlocks();
+        System.out.println(result);
+    }
+}
+```
+
+#### Example response:
+
+```
+26
+```
+
+
+
 ### GetDSBlockRate
+
+#### Example request:
+
+```java
+package com.firestack.laksaj.crypto;
+
+import com.firestack.laksaj.jsonrpc.HttpProvider;
+
+import java.io.IOException;
+
+public class App {
+    public static void main(String[] args) throws IOException {
+        HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
+        double result = client.getDSBlockRate();
+        System.out.println(result);
+    }
+}
+```
+
+#### Example response:
+
+```
+7.97597758621593E-5
+```
 
 ### DSBlockListing
