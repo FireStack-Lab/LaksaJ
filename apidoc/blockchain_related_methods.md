@@ -191,3 +191,29 @@ public class App {
 BlockList(data=[BlockShort(BlockNum=25, Hash=0F47F226BB62F18F43D9F17DD7B0F0A1A6FD66EF3CF070C1C2DC25B7DB53B0B5), BlockShort(BlockNum=24, Hash=C4BC893D9A3793DBFE64CF8823AEC4B6E787F557FF02C05F00598005EB448F6D), BlockShort(BlockNum=23, Hash=98138EE513AA72C3FDFBCFED7CA414C8B0CCD0426584AF00F0F67285B48CB3D2), BlockShort(BlockNum=22, Hash=9E91FC5229895C9E5CED6CD44F37C7F6145015B99BBE4AD2A21F85BEAA0D7B79), BlockShort(BlockNum=21, Hash=217216FC69F4FF5ADBCD04C1AE09667A081B56F45179D4C254CFFD36A59EFD9B), BlockShort(BlockNum=20, Hash=9CB7EA4430883178A7137A26DAFEB52583F0FC3023624514065BBC5AFD1C6CA5), BlockShort(BlockNum=19, Hash=63AD9C5239CDF75630772A38135E9BBD08F4F080C0727E23B290ADF30780C7B5), BlockShort(BlockNum=18, Hash=EA9BF571BF5C366DC108EE36E1AC2866ADB275EAF955090A1B48189F598EEB54), BlockShort(BlockNum=17, Hash=a95e8bab22c2c8548e653b0d9ed21dc967f0aefb91350cc4c041d95db1c25f97), BlockShort(BlockNum=16, Hash=c9003cef7bb2a2ad3e88eadd1945629f213e65e917f41bc691de3d98b2454db7)], maxPages=3)
 ```
 
+### GetNumTxBlocks
+
+#### Example request:
+
+```java
+package com.firestack.laksaj.crypto;
+
+import com.firestack.laksaj.jsonrpc.HttpProvider;
+
+import java.io.IOException;
+
+public class App {
+    public static void main(String[] args) throws IOException {
+        HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
+        String blocks = client.getNumTxBlocks();
+        System.out.println(blocks);
+    }
+}
+```
+
+#### Example response:
+
+```
+3429
+```
+
