@@ -98,8 +98,6 @@ public class HttpProvider {
         }.getType();
         Rep<BlockList> rep = gson.fromJson(resultString, type);
         return rep.getResult();
-
-
     }
 
     public DsBlock getDsBlock(String blockNumber) throws IOException {
@@ -130,6 +128,17 @@ public class HttpProvider {
         Rep<String> rep = gson.fromJson(resultString, type);
         return rep.getResult();
     }
+
+    public double getTxBlockRate() throws IOException {
+        Req req = Req.builder().id("1").jsonrpc("2.0").method("GetTxBlockRate").params(new String[]{""}).build();
+        Response response = client.newCall(buildRequest(req)).execute();
+        String resultString = Objects.requireNonNull(response.body()).string();
+        Type type = new TypeToken<Rep<Double>>() {
+        }.getType();
+        Rep<Double> rep = gson.fromJson(resultString, type);
+        return rep.getResult();
+    }
+
     public DsBlock getLatestDsBlock() throws IOException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetLatestDsBlock").params(new String[]{""}).build();
         Response response = client.newCall(buildRequest(req)).execute();
@@ -145,6 +154,16 @@ public class HttpProvider {
         String resultString = Objects.requireNonNull(response.body()).string();
         Rep<TxBlock> rep = gson.fromJson(resultString, new TypeToken<Rep<TxBlock>>() {
         }.getType());
+        return rep.getResult();
+    }
+
+    public String getNumTransactions() throws IOException {
+        Req req = Req.builder().id("1").jsonrpc("2.0").method("GetNumTransactions").params(new String[]{""}).build();
+        Response response = client.newCall(buildRequest(req)).execute();
+        String resultString = Objects.requireNonNull(response.body()).string();
+        Type type = new TypeToken<Rep<String>>() {
+        }.getType();
+        Rep<String> rep = gson.fromJson(resultString, type);
         return rep.getResult();
     }
 
