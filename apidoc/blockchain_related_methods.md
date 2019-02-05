@@ -217,3 +217,56 @@ public class App {
 3429
 ```
 
+### GetTxBlockRate
+
+#### Example request:
+
+```java
+package com.firestack.laksaj.crypto;
+
+import com.firestack.laksaj.jsonrpc.HttpProvider;
+
+import java.io.IOException;
+
+public class App {
+    public static void main(String[] args) throws IOException {
+        HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
+        double blockRate = client.getTxBlockRate();
+        System.out.println(blockRate);
+    }
+}
+```
+
+#### Example response:
+
+```
+0.007834518595651478
+```
+
+### GetNumTransactions
+
+#### Example request:
+
+```java
+package com.firestack.laksaj.crypto;
+
+import com.firestack.laksaj.jsonrpc.HttpProvider;
+
+import java.io.IOException;
+
+public class App {
+    public static void main(String[] args) throws IOException {
+        HttpProvider client = new HttpProvider("https://dev-api.zilliqa.com");
+        String transactions = client.getNumTransactions();
+        System.out.println(transactions);
+    }
+}
+```
+
+#### Example response:
+
+```
+71
+```
+
+
