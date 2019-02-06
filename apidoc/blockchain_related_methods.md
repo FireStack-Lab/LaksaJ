@@ -347,6 +347,31 @@ public class App {
 160
 ```
 
+### GetPrevDSDifficulty
+
+#### Example request:
+
+```java
+package com.firestack.laksaj.app;
+
+import com.firestack.laksaj.jsonrpc.HttpProvider;
+
+import java.io.IOException;
+
+public class App {
+    public static void main(String[] args) throws IOException {
+        HttpProvider client = new HttpProvider("https://dev-api.zilliqa.com");
+        int prevDifficulty = client.getPrevDifficulty();
+        System.out.println(prevDifficulty);
+    }
+}
+```
+
+#### Example response:
+
+```
+3
+```
 
 
 
