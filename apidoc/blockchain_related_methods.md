@@ -269,4 +269,31 @@ public class App {
 71
 ```
 
+### GetTransactionRate
+
+#### Example request:
+
+```java
+package com.firestack.laksaj.crypto;
+
+import com.firestack.laksaj.jsonrpc.HttpProvider;
+
+import java.io.IOException;
+
+public class App {
+    public static void main(String[] args) throws IOException {
+        HttpProvider client = new HttpProvider("https://dev-api.zilliqa.com");
+        int tps = client.getTransactionRate();
+        System.out.println(tps);
+    }
+}
+```
+
+#### Example response:
+
+```
+0
+```
+
+
 
