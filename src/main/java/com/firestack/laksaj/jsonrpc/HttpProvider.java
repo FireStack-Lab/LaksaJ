@@ -177,6 +177,17 @@ public class HttpProvider {
         return rep.getResult();
     }
 
+    public String getCurrentMiniEpoch() throws IOException {
+        Req req = Req.builder().id("1").jsonrpc("2.0").method("GetCurrentMiniEpoch").params(new String[]{""}).build();
+        Response response = client.newCall(buildRequest(req)).execute();
+        String resultString = Objects.requireNonNull(response.body()).string();
+        Type type = new TypeToken<Rep<String>>() {
+        }.getType();
+        Rep<String> rep = gson.fromJson(resultString, type);
+        return rep.getResult();
+    }
+
+
     //Account-related methods
     public BalanceResult getBalance(String address) throws IOException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetBalance").params(new String[]{address}).build();
