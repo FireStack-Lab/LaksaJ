@@ -115,7 +115,7 @@ DsBlock(header=DsBlockHeader(blockNumber=16, difficulty=24, diffcultyDS=35, gasP
 #### Example request:
 
 ```java
-package com.firestack.laksaj.crypto;
+package com.firestack.laksaj.app;
 
 import com.firestack.laksaj.jsonrpc.HttpProvider;
 
@@ -143,7 +143,7 @@ public class App {
 #### Example request:
 
 ```java
-package com.firestack.laksaj.crypto;
+package com.firestack.laksaj.app;
 
 import com.firestack.laksaj.jsonrpc.HttpProvider;
 
@@ -169,7 +169,7 @@ public class App {
 #### Example request:
 
 ```java
-package com.firestack.laksaj.crypto;
+package com.firestack.laksaj.app;
 
 import com.firestack.laksaj.blockchain.BlockList;
 import com.firestack.laksaj.jsonrpc.HttpProvider;
@@ -196,7 +196,7 @@ BlockList(data=[BlockShort(BlockNum=25, Hash=0F47F226BB62F18F43D9F17DD7B0F0A1A6F
 #### Example request:
 
 ```java
-package com.firestack.laksaj.crypto;
+package com.firestack.laksaj.app;
 
 import com.firestack.laksaj.jsonrpc.HttpProvider;
 
@@ -222,7 +222,7 @@ public class App {
 #### Example request:
 
 ```java
-package com.firestack.laksaj.crypto;
+package com.firestack.laksaj.app;
 
 import com.firestack.laksaj.jsonrpc.HttpProvider;
 
@@ -248,7 +248,7 @@ public class App {
 #### Example request:
 
 ```java
-package com.firestack.laksaj.crypto;
+package com.firestack.laksaj.app;
 
 import com.firestack.laksaj.jsonrpc.HttpProvider;
 
@@ -274,7 +274,7 @@ public class App {
 #### Example request:
 
 ```java
-package com.firestack.laksaj.crypto;
+package com.firestack.laksaj.app;
 
 import com.firestack.laksaj.jsonrpc.HttpProvider;
 
@@ -300,7 +300,7 @@ public class App {
 #### Example request:
 
 ```java
-package com.firestack.laksaj.crypto;
+package com.firestack.laksaj.app;
 
 import com.firestack.laksaj.jsonrpc.HttpProvider;
 
@@ -320,6 +320,33 @@ public class App {
 ```
 15952
 ```
+
+### GetCurrentDSEpoch
+
+#### Example request:
+
+```java
+package com.firestack.laksaj.app;
+
+import com.firestack.laksaj.jsonrpc.HttpProvider;
+
+import java.io.IOException;
+
+public class App {
+    public static void main(String[] args) throws IOException {
+        HttpProvider client = new HttpProvider("https://dev-api.zilliqa.com");
+        String currentDSEpoch = client.getCurrentDSEpoch();
+        System.out.println(currentDSEpoch);
+    }
+}
+```
+
+#### Example response:
+
+```
+160
+```
+
 
 
 
