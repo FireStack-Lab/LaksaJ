@@ -1,9 +1,4 @@
-### CreateTransaction
-
-#### Example request:
-
-```java
-package com.firestack.laksaj.app;
+package com.firestack.laksaj.crypto;
 
 import com.firestack.laksaj.account.Wallet;
 import com.firestack.laksaj.jsonrpc.HttpProvider;
@@ -35,11 +30,3 @@ public class App {
         System.out.println(result);
     }
 }
-```
-
-#### Example response:
-
-```
-CreateTxResult{Info='Non-contract txn, sent to shard', TranID='8006379570367a4ff5f3cb596edfa9025ba2745dd0dbf5a0043382b7f2badcec'}
-
-```

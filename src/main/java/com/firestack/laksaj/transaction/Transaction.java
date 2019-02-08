@@ -69,7 +69,6 @@ public class Transaction {
         TxParams txParams = toTransactionParam();
         TransactionUtil util = new TransactionUtil();
         Gson gson = new Gson();
-        System.out.println("param is: " + gson.toJson(txParams));
         byte[] bytes = util.encodeTransactionProto(txParams);
         return bytes;
     }

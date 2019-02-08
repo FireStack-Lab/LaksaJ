@@ -30,6 +30,10 @@ public class Wallet {
         provider = new HttpProvider("https://api.zilliqa.com/");
     }
 
+    public void setProvider(HttpProvider provider) {
+        this.provider = provider;
+    }
+
     public Wallet(Map<String, Account> accounts, HttpProvider provider) {
         this.accounts = accounts;
         this.provider = provider;
