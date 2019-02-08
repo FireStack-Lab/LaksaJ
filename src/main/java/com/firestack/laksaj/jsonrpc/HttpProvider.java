@@ -271,7 +271,6 @@ public class HttpProvider {
         }.getType();
         Rep<CreateTxResult> rep = gson.fromJson(resultString, type);
         return rep.getResult();
-
     }
 
     public String getMinimumGasPrice() throws IOException {
@@ -314,8 +313,9 @@ public class HttpProvider {
         }.getType();
         Rep<String> rep = gson.fromJson(resultString, type);
         return rep.getResult();
-
     }
+
+
 
     private Request buildRequest(Req req) throws MalformedURLException {
         RequestBody body = RequestBody.create(JSON, gson.toJson(req));

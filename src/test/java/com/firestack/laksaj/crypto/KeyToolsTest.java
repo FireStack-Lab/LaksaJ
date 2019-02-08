@@ -56,7 +56,7 @@ public class KeyToolsTest {
 
     @Test
     public void getAddressFromPublicKey() {
-        System.out.println(KeyTools.getAddressFromPublicKey("E19D05C5452598E24CAAD4A0D85A49146F7BE089515C905AE6A19E8A578A6930"));
+        System.out.println(KeyTools.getAddressFromPublicKey("0246e7178dc8253201101e18fd6f6eb9972451d121fc57aa2a06dd5c111e58dc6a"));
     }
 
 
