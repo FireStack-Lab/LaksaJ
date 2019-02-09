@@ -108,7 +108,7 @@ public class Transaction {
         System.out.println("tracking transaction: " + txHash);
         Transaction response;
         try {
-            response = this.provider.getTransaction(txHash);
+            response = this.provider.getTransaction(txHash).getResult();
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("transaction not confirmed yet");
