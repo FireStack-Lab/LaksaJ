@@ -28,7 +28,7 @@ public class TransactionOperation {
 
         HttpProvider provider = new HttpProvider("https://api.zilliqa.com");
         //get balance
-        HttpProvider.BalanceResult balanceResult = provider.getBalance(address);
+        HttpProvider.BalanceResult balanceResult = provider.getBalance(address).getResult();
         System.out.println("balance is: " + balanceResult.getBalance());
 
         //construct non-contract transaction
@@ -49,7 +49,7 @@ public class TransactionOperation {
         System.out.println("signature is: " + transaction.getSignature());
 
         //broadcast transaction
-        HttpProvider.CreateTxResult result = TransactionFactory.sendTransaction(transaction);
+        HttpProvider.CreateTxResult result = TransactionFactory.createTransaction(transaction);
         System.out.println(result);
 
         //hello-world contract

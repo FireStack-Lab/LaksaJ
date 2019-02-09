@@ -282,22 +282,50 @@ public class SmartContractDeposit {
 - [x] decryptPrivateKey
 
 ### JSON-RPC API
-- [x] getBalance
+
+#### Blockchain-related methods
+
+- [x] getNetworkId
+- [x] getBlockchainInfo
+- [x] getShardingStructure
 - [x] getDsBlock
-- [x] getTxBlock
 - [x] getLatestDsBlock
+- [x] getNumDSBlocks
+- [x] getDSBlockRate
+- [x] getDSBlockListing
+- [x] getTxBlock
 - [x] getLatestTxBlock
+- [x] getNumTxBlocks
+- [x] getTxBlockRate
+- [x] getTxBlockListing
+- [x] getNumTransactions
+- [x] getTransactionRate
+- [x] getCurrentMiniEpoch
+- [x] getCurrentDSEpoch
+- [x] getPrevDifficulty
+- [x] getPrevDSDifficulty
+
+#### Transaction-related methods
+
+- [x] createTransaction
 - [x] getTransaction
-- [x] getSmartContracts
-- [x] getSmartContractState
+- [x] getRecentTransactions
+- [x] getTransactionsForTxBlock
+- [x] getNumTxnsTxEpoch
+- [x] getNumTxnsDSEpoch
+- [x] getMinimumGasPrice
+
+#### Contract-related methods
+
 - [x] getSmartContractCode
 - [x] getSmartContractInit
-- [x] getBlockchainInfo
-- [x] getNetworkId
-- [x] getRecentTransactions
-- [x] getDSBlockListing 
-- [x] getTxBlockListing 
-- [x] getMinimumGasPrice
+- [x] getSmartContractState
+- [x] getSmartContracts
+- [x] getContractAddressFromTransactionID
+
+#### Account-related methods
+
+- [x] getBalance
 
 ### Validation
 
