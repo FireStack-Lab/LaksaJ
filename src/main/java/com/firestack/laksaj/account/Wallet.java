@@ -120,7 +120,7 @@ public class Wallet {
         }
         if (Objects.isNull(tx.getNonce()) || tx.getNonce().isEmpty()) {
             try {
-                result = this.provider.getBalance(signer.getAddress());
+                result = this.provider.getBalance(signer.getAddress()).getResult();
                 tx.setNonce(String.valueOf(Integer.valueOf(result.getNonce()) + 1));
             } catch (IOException e) {
                 throw new IllegalArgumentException("cannot get nonce", e);

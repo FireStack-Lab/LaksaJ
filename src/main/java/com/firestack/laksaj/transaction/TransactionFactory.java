@@ -25,6 +25,6 @@ public class TransactionFactory {
     }
 
     public static HttpProvider.CreateTxResult createTransaction(Transaction signedTx) throws IOException {
-        return signedTx.getProvider().createTransaction(signedTx.toTransactionPayload());
+        return signedTx.getProvider().createTransaction(signedTx.toTransactionPayload()).getResult();
     }
 }

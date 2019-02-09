@@ -114,7 +114,7 @@ public class Contract {
     public Transaction prepareTx(Transaction tx, int attempts, int interval) {
         tx = signer.sign(tx);
         try {
-            HttpProvider.CreateTxResult createTxResult = provider.createTransaction(tx.toTransactionPayload());
+            HttpProvider.CreateTxResult createTxResult = provider.createTransaction(tx.toTransactionPayload()).getResult();
             tx.confirm(createTxResult.getTranID(), attempts, interval);
         } catch (IOException e) {
             e.printStackTrace();
@@ -144,7 +144,7 @@ public class Contract {
         }
 
         try {
-            return this.provider.getSmartContractState(this.address);
+            return this.provider.getSmartContractState(this.address).getResult();
         } catch (IOException e) {
             e.printStackTrace();
         }
