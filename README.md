@@ -367,7 +367,7 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
-    compile group: 'org.firestack', name: 'laksaj', version: '0.0.4-SNAPSHOT'
+    compile group: 'org.firestack', name: 'laksaj', version: '0.0.6-SNAPSHOT'
 }
 
 ```
@@ -380,7 +380,7 @@ maven:
 <dependency>
   <groupId>org.firestack</groupId>
   <artifactId>laksaj</artifactId>
-  <version>0.0.5-SNAPSHOT</version>
+  <version>0.0.6-SNAPSHOT</version>
 </dependency>
 ```
 
