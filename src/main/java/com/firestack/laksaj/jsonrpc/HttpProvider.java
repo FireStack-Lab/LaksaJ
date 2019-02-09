@@ -50,6 +50,17 @@ public class HttpProvider {
         return rep;
     }
 
+    public Rep<ShardingStructure> getShardingStructure() throws IOException {
+        Req req = Req.builder().id("1").jsonrpc("2.0").method("GetShardingStructure").params(new String[]{""}).build();
+        Response response = client.newCall(buildRequest(req)).execute();
+        String resultString = Objects.requireNonNull(response.body()).string();
+        Type type = new TypeToken<Rep<ShardingStructure>>() {
+        }.getType();
+        Rep<ShardingStructure> rep = gson.fromJson(resultString, type);
+        return rep;
+
+    }
+
     public Rep<BlockList> getDSBlockListing(int pageNumber) throws IOException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("DSBlockListing").params(new Integer[]{pageNumber}).build();
         Response response = client.newCall(buildRequest(req)).execute();
@@ -207,6 +218,15 @@ public class HttpProvider {
         return rep;
     }
 
+    public Rep<Integer> getPrevDSDifficulty() throws IOException {
+        Req req = Req.builder().id("1").jsonrpc("2.0").method("GetPrevDSDifficulty").params(new String[]{""}).build();
+        Response response = client.newCall(buildRequest(req)).execute();
+        String resultString = Objects.requireNonNull(response.body()).string();
+        Type type = new TypeToken<Rep<Integer>>() {
+        }.getType();
+        Rep<Integer> rep = gson.fromJson(resultString, type);
+        return rep;
+    }
 
     //Account-related methods
     public Rep<BalanceResult> getBalance(String address) throws IOException {
@@ -240,6 +260,16 @@ public class HttpProvider {
         Type type = new TypeToken<Rep<List<Contract>>>() {
         }.getType();
         Rep<List<Contract>> rep = gson.fromJson(resultString, type);
+        return rep;
+    }
+
+    public Rep<String> getContractAddressFromTransactionID(String address) throws IOException {
+        Req req = Req.builder().id("1").jsonrpc("2.0").method("GetContractAddressFromTransactionID").params(new String[]{address}).build();
+        Response response = client.newCall(buildRequest(req)).execute();
+        String resultString = Objects.requireNonNull(response.body()).string();
+        Type type = new TypeToken<Rep<String>>() {
+        }.getType();
+        Rep<String> rep = gson.fromJson(resultString, type);
         return rep;
     }
 
@@ -318,6 +348,16 @@ public class HttpProvider {
 
     public Rep<String> getNumTxnsTxEpoch() throws IOException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetNumTxnsTxEpoch").params(new String[]{""}).build();
+        Response response = client.newCall(buildRequest(req)).execute();
+        String resultString = Objects.requireNonNull(response.body()).string();
+        Type type = new TypeToken<Rep<String>>() {
+        }.getType();
+        Rep<String> rep = gson.fromJson(resultString, type);
+        return rep;
+    }
+
+    public Rep<String> getNumTxnsDSEpoch() throws IOException {
+        Req req = Req.builder().id("1").jsonrpc("2.0").method("GetNumTxnsDSEpoch").params(new String[]{""}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Type type = new TypeToken<Rep<String>>() {
