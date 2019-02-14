@@ -7,6 +7,8 @@ The project is still under development.
 
 ### Generate large amount of addresses
 
+More docs can be found in https://apidocs.zilliqa.com/
+
 ```java
 
 package com.firestack.example;
