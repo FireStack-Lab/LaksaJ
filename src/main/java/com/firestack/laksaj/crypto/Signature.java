@@ -2,6 +2,7 @@ package com.firestack.laksaj.crypto;
 
 import lombok.Data;
 import lombok.Builder;
+import org.spongycastle.util.encoders.Hex;
 
 import java.math.BigInteger;
 
@@ -13,9 +14,16 @@ public class Signature {
 
     @Override
     public String toString() {
-        String rs = r.toString(16);
-        String ss = s.toString(16);
-        return rs + ss;
+        String rHex = Hex.toHexString(r.toByteArray());
+        while (rHex.length() < 64) {
+            rHex = "0" + rHex;
+        }
+
+        String sHex = Hex.toHexString(s.toByteArray());
+        while (sHex.length() < 64) {
+            sHex = "0" + sHex;
+        }
+        return rHex + sHex;
     }
 
     public boolean isNil() {
