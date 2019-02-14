@@ -5,9 +5,9 @@ The project is still under development.
 
 ## Quick Start
 
-### Generate large amount of addresses
-
 More docs can be found in https://apidocs.zilliqa.com/
+
+### Generate large amount of addresses
 
 ```java
 
