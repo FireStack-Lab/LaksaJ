@@ -1,40 +1,17 @@
-
-
-plugins {
-    id 'java'
-}
-
-
-
-plugins {
-    id 'maven-publish'
-}
-plugins {
-    id 'net.ltgt.apt' version '0.10'
-}
-
-
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            groupId = 'org.firestack'
-            artifactId = 'laksaj'
-            version = '0.0.7-SNAPSHOT'
-            from components.java
-        }
-    }
-}
-
-
-group 'com.firestack'
-version '0.0.7-SNAPSHOT'
-
-sourceCompatibility = 1.8
+apply plugin: 'java'
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
 
 repositories {
     mavenCentral()
 }
+
+
+group 'com.firestack'
+version '0.0.7-RELEASE'
+
+sourceCompatibility = 1.8
+
 
 dependencies {
     compile files(org.gradle.internal.jvm.Jvm.current().toolsJar)
@@ -50,5 +27,140 @@ dependencies {
     compile group: 'com.squareup.okhttp3', name: 'okhttp', version: '3.12.1'
     implementation 'com.google.code.gson:gson:2.8.5'
     compile group: 'com.google.protobuf', name: 'protobuf-java', version: '3.6.1'
+}
 
+test {
+    // show standard out and standard error of the test JVM(s) on the console
+    testLogging.showStandardStreams = true
+}
+
+task sourceJar(type: Jar) {
+    classifier "sources"
+    from sourceSets.main.allJava
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier "javadoc"
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives jar
+    archives sourceJar
+    archives javadocJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            customizePom(pom)
+            groupId = 'org.firestack'
+            artifactId = 'laksaj'
+            version = '0.0.7-RELEASE'
+
+            from components.java
+
+            // create the sign pom artifact
+            pom.withXml {
+                def pomFile = file("${project.buildDir}/generated-pom.xml")
+                writeTo(pomFile)
+                def pomAscFile = signing.sign(pomFile).signatureFiles[0]
+                artifact(pomAscFile) {
+                    classifier = null
+                    extension = 'pom.asc'
+                }
+            }
+
+            artifact(sourceJar) {
+                classifier = 'sources'
+            }
+            artifact(javadocJar) {
+                classifier = 'javadoc'
+            }
+
+            // create the signed artifacts
+            project.tasks.signArchives.signatureFiles.each {
+                artifact(it) {
+                    def matcher = it.file =~ /-(sources|javadoc)\.jar\.asc$/
+                    if (matcher.find()) {
+                        classifier = matcher.group(1)
+                    } else {
+                        classifier = null
+                    }
+                    extension = 'jar.asc'
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            url = "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+            credentials {
+                username ''
+                password ''
+            }
+        }
+
+    }
+}
+
+def customizePom(pom) {
+    pom.withXml {
+        def root = asNode()
+
+        // eliminate test-scoped dependencies (no need in maven central POMs)
+        root.dependencies.removeAll { dep ->
+            dep.scope == "test"
+        }
+
+        // add all items necessary for maven central publication
+        root.children().last() + {
+            resolveStrategy = Closure.DELEGATE_FIRST
+
+            description 'Serialize and Deserialize Json-LD into Java entities'
+            name 'Schema.org Java'
+            url 'https://github.com/mautini/schemaorg-java'
+            organization {
+                name 'com.github.mautini'
+                url 'https://github.com/mautini'
+            }
+            issueManagement {
+                system 'GitHub'
+                url 'https://github.com/mautini/schemaorg-java/issues'
+            }
+            licenses {
+                license {
+                    name 'Apache License 2.0'
+                    url 'https://github.com/mautini/schemaorg-java/blob/master/LICENSE'
+                    distribution 'repo'
+                }
+            }
+            scm {
+                url 'https://github.com/mautini/schemaorg-java'
+                connection 'scm:git:git://github.com/mautini/schemaorg-java.git'
+                developerConnection 'scm:git:ssh://git@github.com:mautini/schemaorg-java.git'
+            }
+            developers {
+                developer {
+                    name 'Mautini'
+                }
+            }
+        }
+    }
+}
+
+model {
+    tasks.generatePomFileForMavenJavaPublication {
+        destination = file("$buildDir/generated-pom.xml")
+    }
+    tasks.publishMavenJavaPublicationToMavenLocal {
+        dependsOn project.tasks.signArchives
+    }
+    tasks.publishMavenJavaPublicationToMavenRepository {
+        dependsOn project.tasks.signArchives
+    }
 }
