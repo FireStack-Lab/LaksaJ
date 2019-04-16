@@ -29,7 +29,7 @@ public class Signature {
         }
 
         while (sHex.length() > 64 && sHex.charAt(0) == '0') {
-            rHex = rHex.substring(1);
+            sHex = sHex.substring(1);
         }
 
         return rHex + sHex;
