@@ -1,7 +1,7 @@
 package com.firestack.laksaj.crypto;
 
-import lombok.Data;
 import lombok.Builder;
+import lombok.Data;
 import org.spongycastle.util.encoders.Hex;
 
 import java.math.BigInteger;
@@ -19,10 +19,19 @@ public class Signature {
             rHex = "0" + rHex;
         }
 
+        while (rHex.length() > 64 && rHex.charAt(0) == '0') {
+            rHex = rHex.substring(1);
+        }
+
         String sHex = Hex.toHexString(s.toByteArray());
         while (sHex.length() < 64) {
             sHex = "0" + sHex;
         }
+
+        while (sHex.length() > 64 && sHex.charAt(0) == '0') {
+            rHex = rHex.substring(1);
+        }
+
         return rHex + sHex;
     }
 
