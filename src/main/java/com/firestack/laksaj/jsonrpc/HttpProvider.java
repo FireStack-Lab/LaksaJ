@@ -21,7 +21,7 @@ public class HttpProvider {
     private final OkHttpClient client = new OkHttpClient();
     private final Gson gson = new Gson();
     private static final MediaType JSON
-            = MediaType.get("application/json; charset=utf-8");
+            = MediaType.parse("application/json; charset=utf-8");
     private String url;
 
     public HttpProvider(String url) {
