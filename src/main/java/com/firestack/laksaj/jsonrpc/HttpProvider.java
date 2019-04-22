@@ -5,9 +5,9 @@ import com.firestack.laksaj.transaction.Transaction;
 import com.firestack.laksaj.transaction.TransactionPayload;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
-import com.sun.tools.javac.util.Assert;
 import lombok.Data;
 import okhttp3.*;
+import org.junit.Assert;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -237,7 +237,8 @@ public class HttpProvider {
         Type type = new TypeToken<Rep<BalanceResult>>() {
         }.getType();
         Rep<BalanceResult> rep = gson.fromJson(resultString, type);
-        Assert.checkNonNull(rep.getResult(), "result is null, check your account address!");
+
+        Assert.assertNotNull("result is null, check your account address!", rep.getResult());
         return rep;
     }
 
@@ -249,7 +250,7 @@ public class HttpProvider {
         Type type = new TypeToken<Rep<ContractResult>>() {
         }.getType();
         Rep<ContractResult> rep = gson.fromJson(resultString, type);
-        Assert.checkNonNull(rep.getResult(), "result is null, check your contract address!");
+        Assert.assertNotNull("result is null, check your account address!", rep.getResult());
         return rep;
     }
 
