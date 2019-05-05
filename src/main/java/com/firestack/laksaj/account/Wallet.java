@@ -94,6 +94,10 @@ public class Wallet {
 
     public Transaction sign(Transaction transaction) {
 
+        if (transaction.getToAddr().startsWith("0x") || transaction.getToAddr().startsWith("0X")) {
+            transaction.setToAddr(transaction.getToAddr().substring(2));
+        }
+
         TxParams txParams = transaction.toTransactionParam();
 
         if (Objects.nonNull(txParams) && !txParams.getSenderPubKey().isEmpty()) {
@@ -109,6 +113,8 @@ public class Wallet {
             throw new IllegalArgumentException("This wallet has no default account.");
         }
 
+
+
         return this.signWith(transaction, this.defaultAccount.get());
 
     }
@@ -120,6 +126,7 @@ public class Wallet {
         }
         if (Objects.isNull(tx.getNonce()) || tx.getNonce().isEmpty()) {
             try {
+                System.out.println(signer.getAddress());
                 result = this.provider.getBalance(signer.getAddress()).getResult();
                 tx.setNonce(String.valueOf(Integer.valueOf(result.getNonce()) + 1));
             } catch (IOException e) {

@@ -2,7 +2,6 @@ package com.firestack.example;
 
 import com.firestack.laksaj.crypto.KeyTools;
 import com.firestack.laksaj.utils.ByteUtil;
-import org.web3j.crypto.ECKeyPair;
 
 import java.math.BigInteger;
 import java.security.InvalidAlgorithmParameterException;

@@ -256,6 +256,7 @@ public class HttpProvider {
         Type type = new TypeToken<Rep<BalanceResult>>() {
         }.getType();
         Rep<BalanceResult> rep = gson.fromJson(resultString, type);
+        System.out.println(resultString);
 
         Assert.assertNotNull("result is null, check your account address!", rep.getResult());
         return rep;
