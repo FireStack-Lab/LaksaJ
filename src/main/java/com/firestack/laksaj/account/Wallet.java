@@ -6,6 +6,7 @@ import com.firestack.laksaj.crypto.Signature;
 import com.firestack.laksaj.jsonrpc.HttpProvider;
 import com.firestack.laksaj.transaction.Transaction;
 import com.firestack.laksaj.transaction.TxParams;
+import com.firestack.laksaj.utils.Base58;
 
 import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
@@ -92,10 +93,14 @@ public class Wallet {
         }
     }
 
-    public Transaction sign(Transaction transaction) {
+    public Transaction sign(Transaction transaction) throws IOException {
 
         if (transaction.getToAddr().startsWith("0x") || transaction.getToAddr().startsWith("0X")) {
             transaction.setToAddr(transaction.getToAddr().substring(2));
+        }
+
+        if (Base58.isBase58(transaction.getToAddr())) {
+            transaction.marshalToAddress();
         }
 
         TxParams txParams = transaction.toTransactionParam();
@@ -114,12 +119,11 @@ public class Wallet {
         }
 
 
-
         return this.signWith(transaction, this.defaultAccount.get());
 
     }
 
-    public Transaction signWith(Transaction tx, Account signer) {
+    public Transaction signWith(Transaction tx, Account signer) throws IOException {
         HttpProvider.BalanceResult result;
         if (Objects.isNull(signer)) {
             throw new IllegalArgumentException("account not exists");

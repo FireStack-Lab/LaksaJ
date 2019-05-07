@@ -28,7 +28,8 @@ public class WalletTest {
         //construct non-contract transaction
         Transaction transaction = Transaction.builder()
                 .version(String.valueOf(pack(333, 2)))
-                .toAddr("0x4baf5fada8e5db92c3d3242618c5b47133ae003c".toLowerCase())
+                .toAddr("24A4zoHhcP4PGia5e5aCnEbq4fQw")
+//                .toAddr("0x4baf5fada8e5db92c3d3242618c5b47133ae003c".toLowerCase())
                 .senderPubKey("0246E7178DC8253201101E18FD6F6EB9972451D121FC57AA2A06DD5C111E58DC6A")
                 .amount("10000000")
                 .gasPrice("1000000000")

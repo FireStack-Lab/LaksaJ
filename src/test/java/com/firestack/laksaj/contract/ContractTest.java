@@ -7,6 +7,7 @@ import javafx.util.Pair;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
@@ -17,7 +18,7 @@ import static com.firestack.laksaj.account.Wallet.pack;
 public class ContractTest {
 
     @Test
-    public void deploy() throws NoSuchAlgorithmException {
+    public void deploy() throws NoSuchAlgorithmException, IOException {
         String code = "scilla_version 0\n" +
                 "\n" +
                 "    (* HelloWorld contract *)\n" +
@@ -82,7 +83,7 @@ public class ContractTest {
     }
 
     @Test
-    public void call() {
+    public void call() throws IOException {
         String code = "scilla_version 0\n" +
                 "\n" +
                 "    (* HelloWorld contract *)\n" +

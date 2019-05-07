@@ -4,6 +4,8 @@ package com.firestack.laksaj.transaction;
 import com.firestack.laksaj.account.Account;
 import com.firestack.laksaj.blockchain.TransactionReceipt;
 import com.firestack.laksaj.jsonrpc.HttpProvider;
+import com.firestack.laksaj.utils.Base58;
+import com.firestack.laksaj.utils.ByteUtil;
 import com.firestack.laksaj.utils.TransactionUtil;
 import com.google.gson.Gson;
 import lombok.Builder;
@@ -33,7 +35,10 @@ public class Transaction {
     private HttpProvider provider;
     private TxStatus status;
 
-    public TxParams toTransactionParam() {
+    public TxParams toTransactionParam() throws IOException {
+        if (Base58.isBase58(this.getToAddr())) {
+            this.marshalToAddress();
+        }
         return TxParams.builder()
                 .ID(this.ID)
                 .version(this.version)
@@ -65,7 +70,12 @@ public class Transaction {
                 .build();
     }
 
-    public byte[] bytes() {
+    public void marshalToAddress() throws IOException {
+        byte[] address = Base58.decode(this.getToAddr());
+        this.setToAddr(ByteUtil.byteArrayToHexString(address));
+    }
+
+    public byte[] bytes() throws IOException {
         TxParams txParams = toTransactionParam();
         TransactionUtil util = new TransactionUtil();
         Gson gson = new Gson();

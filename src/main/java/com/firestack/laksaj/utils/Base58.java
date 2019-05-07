@@ -106,4 +106,13 @@ public class Base58 {
         }
         return (byte) remainder;
     }
+
+    public static boolean isBase58(String v) {
+        try {
+            Base58.decode(v);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
 }
