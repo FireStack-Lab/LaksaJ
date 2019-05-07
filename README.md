@@ -345,7 +345,9 @@ public class SmartContractDeposit {
 - [x] encodeTransactionProto
 - [x] toChecksumAddress
 - [x] isValidChecksumAddress
-
+- [x] base58.encode
+- [x] base58.decode
+- [x] isBase58
 ## Build and Installation
 
 you can build jar using following command :
