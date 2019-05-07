@@ -17,6 +17,9 @@ public class Base58 {
     }
 
     public static String encode(String input) {
+        if (input.startsWith("0x") || input.startsWith("0X")) {
+            input = input.substring(2);
+        }
         return encode(ByteUtil.hexStringToByteArray(input));
     }
 
