@@ -90,8 +90,7 @@ public class ProviderTest {
     @Test
     public void getBalance() throws IOException {
         HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
-        HttpProvider.BalanceResult balance = client.getBalance("E9C49CAF0D0BC9D7C769391E8BDA2028F824CF3D".toLowerCase()).getResult();
-        System.out.println(balance.getBalance());
+        HttpProvider.BalanceResult balance = client.getBalance("E9C49CAF0D0BC9D7C769391E8BDA2028F824CF3F".toLowerCase()).getResult();
         Assert.assertNotNull(balance.getBalance());
     }
 
