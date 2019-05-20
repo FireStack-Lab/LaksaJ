@@ -348,6 +348,8 @@ public class SmartContractDeposit {
 - [x] base58.encode
 - [x] base58.decode
 - [x] isBase58
+- [x] bech32 encode decode
+- [x] fromBech32Address toBech32Address
 ## Build and Installation
 
 you can build jar using following command :
