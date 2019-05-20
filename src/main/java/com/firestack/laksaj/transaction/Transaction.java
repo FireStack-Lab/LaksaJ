@@ -5,6 +5,7 @@ import com.firestack.laksaj.account.Account;
 import com.firestack.laksaj.blockchain.TransactionReceipt;
 import com.firestack.laksaj.jsonrpc.HttpProvider;
 import com.firestack.laksaj.utils.Base58;
+import com.firestack.laksaj.utils.Bech32;
 import com.firestack.laksaj.utils.ByteUtil;
 import com.firestack.laksaj.utils.TransactionUtil;
 import com.google.gson.Gson;
@@ -55,11 +56,12 @@ public class Transaction {
                 .build();
     }
 
-    public TransactionPayload toTransactionPayload() {
+    public TransactionPayload toTransactionPayload() throws Exception {
         return TransactionPayload.builder()
                 .version(Integer.parseInt(this.version))
                 .nonce(Integer.valueOf(this.nonce))
-                .toAddr(Account.toCheckSumAddress(this.toAddr).substring(2))
+//                .toAddr(Account.toCheckSumAddress(this.toAddr).substring(2))
+                .toAddr(Account.normaliseAddress(this.toAddr))
                 .amount(this.amount)
                 .pubKey(this.senderPubKey.toLowerCase())
                 .gasPrice(this.gasPrice)
@@ -119,7 +121,7 @@ public class Transaction {
         Transaction response;
         try {
             response = this.provider.getTransaction(txHash).getResult();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             System.out.println("transaction not confirmed yet");
             return false;

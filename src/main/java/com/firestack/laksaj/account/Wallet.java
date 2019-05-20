@@ -7,6 +7,8 @@ import com.firestack.laksaj.jsonrpc.HttpProvider;
 import com.firestack.laksaj.transaction.Transaction;
 import com.firestack.laksaj.transaction.TxParams;
 import com.firestack.laksaj.utils.Base58;
+import com.firestack.laksaj.utils.Bech32;
+import com.firestack.laksaj.utils.Validation;
 
 import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
@@ -93,7 +95,7 @@ public class Wallet {
         }
     }
 
-    public Transaction sign(Transaction transaction) throws IOException {
+    public Transaction sign(Transaction transaction) throws Exception {
 
         if (transaction.getToAddr().startsWith("0x") || transaction.getToAddr().startsWith("0X")) {
             transaction.setToAddr(transaction.getToAddr().substring(2));
@@ -101,7 +103,11 @@ public class Wallet {
 
         if (Base58.isBase58(transaction.getToAddr())) {
             transaction.marshalToAddress();
+        } else if (Validation.isBech32(transaction.getToAddr())) {
+            transaction.setToAddr(Bech32.fromBech32Address(transaction.getToAddr()));
         }
+
+
 
         TxParams txParams = transaction.toTransactionParam();
 

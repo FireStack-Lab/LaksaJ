@@ -49,7 +49,7 @@ public class Contract {
         }
     }
 
-    public Pair<Transaction, Contract> deploy(DeployParams params, int attempts, int interval) throws NoSuchAlgorithmException, IOException {
+    public Pair<Transaction, Contract> deploy(DeployParams params, int attempts, int interval) throws Exception {
         if (null == this.code || this.code.isEmpty() || null == this.init || this.init.length == 0) {
             throw new IllegalArgumentException("Cannot deploy without code or initialisation parameters.");
         }
@@ -87,7 +87,7 @@ public class Contract {
         private Value[] params;
     }
 
-    public Transaction call(Transition transition, Value[] args, CallParams params, int attempts, int interval) throws IOException {
+    public Transaction call(Transition transition, Value[] args, CallParams params, int attempts, int interval) throws Exception {
         if (null == this.address || this.address.isEmpty()) {
             throw new IllegalArgumentException("Contract has not been deployed!");
         }
@@ -111,7 +111,7 @@ public class Contract {
     }
 
 
-    public Transaction prepareTx(Transaction tx, int attempts, int interval) throws IOException {
+    public Transaction prepareTx(Transaction tx, int attempts, int interval) throws Exception {
         tx = signer.sign(tx);
         try {
             HttpProvider.CreateTxResult createTxResult = provider.createTransaction(tx.toTransactionPayload()).getResult();

@@ -354,7 +354,9 @@ public class HttpProvider {
         Type type = new TypeToken<Rep<Transaction>>() {
         }.getType();
         Rep<Transaction> rep = gson.fromJson(resultString, type);
-        Assert.assertNotNull("get result error = " + resultString, rep.getResult());
+        if (rep.getResult() == null) {
+            throw new IOException("get result error = "+resultString);
+        }
         return rep;
     }
 

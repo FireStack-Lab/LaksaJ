@@ -2,8 +2,10 @@ package com.firestack.laksaj.account;
 
 import com.firestack.laksaj.crypto.KDFType;
 import com.firestack.laksaj.crypto.KeyTools;
+import com.firestack.laksaj.utils.Bech32;
 import com.firestack.laksaj.utils.ByteUtil;
 import com.firestack.laksaj.utils.HashUtil;
+import com.firestack.laksaj.utils.Validation;
 import lombok.Data;
 import org.web3j.crypto.ECKeyPair;
 
@@ -23,7 +25,9 @@ public class Account {
         String publicKey = KeyTools.getPublicKeyFromPrivateKey(privateKey, true);
         this.address = KeyTools.getAddressFromPublicKey(publicKey);
         this.keys = new ECKeyPair(new BigInteger(privateKey, 16), new BigInteger(publicKey, 16));
-    };
+    }
+
+    ;
 
     public static Account fromFile(String file, String passphrase) throws Exception {
         String privateKey = KeyTools.decryptPrivateKey(file, passphrase);
@@ -57,4 +61,18 @@ public class Account {
         }
         return ret.toString();
     }
+
+    public static String normaliseAddress(String address) throws Exception {
+        if (Validation.isBech32(address)) {
+            return Bech32.fromBech32Address(address).substring(2);
+        }
+
+        if (Validation.isAddress(address)) {
+            return toCheckSumAddress(address).substring(2);
+        }
+
+        throw new Exception("Address format is invalid");
+    }
+
+
 }

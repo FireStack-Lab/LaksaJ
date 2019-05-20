@@ -18,7 +18,7 @@ import static com.firestack.laksaj.account.Wallet.pack;
 public class ContractTest {
 
     @Test
-    public void deploy() throws NoSuchAlgorithmException, IOException {
+    public void deploy() throws Exception {
         String code = "scilla_version 0\n" +
                 "\n" +
                 "    (* HelloWorld contract *)\n" +
@@ -83,7 +83,7 @@ public class ContractTest {
     }
 
     @Test
-    public void call() throws IOException {
+    public void call() throws Exception {
         String code = "scilla_version 0\n" +
                 "\n" +
                 "    (* HelloWorld contract *)\n" +
