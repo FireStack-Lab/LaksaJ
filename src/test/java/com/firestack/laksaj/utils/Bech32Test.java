@@ -18,6 +18,16 @@ public class Bech32Test {
         System.out.println(Bech32.toBech32Address("D2453AE76C9A86AAE544FCA699DBDC5C576AEF3A"));
         System.out.println(Bech32.toBech32Address("72220E84947C36118CDBC580454DFAA3B918CD97"));
         System.out.println(Bech32.toBech32Address("50F92304C892D94A385CA6CE6CD6950CE9A36839"));
+
+
+        Assert.assertEquals(Bech32.toBech32Address("1d19918a737306218b5cbb3241fcdcbd998c3a72"),"zil1r5verznnwvrzrz6uhveyrlxuhkvccwnju4aehf");
+        Assert.assertEquals(Bech32.toBech32Address("cc8ee24773e1b4b28b3cc5596bb9cfc430b48453"),"zil1ej8wy3mnux6t9zeuc4vkhww0csctfpznzt4s76");
+        Assert.assertEquals(Bech32.toBech32Address("e14576944443e9aeca6f12b454941884aa122938"),"zil1u9zhd9zyg056ajn0z269f9qcsj4py2fc89ru3d");
+        Assert.assertEquals(Bech32.toBech32Address("179361114cbfd53be4d3451edf8148cde4cfe774"),"zil1z7fkzy2vhl2nhexng50dlq2gehjvlem5w7kx8z");
+        Assert.assertEquals(Bech32.toBech32Address("5a2b667fdeb6356597681d08f6cd6636aed94784"),"zil1tg4kvl77kc6kt9mgr5y0dntxx6hdj3uy95ash8");
+        Assert.assertEquals(Bech32.toBech32Address("537342e5e0a6b402f281e2b4301b89123ae31117"),"zil12de59e0q566q9u5pu26rqxufzgawxyghq0vdk9");
+        Assert.assertEquals(Bech32.toBech32Address("5e61d42a952d2df1f4e5cbed7f7d1294e9744a52"),"zil1tesag25495klra89e0kh7lgjjn5hgjjj0qmu8l");
+        Assert.assertEquals(Bech32.toBech32Address("5f5db1c18ccde67e513b7f7ae820e569154976ba"),"zil1tawmrsvvehn8u5fm0aawsg89dy25ja46ndsrhq");
     }
 
 
@@ -36,6 +46,16 @@ public class Bech32Test {
         Assert.assertEquals( Bech32.fromBech32Address("zil16fzn4emvn2r24e2yljnfnk7ut3tk4me6qx08ed").toUpperCase(),"D2453AE76C9A86AAE544FCA699DBDC5C576AEF3A");
         Assert.assertEquals( Bech32.fromBech32Address("zil1wg3qapy50smprrxmckqy2n065wu33nvh35dn0v").toUpperCase(),"72220E84947C36118CDBC580454DFAA3B918CD97");
         Assert.assertEquals( Bech32.fromBech32Address("zil12rujxpxgjtv55wzu5m8xe454pn56x6pedpl554").toUpperCase(),"50F92304C892D94A385CA6CE6CD6950CE9A36839");
+
+
+        Assert.assertEquals( Bech32.fromBech32Address("zil1r5verznnwvrzrz6uhveyrlxuhkvccwnju4aehf").toLowerCase(),"1d19918a737306218b5cbb3241fcdcbd998c3a72");
+        Assert.assertEquals( Bech32.fromBech32Address("zil1ej8wy3mnux6t9zeuc4vkhww0csctfpznzt4s76").toLowerCase(),"cc8ee24773e1b4b28b3cc5596bb9cfc430b48453");
+        Assert.assertEquals( Bech32.fromBech32Address("zil1u9zhd9zyg056ajn0z269f9qcsj4py2fc89ru3d").toLowerCase(),"e14576944443e9aeca6f12b454941884aa122938");
+        Assert.assertEquals( Bech32.fromBech32Address("zil1z7fkzy2vhl2nhexng50dlq2gehjvlem5w7kx8z").toLowerCase(),"179361114cbfd53be4d3451edf8148cde4cfe774");
+        Assert.assertEquals( Bech32.fromBech32Address("zil1tg4kvl77kc6kt9mgr5y0dntxx6hdj3uy95ash8").toLowerCase(),"5a2b667fdeb6356597681d08f6cd6636aed94784");
+        Assert.assertEquals( Bech32.fromBech32Address("zil12de59e0q566q9u5pu26rqxufzgawxyghq0vdk9").toLowerCase(),"537342e5e0a6b402f281e2b4301b89123ae31117");
+        Assert.assertEquals( Bech32.fromBech32Address("zil1tesag25495klra89e0kh7lgjjn5hgjjj0qmu8l").toLowerCase(),"5e61d42a952d2df1f4e5cbed7f7d1294e9744a52");
+        Assert.assertEquals( Bech32.fromBech32Address("zil1tawmrsvvehn8u5fm0aawsg89dy25ja46ndsrhq").toLowerCase(),"5f5db1c18ccde67e513b7f7ae820e569154976ba");
 
     }
 }
