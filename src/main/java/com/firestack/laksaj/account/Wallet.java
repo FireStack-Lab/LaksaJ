@@ -6,7 +6,6 @@ import com.firestack.laksaj.crypto.Signature;
 import com.firestack.laksaj.jsonrpc.HttpProvider;
 import com.firestack.laksaj.transaction.Transaction;
 import com.firestack.laksaj.transaction.TxParams;
-import com.firestack.laksaj.utils.Base58;
 import com.firestack.laksaj.utils.Bech32;
 import com.firestack.laksaj.utils.Validation;
 
@@ -58,7 +57,7 @@ public class Wallet {
         return account.getAddress();
     }
 
-    public String addByPrivateKey(String privateKey) {
+    public String addByPrivateKey(String privateKey) throws NoSuchAlgorithmException {
         Account account = new Account(privateKey);
         this.accounts.put(account.getAddress(), account);
         if (!defaultAccount.isPresent()) {
@@ -101,13 +100,10 @@ public class Wallet {
             transaction.setToAddr(transaction.getToAddr().substring(2));
         }
 
-        if (Base58.isBase58(transaction.getToAddr())) {
-            transaction.marshalToAddress();
-        } else if (Validation.isBech32(transaction.getToAddr())) {
+
+        if (Validation.isBech32(transaction.getToAddr())) {
             transaction.setToAddr(Bech32.fromBech32Address(transaction.getToAddr()));
         }
-
-
 
         TxParams txParams = transaction.toTransactionParam();
 

@@ -37,9 +37,6 @@ public class Transaction {
     private TxStatus status;
 
     public TxParams toTransactionParam() throws IOException {
-        if (Base58.isBase58(this.getToAddr())) {
-            this.marshalToAddress();
-        }
         return TxParams.builder()
                 .ID(this.ID)
                 .version(this.version)

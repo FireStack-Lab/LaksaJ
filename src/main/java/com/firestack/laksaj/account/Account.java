@@ -10,18 +10,19 @@ import lombok.Data;
 import org.web3j.crypto.ECKeyPair;
 
 import java.math.BigInteger;
+import java.security.NoSuchAlgorithmException;
 
 @Data
 public class Account {
     private ECKeyPair keys;
     private String address;
 
-    public Account(ECKeyPair keys) {
+    public Account(ECKeyPair keys) throws NoSuchAlgorithmException {
         this.keys = keys;
         this.address = KeyTools.getAddressFromPublicKey(this.keys.getPublicKey().toString(16));
     }
 
-    public Account(String privateKey) {
+    public Account(String privateKey) throws NoSuchAlgorithmException {
         String publicKey = KeyTools.getPublicKeyFromPrivateKey(privateKey, true);
         this.address = KeyTools.getAddressFromPublicKey(publicKey);
         this.keys = new ECKeyPair(new BigInteger(privateKey, 16), new BigInteger(publicKey, 16));
@@ -46,7 +47,7 @@ public class Account {
         return ByteUtil.byteArrayToHexString(this.keys.getPrivateKey().toByteArray());
     }
 
-    public static String toCheckSumAddress(String address) {
+    public static String toCheckSumAddress(String address)  {
         address = address.toLowerCase().replace("0x", "");
         String hash = ByteUtil.byteArrayToHexString(HashUtil.sha256(ByteUtil.hexStringToByteArray(address)));
         StringBuilder ret = new StringBuilder("0x");

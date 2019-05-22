@@ -38,7 +38,7 @@ public class KeyTools {
         return Schnorr.generateKeyPair();
     }
 
-    public static String getAddressFromPrivateKey(String privateKey) {
+    public static String getAddressFromPrivateKey(String privateKey){
         String publicKey = getPublicKeyFromPrivateKey(privateKey, true);
         return getAddressFromPublicKey(publicKey);
     }

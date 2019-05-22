@@ -33,6 +33,7 @@ public class Bech32Test {
 
     @Test
     public void fromBech32Address() throws Exception {
+        System.out.println(Bech32.fromBech32Address("zil18g9n36d4xkhda5r4cwq7q8kutu5atgh3g72qvj"));
         String address = Bech32.fromBech32Address("zil1n0lvw9dxh4jcljmzkruvexl69t08zs62ds9ats");
         Assert.assertEquals(address.toLowerCase(),"9bfec715a6bd658fcb62b0f8cc9bfa2ade71434a");
 

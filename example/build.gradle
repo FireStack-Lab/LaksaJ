@@ -12,6 +12,6 @@ repositories {
 }
 
 dependencies {
-    compile group: 'org.firestack', name: 'laksaj', version: '0.2.8-RELEASE'
+    compile group: 'org.firestack', name: 'laksaj', version: '0.3.1-RELEASE'
 
 }

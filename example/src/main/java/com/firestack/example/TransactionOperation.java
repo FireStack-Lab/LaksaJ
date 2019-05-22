@@ -10,16 +10,14 @@ import com.firestack.laksaj.transaction.Transaction;
 import com.firestack.laksaj.transaction.TransactionFactory;
 import javafx.util.Pair;
 
-import java.io.IOException;
 import java.math.BigInteger;
-import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.List;
 
 import static com.firestack.laksaj.account.Wallet.pack;
 
 public class TransactionOperation {
-    public static void main(String[] args) throws IOException, NoSuchAlgorithmException {
+    public static void main(String[] args) throws Exception {
         Wallet wallet = new Wallet();
         String ptivateKey = "e19d05c5452598e24caad4a0d85a49146f7be089515c905ae6a19e8a578a6930";
         // Populate the wallet with an account
