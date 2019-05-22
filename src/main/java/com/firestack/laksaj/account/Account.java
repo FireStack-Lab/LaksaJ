@@ -65,7 +65,7 @@ public class Account {
 
     public static String normaliseAddress(String address) throws Exception {
         if (Validation.isBech32(address)) {
-            return Bech32.fromBech32Address(address).substring(2);
+            return Bech32.fromBech32Address(address);
         }
 
         if (Validation.isAddress(address)) {

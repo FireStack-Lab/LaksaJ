@@ -8,7 +8,7 @@ repositories {
 
 
 group 'com.firestack'
-version '0.3.1-RELEASE'
+version '0.3.4-RELEASE'
 
 sourceCompatibility = 1.8
 
@@ -60,7 +60,7 @@ publishing {
             customizePom(pom)
             groupId = 'org.firestack'
             artifactId = 'laksaj'
-            version = '0.3.1-RELEASE'
+            version = '0.3.4-RELEASE'
 
             from components.java
 
@@ -102,7 +102,7 @@ publishing {
             url = "https://oss.sonatype.org/service/local/staging/deploy/maven2"
             credentials {
                 username 'xiaohuo'
-                password '9062926200Firestack%'
+                password ''
             }
         }
 
