@@ -118,6 +118,13 @@ public class ProviderTest {
     }
 
     @Test
+    public void getTransaction32() throws Exception {
+        HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
+        Transaction transaction = client.getTransaction32("ce918e4c77ed40f3a23588bd3c380458b43be168935d468e2e6f680724e71474").getResult();
+        System.out.println(transaction);
+    }
+
+    @Test
     public void getRecentTransactions() throws IOException {
         HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
         TransactionList transactionList = client.getRecentTransactions().getResult();

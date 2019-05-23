@@ -3,6 +3,7 @@ package com.firestack.laksaj.jsonrpc;
 import com.firestack.laksaj.blockchain.*;
 import com.firestack.laksaj.transaction.Transaction;
 import com.firestack.laksaj.transaction.TransactionPayload;
+import com.firestack.laksaj.utils.Bech32;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import lombok.Data;
@@ -357,6 +358,12 @@ public class HttpProvider {
         if (rep.getResult() == null) {
             throw new IOException("get result error = "+resultString);
         }
+        return rep;
+    }
+
+    public Rep<Transaction> getTransaction32(String hash) throws Exception {
+        Rep<Transaction> rep = getTransaction(hash);
+        rep.getResult().setToAddr(Bech32.toBech32Address(rep.getResult().getToAddr()));
         return rep;
     }
 
