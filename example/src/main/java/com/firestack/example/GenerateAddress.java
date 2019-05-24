@@ -20,7 +20,6 @@ public class GenerateAddress {
             ECKeyPair keyPair = KeyTools.generateKeyPair();
             BigInteger privateInteger = keyPair.getPrivateKey();
             BigInteger publicInteger = keyPair.getPublicKey();
-//            System.out.println(privateInteger.toString(16));
             System.out.println("private key is: " + privateInteger.toString(16));
             System.out.println("public key is: " + publicInteger.toString(16));
             System.out.println("address is: " + KeyTools.getAddressFromPublicKey(ByteUtil.byteArrayToHexString(publicInteger.toByteArray())));
