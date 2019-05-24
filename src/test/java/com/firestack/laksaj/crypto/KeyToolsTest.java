@@ -45,6 +45,8 @@ public class KeyToolsTest {
         Assert.assertEquals(publicKey.toLowerCase(), "04cfa555bb63231d167f643f1a23ba66e6ca1458d416ddb9941e95b5fd28df0ac513075403c996efbbc15d187868857e31cf7be4d109b4f8cb3fd40499839f150a");
         privateKey = "e19d05c5452598e24caad4a0d85a49146f7be089515c905ae6a19e8a578a6930";
         System.out.println(KeyTools.getPublicKeyFromPrivateKey(privateKey, true));
+        //3b7b12dc9fc38584e4baf021b1f37e4c41096dbde826762b27a7476f360a99c2a
+        System.out.println(KeyTools.getPublicKeyFromPrivateKey("a7da3f73462264e44562f003e2dbcf7add319bf4bb0798a83d1009f651a5c803",true));
     }
 
     @Test
@@ -58,7 +60,7 @@ public class KeyToolsTest {
     public void getAddressFromPublicKey() {
 //        System.out.println(KeyTools.getAddressFromPublicKey("0246e7178dc8253201101e18fd6f6eb9972451d121fc57aa2a06dd5c111e58dc6a"));
 //        System.out.println(KeyTools.getPublicKeyFromPrivateKey("00E5C7DE25D692EBA598912EECDCB1758C1539F39EAAB4D2589F26B98F8A5A2599",true));
-        System.out.println(KeyTools.getAddressFromPublicKey("0x02526CC9198736761D9FFDAE0CA5E848667D31BFDB7754D8F7B2291D17A60CF63C"));
+        System.out.println(KeyTools.getAddressFromPublicKey("8ACFCA0473EAFFD5CA8214215C6284DBC6F1AD3DD9443AE01AE8A43A5D972D68"));
 
     }
 
