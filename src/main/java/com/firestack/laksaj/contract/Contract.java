@@ -1,5 +1,6 @@
 package com.firestack.laksaj.contract;
 
+import com.firestack.laksaj.account.Account;
 import com.firestack.laksaj.account.Wallet;
 import com.firestack.laksaj.jsonrpc.HttpProvider;
 import com.firestack.laksaj.transaction.Transaction;
@@ -30,13 +31,13 @@ public class Contract {
     private Wallet signer;
     private HttpProvider provider;
 
-    public Contract(ContractFactory factory, String code, String abi, String address, Value[] init, List<com.firestack.laksaj.blockchain.Contract.State> state) {
+    public Contract(ContractFactory factory, String code, String abi, String address, Value[] init, List<com.firestack.laksaj.blockchain.Contract.State> state) throws Exception {
         this.contractFactory = factory;
         this.provider = factory.getProvider();
         this.signer = factory.getSigner();
         if (null != address && !address.isEmpty()) {
             this.abi = abi;
-            this.address = address;
+            this.address = Account.normaliseAddress(address);
             this.init = init;
             this.state = state;
             this.code = code;

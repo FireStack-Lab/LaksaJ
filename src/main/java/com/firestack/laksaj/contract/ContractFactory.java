@@ -37,11 +37,11 @@ public class ContractFactory {
         return ByteUtil.byteArrayToHexString(bytes).substring(24);
     }
 
-    public Contract newContract(String code, Value[] init, String abi) {
+    public Contract newContract(String code, Value[] init, String abi) throws Exception {
         return new Contract(this, code, abi, null, init, null);
     }
 
-    public Contract atContract(String address, String code, Value[] init, String abi) {
+    public Contract atContract(String address, String code, Value[] init, String abi) throws Exception {
         return new Contract(this, code, abi, address, init, null);
     }
 
