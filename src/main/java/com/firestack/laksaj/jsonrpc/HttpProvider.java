@@ -19,7 +19,7 @@ import java.util.Objects;
 
 public class HttpProvider {
 
-    private final OkHttpClient client = new OkHttpClient();
+    private OkHttpClient client = new OkHttpClient();
     private final Gson gson = new Gson();
     private static final MediaType JSON
             = MediaType.parse("application/json; charset=utf-8");
@@ -27,6 +27,11 @@ public class HttpProvider {
 
     public HttpProvider(String url) {
         this.url = url;
+    }
+
+    public HttpProvider(String url, OkHttpClient client) {
+        this.url = url;
+        this.client = client;
     }
 
     //Blockchain-related methods
@@ -356,7 +361,7 @@ public class HttpProvider {
         }.getType();
         Rep<Transaction> rep = gson.fromJson(resultString, type);
         if (rep.getResult() == null) {
-            throw new IOException("get result error = "+resultString);
+            throw new IOException("get result error = " + resultString);
         }
         return rep;
     }

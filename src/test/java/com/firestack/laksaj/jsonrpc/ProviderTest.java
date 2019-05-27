@@ -2,11 +2,13 @@ package com.firestack.laksaj.jsonrpc;
 
 import com.firestack.laksaj.blockchain.*;
 import com.firestack.laksaj.transaction.Transaction;
+import okhttp3.OkHttpClient;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 
 public class ProviderTest {
@@ -65,16 +67,19 @@ public class ProviderTest {
     @Test
     public void getTxBlock() throws IOException {
         HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
-        TxBlock txBlock = client.getTxBlock("40").getResult();
+        TxBlock txBlock = client.getTxBlock("116650").getResult();
         System.out.println(txBlock);
-        Assert.assertNotNull(txBlock);
-        Assert.assertEquals(3, txBlock.getBody().getMicroBlockInfos().length);
     }
 
     @Test
     public void getLatestDsBlock() throws IOException {
-        HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
-        DsBlock dsBlock = client.getLatestDsBlock().getResult();
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .writeTimeout(1, TimeUnit.MINUTES)
+                .readTimeout(1, TimeUnit.MINUTES)
+                .connectTimeout(1, TimeUnit.MINUTES)
+                .build();
+        HttpProvider provider = new HttpProvider("https://api.zilliqa.com/", client);
+        DsBlock dsBlock = provider.getLatestDsBlock().getResult();
         Assert.assertNotNull(dsBlock);
         System.out.println(dsBlock);
     }
