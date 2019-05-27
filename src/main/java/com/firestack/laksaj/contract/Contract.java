@@ -145,7 +145,8 @@ public class Contract {
         }
 
         try {
-            return this.provider.getSmartContractState(this.address).getResult();
+            return this.provider.getSmartContractState(this.address.replace("0x","").toLowerCase()).getResult();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
