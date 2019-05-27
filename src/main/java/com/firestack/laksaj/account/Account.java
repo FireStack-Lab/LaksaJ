@@ -48,6 +48,9 @@ public class Account {
     }
 
     public static String toCheckSumAddress(String address)  {
+        if (!Validation.isAddress(address)) {
+            throw new RuntimeException("not a valid base 16 address");
+        }
         address = address.toLowerCase().replace("0x", "");
         String hash = ByteUtil.byteArrayToHexString(HashUtil.sha256(ByteUtil.hexStringToByteArray(address)));
         StringBuilder ret = new StringBuilder("0x");
