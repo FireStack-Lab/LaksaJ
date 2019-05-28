@@ -1,5 +1,6 @@
 package com.firestack.laksaj.crypto;
 
+import com.firestack.laksaj.utils.Bech32;
 import com.firestack.laksaj.utils.ByteUtil;
 
 import org.bouncycastle.math.ec.ECPoint;
@@ -25,6 +26,19 @@ public class KeyToolsTest {
         ECPoint pubKey = secp256k1.getCurve().decodePoint(keys.getPublicKey().toByteArray());
         Assert.assertEquals(keys.getPrivateKey().compareTo(BigInteger.ZERO), 1);
         Assert.assertTrue(pubKey.isValid());
+    }
+
+    @Test
+    public void generatePrivateKey() throws InvalidAlgorithmParameterException, NoSuchAlgorithmException, NoSuchProviderException {
+        int i = 0;
+        while (i < 100000) {
+            i++;
+            String privateKey = KeyTools.generatePrivateKey();
+            if (privateKey.length() != 64) {
+                throw new RuntimeException("generator err");
+            }
+            System.out.println(privateKey);
+        }
     }
 
     @Test
@@ -57,10 +71,13 @@ public class KeyToolsTest {
     }
 
     @Test
-    public void getAddressFromPublicKey() {
+    public void getAddressFromPublicKey() throws Exception {
 //        System.out.println(KeyTools.getAddressFromPublicKey("0246e7178dc8253201101e18fd6f6eb9972451d121fc57aa2a06dd5c111e58dc6a"));
 //        System.out.println(KeyTools.getPublicKeyFromPrivateKey("00E5C7DE25D692EBA598912EECDCB1758C1539F39EAAB4D2589F26B98F8A5A2599",true));
-        System.out.println(KeyTools.getAddressFromPublicKey("8ACFCA0473EAFFD5CA8214215C6284DBC6F1AD3DD9443AE01AE8A43A5D972D68"));
+        System.out.println(KeyTools.getAddressFromPublicKey("03479a6057f2209b0c8f4888aa83fa86fbba0545057adf062273713eca0addae24"));
+        System.out.println(Bech32.toBech32Address("9BFEC715A6BD658FCB62B0F8CC9BFA2ADE71434A"));
+        System.out.println(KeyTools.getPublicKeyFromPrivateKey("d3717f380b49b79274451743dbe62caca052d95adc30449a2f69dd7b92a8f77d",true));
+
 
     }
 

@@ -2,13 +2,12 @@ package com.firestack.laksaj.crypto;
 
 import com.firestack.laksaj.utils.ByteUtil;
 import com.firestack.laksaj.utils.HashUtil;
-
-import org.web3j.crypto.ECKeyPair;
 import org.bouncycastle.asn1.x9.X9ECParameters;
 import org.bouncycastle.crypto.ec.CustomNamedCurves;
 import org.bouncycastle.crypto.params.ECDomainParameters;
 import org.bouncycastle.math.ec.ECPoint;
 import org.bouncycastle.math.ec.FixedPointCombMultiplier;
+import org.web3j.crypto.ECKeyPair;
 
 import java.math.BigInteger;
 import java.security.InvalidAlgorithmParameterException;
@@ -34,11 +33,27 @@ public class KeyTools {
                 CURVE_PARAMS.getH());
     }
 
-    public static ECKeyPair generateKeyPair() throws InvalidAlgorithmParameterException, NoSuchAlgorithmException, NoSuchProviderException {
-        return Schnorr.generateKeyPair();
+    public static String generatePrivateKey() throws InvalidAlgorithmParameterException, NoSuchAlgorithmException, NoSuchProviderException {
+        while (true) {
+            ECKeyPair keyPair = Schnorr.generateKeyPair();
+            if (keyPair.getPrivateKey().toString(16).length() == 64) {
+                return keyPair.getPrivateKey().toString(16);
+            }
+        }
     }
 
-    public static String getAddressFromPrivateKey(String privateKey){
+    @Deprecated
+    public static ECKeyPair generateKeyPair() throws InvalidAlgorithmParameterException, NoSuchAlgorithmException, NoSuchProviderException {
+        while (true) {
+            ECKeyPair keyPair = Schnorr.generateKeyPair();
+            if (keyPair.getPrivateKey().toString(16).length() == 64) {
+                return keyPair;
+            }
+        }
+    }
+
+
+    public static String getAddressFromPrivateKey(String privateKey) {
         String publicKey = getPublicKeyFromPrivateKey(privateKey, true);
         return getAddressFromPublicKey(publicKey);
     }
