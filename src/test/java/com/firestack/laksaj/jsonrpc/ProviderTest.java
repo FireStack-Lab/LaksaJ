@@ -100,6 +100,13 @@ public class ProviderTest {
     }
 
     @Test
+    public void getBalance32() throws Exception {
+        HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
+        HttpProvider.BalanceResult balance = client.getBalance32("zil1z6rpmumewzrmdz44wu9hgvdwrs5xgptlzd6kec").getResult();
+        Assert.assertNotNull(balance);
+    }
+
+    @Test
     public void getSmartContractCode() throws IOException {
         HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
         String code = client.getSmartContractCode("8cb841ef4f1f61d44271e167557e160434bd6d63").getResult().getCode();

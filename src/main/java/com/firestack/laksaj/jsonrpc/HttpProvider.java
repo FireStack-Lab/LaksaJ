@@ -273,6 +273,10 @@ public class HttpProvider {
         return rep;
     }
 
+    public Rep<BalanceResult> getBalance32(String address) throws Exception {
+        return getBalance(Bech32.fromBech32Address(address));
+    }
+
     //Contract-related methods todo need test
     public Rep<ContractResult> getSmartContractCode(String address) throws IOException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetSmartContractCode").params(new String[]{address}).build();
