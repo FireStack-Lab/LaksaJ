@@ -1,21 +1,17 @@
 package com.firestack.laksaj.crypto;
 
-import com.firestack.laksaj.utils.Bech32;
 import com.firestack.laksaj.utils.ByteUtil;
-
-import org.bouncycastle.math.ec.ECPoint;
 import org.bouncycastle.jce.ECNamedCurveTable;
 import org.bouncycastle.jce.spec.ECNamedCurveParameterSpec;
+import org.bouncycastle.math.ec.ECPoint;
+import org.junit.Assert;
+import org.junit.Test;
 import org.web3j.crypto.ECKeyPair;
 
 import java.math.BigInteger;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
-
-import org.junit.Assert;
-import org.junit.Test;
-import org.web3j.utils.Numeric;
 
 public class KeyToolsTest {
     static private final ECNamedCurveParameterSpec secp256k1 = ECNamedCurveTable.getParameterSpec("secp256k1");
@@ -72,14 +68,9 @@ public class KeyToolsTest {
 
     @Test
     public void getAddressFromPublicKey() throws Exception {
-//        System.out.println(KeyTools.getAddressFromPublicKey("0246e7178dc8253201101e18fd6f6eb9972451d121fc57aa2a06dd5c111e58dc6a"));
-//        System.out.println(KeyTools.getPublicKeyFromPrivateKey("00E5C7DE25D692EBA598912EECDCB1758C1539F39EAAB4D2589F26B98F8A5A2599",true));
-        System.out.println(KeyTools.getAddressFromPublicKey("03479a6057f2209b0c8f4888aa83fa86fbba0545057adf062273713eca0addae24"));
-        System.out.println(Bech32.toBech32Address("9BFEC715A6BD658FCB62B0F8CC9BFA2ADE71434A"));
-        System.out.println(KeyTools.getPublicKeyFromPrivateKey("d3717f380b49b79274451743dbe62caca052d95adc30449a2f69dd7b92a8f77d",true));
+        String noPad = "38959e0b7b9c545dc055ab668f8fbaef207e845c590eca4b14993619fff0f723d";
+        String padded = "038959e0b7b9c545dc055ab668f8fbaef207e845c590eca4b14993619fff0f723d";
 
-
+        Assert.assertEquals(KeyTools.getAddressFromPublicKey(noPad), KeyTools.getAddressFromPublicKey(padded));
     }
-
-
 }
