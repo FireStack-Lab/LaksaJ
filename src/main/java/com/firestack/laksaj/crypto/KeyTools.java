@@ -79,7 +79,7 @@ public class KeyTools {
 
     public static String getAddressFromPublicKey(String publicKey) {
         byte[] address = getAddressFromPublicKey(Numeric.hexStringToByteArray(publicKey));
-        return ByteUtil.byteArrayToHexString(address);
+        return ByteUtil.byteArrayToHexString(address).substring(24);
     }
 
     public static byte[] getAddressFromPublicKey(byte[] publicKey) {
