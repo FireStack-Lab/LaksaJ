@@ -140,7 +140,6 @@ public class Wallet {
         }
         if (Objects.isNull(tx.getNonce()) || tx.getNonce().isEmpty()) {
             try {
-                System.out.println(signer.getAddress());
                 result = this.provider.getBalance(signer.getAddress()).getResult();
                 tx.setNonce(String.valueOf(Integer.valueOf(result.getNonce()) + 1));
             } catch (IOException e) {

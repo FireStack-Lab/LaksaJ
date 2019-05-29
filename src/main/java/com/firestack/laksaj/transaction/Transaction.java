@@ -54,7 +54,6 @@ public class Transaction {
     }
 
     public TransactionPayload toTransactionPayload() throws Exception {
-        System.out.println(this.toAddr);
         return TransactionPayload.builder()
                 .version(Integer.parseInt(this.version))
                 .nonce(Integer.valueOf(this.nonce))

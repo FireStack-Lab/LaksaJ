@@ -16,14 +16,12 @@ public class WalletTest {
         String ptivateKey = "e19d05c5452598e24caad4a0d85a49146f7be089515c905ae6a19e8a578a6930";
         // Populate the wallet with an account
         String address = wallet.addByPrivateKey(ptivateKey);
-        System.out.println("address is: " + address);
         wallet.addByPrivateKey(ptivateKey);
 
         HttpProvider provider = new HttpProvider("https://dev-api.zilliqa.com/");
         wallet.setProvider(provider);
         //get balance
         HttpProvider.BalanceResult balanceResult = provider.getBalance(address).getResult();
-        System.out.println("balance is: " + balanceResult.getBalance());
 
         //construct non-contract transaction
         Transaction transaction = Transaction.builder()
@@ -43,13 +41,9 @@ public class WalletTest {
 
         //sign transaction
         transaction = wallet.sign(transaction);
-        System.out.println("signature is: " + transaction.getSignature());
-        System.out.println(transaction.getToAddr());
 
         //broadcast transaction
         HttpProvider.CreateTxResult result = TransactionFactory.createTransaction(transaction);
-        System.out.println(result.getTranID());
         transaction.confirm(result.getTranID(),100,10);
-
     }
 }
