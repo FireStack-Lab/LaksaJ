@@ -8,6 +8,7 @@ import org.bouncycastle.crypto.params.ECDomainParameters;
 import org.bouncycastle.math.ec.ECPoint;
 import org.bouncycastle.math.ec.FixedPointCombMultiplier;
 import org.web3j.crypto.ECKeyPair;
+import org.web3j.utils.Numeric;
 
 import java.math.BigInteger;
 import java.security.InvalidAlgorithmParameterException;
@@ -34,12 +35,8 @@ public class KeyTools {
     }
 
     public static String generatePrivateKey() throws InvalidAlgorithmParameterException, NoSuchAlgorithmException, NoSuchProviderException {
-        while (true) {
-            ECKeyPair keyPair = Schnorr.generateKeyPair();
-            if (keyPair.getPrivateKey().toString(16).length() == 64) {
-                return keyPair.getPrivateKey().toString(16);
-            }
-        }
+        ECKeyPair keys = Schnorr.generateKeyPair();
+        return Numeric.toHexStringNoPrefixZeroPadded(keys.getPrivateKey(), 64);
     }
 
     @Deprecated
@@ -81,9 +78,8 @@ public class KeyTools {
     }
 
     public static String getAddressFromPublicKey(String publicKey) {
-        byte[] data = getAddressFromPublicKey(ByteUtil.hexStringToByteArray(publicKey));
-        String originAddress = ByteUtil.byteArrayToHexString(data);
-        return originAddress.substring(24);
+        byte[] address = getAddressFromPublicKey(Numeric.hexStringToByteArray(publicKey));
+        return ByteUtil.byteArrayToHexString(address);
     }
 
     public static byte[] getAddressFromPublicKey(byte[] publicKey) {
