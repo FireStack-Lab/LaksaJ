@@ -6,9 +6,9 @@ import com.firestack.laksaj.transaction.TransactionPayload;
 import com.firestack.laksaj.utils.Bech32;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import lombok.Data;
 import okhttp3.*;
-import org.junit.Assert;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -42,8 +42,6 @@ public class HttpProvider {
         Type type = new TypeToken<Rep<String>>() {
         }.getType();
         Rep<String> rep = gson.fromJson(resultString, type);
-        Assert.assertNotNull("get result error = " + resultString, rep.getResult());
-
         return rep;
     }
 
@@ -54,7 +52,6 @@ public class HttpProvider {
         Type type = new TypeToken<Rep<BlockchainInfo>>() {
         }.getType();
         Rep<BlockchainInfo> rep = gson.fromJson(resultString, type);
-        Assert.assertNotNull("get result error = " + resultString, rep.getResult());
         return rep;
     }
 
@@ -65,7 +62,6 @@ public class HttpProvider {
         Type type = new TypeToken<Rep<ShardingStructure>>() {
         }.getType();
         Rep<ShardingStructure> rep = gson.fromJson(resultString, type);
-        Assert.assertNotNull("get result error = " + resultString, rep.getResult());
         return rep;
 
     }
@@ -77,7 +73,6 @@ public class HttpProvider {
         Type type = new TypeToken<Rep<BlockList>>() {
         }.getType();
         Rep<BlockList> rep = gson.fromJson(resultString, type);
-        Assert.assertNotNull("get result error = " + resultString, rep.getResult());
         return rep;
     }
 
@@ -88,7 +83,6 @@ public class HttpProvider {
         Type type = new TypeToken<Rep<BlockList>>() {
         }.getType();
         Rep<BlockList> rep = gson.fromJson(resultString, type);
-        Assert.assertNotNull("get result error = " + resultString, rep.getResult());
         return rep;
     }
 
@@ -99,7 +93,6 @@ public class HttpProvider {
         Type type = new TypeToken<Rep<String>>() {
         }.getType();
         Rep<String> rep = gson.fromJson(resultString, type);
-        Assert.assertNotNull("get result error = " + resultString, rep.getResult());
         return rep;
     }
 
@@ -110,7 +103,6 @@ public class HttpProvider {
         Type type = new TypeToken<Rep<Double>>() {
         }.getType();
         Rep<Double> rep = gson.fromJson(resultString, type);
-        Assert.assertNotNull("get result error = " + resultString, rep.getResult());
         return rep;
     }
 
@@ -121,7 +113,6 @@ public class HttpProvider {
         Type type = new TypeToken<Rep<BlockList>>() {
         }.getType();
         Rep<BlockList> rep = gson.fromJson(resultString, type);
-        Assert.assertNotNull("get result error = " + resultString, rep.getResult());
         return rep;
     }
 
@@ -132,7 +123,6 @@ public class HttpProvider {
         Type type = new TypeToken<Rep<DsBlock>>() {
         }.getType();
         Rep<DsBlock> rep = gson.fromJson(resultString, type);
-        Assert.assertNotNull("get result error = " + resultString, rep.getResult());
         return rep;
     }
 
@@ -142,7 +132,6 @@ public class HttpProvider {
         String resultString = Objects.requireNonNull(response.body()).string();
         Rep<TxBlock> rep = gson.fromJson(resultString, new TypeToken<Rep<TxBlock>>() {
         }.getType());
-        Assert.assertNotNull("get result error = " + resultString, rep.getResult());
         return rep;
     }
 
@@ -153,7 +142,6 @@ public class HttpProvider {
         Type type = new TypeToken<Rep<String>>() {
         }.getType();
         Rep<String> rep = gson.fromJson(resultString, type);
-        Assert.assertNotNull("get result error = " + resultString, rep.getResult());
         return rep;
     }
 
@@ -164,7 +152,6 @@ public class HttpProvider {
         Type type = new TypeToken<Rep<Double>>() {
         }.getType();
         Rep<Double> rep = gson.fromJson(resultString, type);
-        Assert.assertNotNull("get result error = " + resultString, rep.getResult());
         return rep;
     }
 
@@ -174,7 +161,6 @@ public class HttpProvider {
         String resultString = Objects.requireNonNull(response.body()).string();
         Rep<DsBlock> rep = gson.fromJson(resultString, new TypeToken<Rep<DsBlock>>() {
         }.getType());
-        Assert.assertNotNull("get result error = " + resultString, rep.getResult());
         return rep;
     }
 
@@ -184,7 +170,6 @@ public class HttpProvider {
         String resultString = Objects.requireNonNull(response.body()).string();
         Rep<TxBlock> rep = gson.fromJson(resultString, new TypeToken<Rep<TxBlock>>() {
         }.getType());
-        Assert.assertNotNull("get result error = " + resultString, rep.getResult());
         return rep;
     }
 
@@ -195,7 +180,6 @@ public class HttpProvider {
         Type type = new TypeToken<Rep<String>>() {
         }.getType();
         Rep<String> rep = gson.fromJson(resultString, type);
-        Assert.assertNotNull("get result error = " + resultString, rep.getResult());
         return rep;
     }
 
@@ -206,7 +190,6 @@ public class HttpProvider {
         Type type = new TypeToken<Rep<Integer>>() {
         }.getType();
         Rep<Integer> rep = gson.fromJson(resultString, type);
-        Assert.assertNotNull("get result error = " + resultString, rep.getResult());
         return rep;
     }
 
@@ -217,7 +200,6 @@ public class HttpProvider {
         Type type = new TypeToken<Rep<String>>() {
         }.getType();
         Rep<String> rep = gson.fromJson(resultString, type);
-        Assert.assertNotNull("get result error = " + resultString, rep.getResult());
         return rep;
     }
 
@@ -228,7 +210,6 @@ public class HttpProvider {
         Type type = new TypeToken<Rep<String>>() {
         }.getType();
         Rep<String> rep = gson.fromJson(resultString, type);
-        Assert.assertNotNull("get result error = " + resultString, rep.getResult());
         return rep;
     }
 
@@ -239,7 +220,6 @@ public class HttpProvider {
         Type type = new TypeToken<Rep<Integer>>() {
         }.getType();
         Rep<Integer> rep = gson.fromJson(resultString, type);
-        Assert.assertNotNull("get result error = " + resultString, rep.getResult());
         return rep;
     }
 
@@ -250,7 +230,6 @@ public class HttpProvider {
         Type type = new TypeToken<Rep<Integer>>() {
         }.getType();
         Rep<Integer> rep = gson.fromJson(resultString, type);
-        Assert.assertNotNull("get result error = " + resultString, rep.getResult());
         return rep;
     }
 
@@ -285,7 +264,6 @@ public class HttpProvider {
         Type type = new TypeToken<Rep<ContractResult>>() {
         }.getType();
         Rep<ContractResult> rep = gson.fromJson(resultString, type);
-        Assert.assertNotNull("result is null, check your account address!", rep.getResult());
         return rep;
     }
 
@@ -296,7 +274,6 @@ public class HttpProvider {
         Type type = new TypeToken<Rep<List<Contract>>>() {
         }.getType();
         Rep<List<Contract>> rep = gson.fromJson(resultString, type);
-        Assert.assertNotNull("get result error = " + resultString, rep.getResult());
         return rep;
     }
 
@@ -307,7 +284,6 @@ public class HttpProvider {
         Type type = new TypeToken<Rep<String>>() {
         }.getType();
         Rep<String> rep = gson.fromJson(resultString, type);
-        Assert.assertNotNull("get result error = " + resultString, rep.getResult());
         return rep;
     }
 
@@ -318,7 +294,6 @@ public class HttpProvider {
         Type type = new TypeToken<Rep<List<Contract.State>>>() {
         }.getType();
         Rep<List<Contract.State>> rep = gson.fromJson(resultString, type);
-        Assert.assertNotNull("get result error = " + resultString, rep.getResult());
         return rep;
     }
 
@@ -329,7 +304,6 @@ public class HttpProvider {
         Type type = new TypeToken<Rep<List<Contract.State>>>() {
         }.getType();
         Rep<List<Contract.State>> rep = gson.fromJson(resultString, type);
-        Assert.assertNotNull("get result error = " + resultString, rep.getResult());
         return rep;
     }
 
@@ -341,7 +315,6 @@ public class HttpProvider {
         Type type = new TypeToken<Rep<CreateTxResult>>() {
         }.getType();
         Rep<CreateTxResult> rep = gson.fromJson(resultString, type);
-        Assert.assertNotNull("get result error = " + resultString, rep.getResult());
         return rep;
     }
 
@@ -352,7 +325,6 @@ public class HttpProvider {
         Type type = new TypeToken<Rep<String>>() {
         }.getType();
         Rep<String> rep = gson.fromJson(resultString, type);
-        Assert.assertNotNull("get result error = " + resultString, rep.getResult());
         return rep;
     }
 
@@ -384,7 +356,6 @@ public class HttpProvider {
         Type type = new TypeToken<Rep<TransactionList>>() {
         }.getType();
         Rep<TransactionList> rep = gson.fromJson(resultString, type);
-        Assert.assertNotNull("get result error = " + resultString, rep.getResult());
         return rep;
     }
 
@@ -395,9 +366,17 @@ public class HttpProvider {
         Type type = new TypeToken<Rep<List<List<String>>>>() {
         }.getType();
         Rep<List<List<String>>> rep = gson.fromJson(resultString, type);
-        Assert.assertNotNull("get result error = " + resultString, rep.getResult());
+        if (rep.getResult() == null) {
+            Rep<List<List<String>>> res = new Rep<>();
+            res.setJsonrpc("2.0");
+            res.setId("1");
+            JsonObject jb = gson.fromJson(resultString, JsonObject.class);
+            res.setErr(jb.getAsJsonObject("error").get("message").toString());
+            return res;
+        }
         return rep;
     }
+
 
     public Rep<String> getNumTxnsTxEpoch() throws IOException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetNumTxnsTxEpoch").params(new String[]{""}).build();
@@ -406,7 +385,6 @@ public class HttpProvider {
         Type type = new TypeToken<Rep<String>>() {
         }.getType();
         Rep<String> rep = gson.fromJson(resultString, type);
-        Assert.assertNotNull("get result error = " + resultString, rep.getResult());
         return rep;
     }
 
@@ -417,7 +395,6 @@ public class HttpProvider {
         Type type = new TypeToken<Rep<String>>() {
         }.getType();
         Rep<String> rep = gson.fromJson(resultString, type);
-        Assert.assertNotNull("get result error = " + resultString, rep.getResult());
         return rep;
     }
 

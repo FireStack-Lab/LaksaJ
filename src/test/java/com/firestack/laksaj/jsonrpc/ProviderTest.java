@@ -67,7 +67,7 @@ public class ProviderTest {
     @Test
     public void getTxBlock() throws IOException {
         HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
-        TxBlock txBlock = client.getTxBlock("116650").getResult();
+        TxBlock txBlock = client.getTxBlock("123").getResult();
         System.out.println(txBlock);
     }
 
@@ -127,6 +127,13 @@ public class ProviderTest {
         HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
         Transaction transaction = client.getTransaction("ce918e4c77ed40f3a23588bd3c380458b43be168935d468e2e6f680724e71474").getResult();
         System.out.println(transaction);
+    }
+
+    @Test
+    public void getTransactionsForTxBlock() throws IOException {
+        HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
+        Rep<List<List<String>>> rep = client.getTransactionsForTxBlock("120951");
+        System.out.println(rep);
     }
 
     @Test

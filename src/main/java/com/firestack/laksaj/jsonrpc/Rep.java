@@ -7,4 +7,5 @@ public class Rep<R> {
     private String id;
     private String jsonrpc;
     private R result;
+    private String err;
 }
