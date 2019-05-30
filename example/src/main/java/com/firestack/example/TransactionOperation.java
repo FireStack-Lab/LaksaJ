@@ -22,14 +22,14 @@ public class TransactionOperation {
         String ptivateKey = "e19d05c5452598e24caad4a0d85a49146f7be089515c905ae6a19e8a578a6930";
         // Populate the wallet with an account
         String address = wallet.addByPrivateKey(ptivateKey);
-        HttpProvider provider = new HttpProvider("https://api.zilliqa.com");
+        HttpProvider provider = new HttpProvider("https://dev-api.zilliqa.com");
         //get balance
         HttpProvider.BalanceResult balanceResult = provider.getBalance(address).getResult();
         System.out.println("balance is: " + balanceResult.getBalance());
 
         //construct non-contract transaction
         Transaction transaction = Transaction.builder()
-                .version(String.valueOf(pack(2, 8)))
+                .version(String.valueOf(pack(333, 1)))
                 .toAddr("zil16jrfrs8vfdtc74yzhyy83je4s4c5sqrcasjlc4")
                 .senderPubKey("0246e7178dc8253201101e18fd6f6eb9972451d121fc57aa2a06dd5c111e58dc6a")
                 .amount("10000000")
@@ -101,7 +101,9 @@ public class TransactionOperation {
         List<Value> init = Arrays.asList(Value.builder().vname("_scilla_version").type("Uint32").value("0").build(), Value.builder().vname("owner").type("ByStr20").value("0x9bfec715a6bd658fcb62b0f8cc9bfa2ade71434a").build());
 
         ContractFactory factory = ContractFactory.builder().provider(new HttpProvider("https://api.zilliqa.com/")).signer(wallet).build();
+
         Contract contract = factory.newContract(code, (Value[]) init.toArray(), "");
+
         DeployParams deployParams = DeployParams.builder().version(String.valueOf(pack(2, 8))).gasPrice("1000000000").gasLimit("10000").senderPubKey("0246e7178dc8253201101e18fd6f6eb9972451d121fc57aa2a06dd5c111e58dc6a").build();
 
         //deploy contract, this will take a while to track transaction util it been confirmed or failed

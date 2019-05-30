@@ -139,9 +139,9 @@ public class ContractTest {
         Wallet wallet = new Wallet();
         wallet.addByPrivateKey("e19d05c5452598e24caad4a0d85a49146f7be089515c905ae6a19e8a578a6930");
         ContractFactory factory = ContractFactory.builder().provider(new HttpProvider("https://dev-api.zilliqa.com/")).signer(wallet).build();
-//        Contract contract = factory.atContract("zil1p9msyy8c4hscpkphhlkk5r5l97zcqvm6af4jv0", code, (Value[]) init.toArray(), "");
-        Contract contract = factory.atContract("0x4baf5fada8e5db92c3d3242618c5b47133ae003c", code, (Value[]) init.toArray(), "");
-        CallParams params = CallParams.builder().version(String.valueOf(pack(333, 2))).gasPrice("1000000000").gasLimit("10000").senderPubKey("0246e7178dc8253201101e18fd6f6eb9972451d121fc57aa2a06dd5c111e58dc6a").amount("0").build();
+        Contract contract = factory.atContract("zil1p9msyy8c4hscpkphhlkk5r5l97zcqvm6af4jv0", code, (Value[]) init.toArray(), "");
+//        Contract contract = factory.atContract("0x4baf5fada8e5db92c3d3242618c5b47133ae003c", code, (Value[]) init.toArray(), "");
+        CallParams params = CallParams.builder().version(String.valueOf(pack(333, 1))).gasPrice("1000000000").gasLimit("1").senderPubKey("0246e7178dc8253201101e18fd6f6eb9972451d121fc57aa2a06dd5c111e58dc6a").amount("0").build();
         contract.call(Transition.builder().name("getHello").params(new Field[]{}).build(), (Value[]) init.toArray(), params, 300, 3);
     }
 
