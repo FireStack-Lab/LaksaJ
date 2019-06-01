@@ -11,14 +11,13 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
 
 @Data
 public class Contract {
-    public static String NIL_ADDRESS = "0000000000000000000000000000000000000000";
+    public static String NIL_ADDRESS = "0x0000000000000000000000000000000000000000";
 
     private ContractFactory contractFactory;
     private Value[] init;
@@ -65,7 +64,7 @@ public class Contract {
                 .toAddr(NIL_ADDRESS)
                 .amount("0")
                 .code(this.code.replace("/\\", ""))
-                .data(gson.toJson(this.init))
+                .data(gson.toJson(this.init).replace("/\\",""))
                 .provider(this.provider)
                 .build();
         transaction = this.prepareTx(transaction, attempts, interval);
@@ -145,7 +144,7 @@ public class Contract {
         }
 
         try {
-            return this.provider.getSmartContractState(this.address.replace("0x","").toLowerCase()).getResult();
+            return this.provider.getSmartContractState(this.address.replace("0x", "").toLowerCase()).getResult();
 
         } catch (IOException e) {
             e.printStackTrace();

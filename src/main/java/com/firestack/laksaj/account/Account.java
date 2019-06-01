@@ -1,5 +1,6 @@
 package com.firestack.laksaj.account;
 
+import com.firestack.laksaj.contract.Contract;
 import com.firestack.laksaj.crypto.KDFType;
 import com.firestack.laksaj.crypto.KeyTools;
 import com.firestack.laksaj.utils.Bech32;
@@ -47,7 +48,7 @@ public class Account {
         return ByteUtil.byteArrayToHexString(this.keys.getPrivateKey().toByteArray());
     }
 
-    public static String toCheckSumAddress(String address)  {
+    public static String toCheckSumAddress(String address) {
         if (!Validation.isAddress(address)) {
             throw new RuntimeException("not a valid base 16 address");
         }
@@ -67,6 +68,9 @@ public class Account {
     }
 
     public static String normaliseAddress(String address) throws Exception {
+        if (address.equals(Contract.NIL_ADDRESS)) {
+            return address;
+        }
         if (Validation.isBech32(address)) {
             return Bech32.fromBech32Address(address);
         }

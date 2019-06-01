@@ -18,6 +18,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+import static com.firestack.laksaj.contract.Contract.NIL_ADDRESS;
+
 
 /**
  * all address should be upper case
@@ -100,7 +102,7 @@ public class Wallet {
             transaction.setToAddr(transaction.getToAddr().substring(2));
         }
 
-        if (!Validation.isBech32(transaction.getToAddr()) && !Validation.isValidChecksumAddress("0x"+transaction.getToAddr())) {
+        if (!Validation.isBech32(transaction.getToAddr()) && !Validation.isValidChecksumAddress("0x" + transaction.getToAddr())) {
             throw new Exception("not checksum address or bech32");
         }
 
@@ -109,9 +111,10 @@ public class Wallet {
             transaction.setToAddr(Bech32.fromBech32Address(transaction.getToAddr()));
         }
 
-        if (Validation.isValidChecksumAddress("0x"+transaction.getToAddr())) {
-            transaction.setToAddr("0x"+transaction.getToAddr());
+        if (Validation.isValidChecksumAddress("0x" + transaction.getToAddr())) {
+            transaction.setToAddr("0x" + transaction.getToAddr());
         }
+
 
         TxParams txParams = transaction.toTransactionParam();
 
