@@ -83,11 +83,11 @@ public class Contract {
     @Data
     @Builder
     private static class data {
-        private Transition _tag;
+        private String _tag;
         private Value[] params;
     }
 
-    public Transaction call(Transition transition, Value[] args, CallParams params, int attempts, int interval) throws Exception {
+    public Transaction call(String transition, Value[] args, CallParams params, int attempts, int interval) throws Exception {
         if (null == this.address || this.address.isEmpty()) {
             throw new IllegalArgumentException("Contract has not been deployed!");
         }

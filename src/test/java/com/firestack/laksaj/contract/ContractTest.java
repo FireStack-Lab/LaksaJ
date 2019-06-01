@@ -2,7 +2,6 @@ package com.firestack.laksaj.contract;
 
 import com.firestack.laksaj.account.Wallet;
 import com.firestack.laksaj.jsonrpc.HttpProvider;
-import com.firestack.laksaj.jsonrpc.Rep;
 import com.firestack.laksaj.transaction.Transaction;
 import javafx.util.Pair;
 import org.junit.Assert;
@@ -228,7 +227,7 @@ public class ContractTest {
         ContractFactory factory = ContractFactory.builder().provider(new HttpProvider("https://dev-api.zilliqa.com/")).signer(wallet).build();
         Contract contract = factory.newContract(code, (Value[]) init.toArray(), "");
         Integer nonce = Integer.valueOf(factory.getProvider().getBalance("9bfec715a6bd658fcb62b0f8cc9bfa2ade71434a").getResult().getNonce());
-        DeployParams deployParams = DeployParams.builder().version(String.valueOf(pack(333, 1))).gasPrice("1000000000").gasLimit("10000").nonce(String.valueOf(nonce+1)).senderPubKey("0246e7178dc8253201101e18fd6f6eb9972451d121fc57aa2a06dd5c111e58dc6a").build();
+        DeployParams deployParams = DeployParams.builder().version(String.valueOf(pack(333, 1))).gasPrice("1000000000").gasLimit("10000").nonce(String.valueOf(nonce + 1)).senderPubKey("0246e7178dc8253201101e18fd6f6eb9972451d121fc57aa2a06dd5c111e58dc6a").build();
         Pair<Transaction, Contract> result = contract.deploy(deployParams, 3000, 3);
 
         System.out.println("result is: " + result.toString());
@@ -239,65 +238,22 @@ public class ContractTest {
 
     @Test
     public void call() throws Exception {
-        String code = "scilla_version 0\n" +
-                "\n" +
-                "    (* HelloWorld contract *)\n" +
-                "\n" +
-                "    import ListUtils\n" +
-                "\n" +
-                "    (***************************************************)\n" +
-                "    (*               Associated library                *)\n" +
-                "    (***************************************************)\n" +
-                "    library HelloWorld\n" +
-                "\n" +
-                "    let one_msg =\n" +
-                "      fun (msg : Message) =>\n" +
-                "      let nil_msg = Nil {Message} in\n" +
-                "      Cons {Message} msg nil_msg\n" +
-                "\n" +
-                "    let not_owner_code = Int32 1\n" +
-                "    let set_hello_code = Int32 2\n" +
-                "\n" +
-                "    (***************************************************)\n" +
-                "    (*             The contract definition             *)\n" +
-                "    (***************************************************)\n" +
-                "\n" +
-                "    contract HelloWorld\n" +
-                "    (owner: ByStr20)\n" +
-                "\n" +
-                "    field welcome_msg : String = \"\"\n" +
-                "\n" +
-                "    transition setHello (msg : String)\n" +
-                "      is_owner = builtin eq owner _sender;\n" +
-                "      match is_owner with\n" +
-                "      | False =>\n" +
-                "        msg = {_tag : \"Main\"; _recipient : _sender; _amount : Uint128 0; code : not_owner_code};\n" +
-                "        msgs = one_msg msg;\n" +
-                "        send msgs\n" +
-                "      | True =>\n" +
-                "        welcome_msg := msg;\n" +
-                "        msg = {_tag : \"Main\"; _recipient : _sender; _amount : Uint128 0; code : set_hello_code};\n" +
-                "        msgs = one_msg msg;\n" +
-                "        send msgs\n" +
-                "      end\n" +
-                "    end\n" +
-                "\n" +
-                "\n" +
-                "    transition getHello ()\n" +
-                "        r <- welcome_msg;\n" +
-                "        e = {_eventname: \"getHello()\"; msg: r};\n" +
-                "        event e\n" +
-                "    end";
 
-        List<Value> init = Arrays.asList(Value.builder().vname("_scilla_version").type("Uint32").value("0").build(), Value.builder().vname("owner").type("ByStr20").value("0x9bfec715a6bd658fcb62b0f8cc9bfa2ade71434a").build());
-
+        List<Value> init = Arrays.asList(
+                Value.builder().vname("_scilla_version").type("Uint32").value("0").build(),
+                Value.builder().vname("owner").type("ByStr20").value("0x9bfec715a6bd658fcb62b0f8cc9bfa2ade71434a").build(),
+                Value.builder().vname("total_tokens").type("Uint128").value("1000000000").build(),
+                Value.builder().vname("decimals").type("Uint32").value("0").build(),
+                Value.builder().vname("name").type("String").value("BobCoin").build(),
+                Value.builder().vname("symbol").type("String").value("BOB").build());
         Wallet wallet = new Wallet();
         wallet.addByPrivateKey("e19d05c5452598e24caad4a0d85a49146f7be089515c905ae6a19e8a578a6930");
         ContractFactory factory = ContractFactory.builder().provider(new HttpProvider("https://dev-api.zilliqa.com/")).signer(wallet).build();
-        Contract contract = factory.atContract("zil1p9msyy8c4hscpkphhlkk5r5l97zcqvm6af4jv0", code, (Value[]) init.toArray(), "");
-//        Contract contract = factory.atContract("0x4baf5fada8e5db92c3d3242618c5b47133ae003c", code, (Value[]) init.toArray(), "");
-        CallParams params = CallParams.builder().version(String.valueOf(pack(333, 1))).gasPrice("1000000000").gasLimit("1").senderPubKey("0246e7178dc8253201101e18fd6f6eb9972451d121fc57aa2a06dd5c111e58dc6a").amount("0").build();
-        contract.call(Transition.builder().name("getHello").params(new Field[]{}).build(), (Value[]) init.toArray(), params, 300, 3);
+        Contract contract = factory.atContract("zil1h4cesgy498wyyvsdkj7g2zygp0xj920jw2hyx0", "", (Value[]) init.toArray(), "");
+        Integer nonce = Integer.valueOf(factory.getProvider().getBalance("9bfec715a6bd658fcb62b0f8cc9bfa2ade71434a").getResult().getNonce());
+        CallParams params = CallParams.builder().nonce(String.valueOf(nonce + 1)).version(String.valueOf(pack(333, 1))).gasPrice("1000000000").gasLimit("1000").senderPubKey("0246e7178dc8253201101e18fd6f6eb9972451d121fc57aa2a06dd5c111e58dc6a").amount("0").build();
+        List<Value> values = Arrays.asList(Value.builder().vname("to").type("ByStr20").value("0x381f4008505e940ad7681ec3468a719060caf796").build(), Value.builder().vname("tokens").type("Uint128").value("10").build());
+        contract.call("Transfer", (Value[]) values.toArray(), params, 3000, 3);
     }
 
 
