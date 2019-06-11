@@ -18,6 +18,7 @@ public class TxBlock {
     @Data
     @Builder
     public static class Body {
+        private String BlockHash;
         private String HeaderSign;
         private MicroBlockInfo[] MicroBlockInfos;
     }
