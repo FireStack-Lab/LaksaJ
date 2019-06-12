@@ -109,8 +109,8 @@ public class TransactionOperation {
 
         //construct non-contract transaction
         Transaction transaction = Transaction.builder()
-                .version(String.valueOf(pack(2, 8)))
-                .toAddr("4baf5fada8e5db92c3d3242618c5b47133ae003c".toLowerCase())
+                .version(String.valueOf(pack(333, 1)))
+                .toAddr("zil16jrfrs8vfdtc74yzhyy83je4s4c5sqrcasjlc4")
                 .senderPubKey("0246e7178dc8253201101e18fd6f6eb9972451d121fc57aa2a06dd5c111e58dc6a")
                 .amount("10000000")
                 .gasPrice("1000000000")
@@ -374,7 +374,7 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
-    compile group: 'org.firestack', name: 'laksaj', version: '0.0.6-SNAPSHOT'
+    compile group: 'org.firestack', name: 'laksaj', version: '0.4.5-SNAPSHOT'
 }
 
 ```
@@ -387,7 +387,7 @@ maven:
 <dependency>
   <groupId>org.firestack</groupId>
   <artifactId>laksaj</artifactId>
-  <version>0.2.8-SNAPSHOT</version>
+  <version>0.4.5-SNAPSHOT</version>
 </dependency>
 ```
 
