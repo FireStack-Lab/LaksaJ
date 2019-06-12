@@ -8,7 +8,7 @@ repositories {
 
 
 group 'com.firestack'
-version '0.4.4-RELEASE'
+version '0.4.5-RELEASE'
 
 sourceCompatibility = 1.8
 
@@ -60,7 +60,7 @@ publishing {
             customizePom(pom)
             groupId = 'org.firestack'
             artifactId = 'laksaj'
-            version = '0.4.4-RELEASE'
+            version = '0.4.5-RELEASE'
 
             from components.java
 
