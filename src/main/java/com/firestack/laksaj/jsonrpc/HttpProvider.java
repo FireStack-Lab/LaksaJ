@@ -1,6 +1,7 @@
 package com.firestack.laksaj.jsonrpc;
 
 import com.firestack.laksaj.blockchain.*;
+import com.firestack.laksaj.exception.ZilliqaAPIException;
 import com.firestack.laksaj.transaction.Transaction;
 import com.firestack.laksaj.transaction.TransactionPayload;
 import com.firestack.laksaj.utils.Bech32;
@@ -35,201 +36,261 @@ public class HttpProvider {
     }
 
     //Blockchain-related methods
-    public Rep<String> getNetworkId() throws IOException {
+    public Rep<String> getNetworkId() throws IOException, ZilliqaAPIException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetNetworkId").params(new String[]{""}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Type type = new TypeToken<Rep<String>>() {
         }.getType();
         Rep<String> rep = gson.fromJson(resultString, type);
+        if (null == rep.getResult()) {
+            throw new ZilliqaAPIException(parseError(resultString));
+        }
         return rep;
     }
 
-    public Rep<BlockchainInfo> getBlockchainInfo() throws IOException {
+    public Rep<BlockchainInfo> getBlockchainInfo() throws IOException, ZilliqaAPIException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetBlockchainInfo").params(new String[]{""}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Type type = new TypeToken<Rep<BlockchainInfo>>() {
         }.getType();
         Rep<BlockchainInfo> rep = gson.fromJson(resultString, type);
+        if (null == rep.getResult()) {
+            throw new ZilliqaAPIException(parseError(resultString));
+        }
         return rep;
     }
 
-    public Rep<ShardingStructure> getShardingStructure() throws IOException {
+    public Rep<ShardingStructure> getShardingStructure() throws IOException, ZilliqaAPIException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetShardingStructure").params(new String[]{""}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Type type = new TypeToken<Rep<ShardingStructure>>() {
         }.getType();
         Rep<ShardingStructure> rep = gson.fromJson(resultString, type);
+        if (null == rep.getResult()) {
+            throw new ZilliqaAPIException(parseError(resultString));
+        }
         return rep;
 
     }
 
-    public Rep<BlockList> getDSBlockListing(int pageNumber) throws IOException {
+    public Rep<BlockList> getDSBlockListing(int pageNumber) throws IOException, ZilliqaAPIException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("DSBlockListing").params(new Integer[]{pageNumber}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Type type = new TypeToken<Rep<BlockList>>() {
         }.getType();
         Rep<BlockList> rep = gson.fromJson(resultString, type);
+        if (null == rep.getResult()) {
+            throw new ZilliqaAPIException(parseError(resultString));
+        }
         return rep;
     }
 
-    public Rep<BlockList> getTxBlockListing(int pageNumber) throws IOException {
+    public Rep<BlockList> getTxBlockListing(int pageNumber) throws IOException, ZilliqaAPIException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("TxBlockListing").params(new Integer[]{pageNumber}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Type type = new TypeToken<Rep<BlockList>>() {
         }.getType();
         Rep<BlockList> rep = gson.fromJson(resultString, type);
+        if (null == rep.getResult()) {
+            throw new ZilliqaAPIException(parseError(resultString));
+        }
         return rep;
     }
 
-    public Rep<String> getNumDSBlocks() throws IOException {
+    public Rep<String> getNumDSBlocks() throws IOException, ZilliqaAPIException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetNumDSBlocks").params(new String[]{""}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Type type = new TypeToken<Rep<String>>() {
         }.getType();
         Rep<String> rep = gson.fromJson(resultString, type);
+        if (null == rep.getResult()) {
+            throw new ZilliqaAPIException(parseError(resultString));
+        }
         return rep;
     }
 
-    public Rep<Double> getDSBlockRate() throws IOException {
+    public Rep<Double> getDSBlockRate() throws IOException, ZilliqaAPIException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetDSBlockRate").params(new String[]{""}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Type type = new TypeToken<Rep<Double>>() {
         }.getType();
         Rep<Double> rep = gson.fromJson(resultString, type);
+        if (null == rep.getResult()) {
+            throw new ZilliqaAPIException(parseError(resultString));
+        }
         return rep;
     }
 
-    public Rep<BlockList> getDSBlockListing() throws IOException {
+    public Rep<BlockList> getDSBlockListing() throws IOException, ZilliqaAPIException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("DSBlockListing").params(new Object[]{1}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Type type = new TypeToken<Rep<BlockList>>() {
         }.getType();
         Rep<BlockList> rep = gson.fromJson(resultString, type);
+        if (null == rep.getResult()) {
+            throw new ZilliqaAPIException(parseError(resultString));
+        }
         return rep;
     }
 
-    public Rep<DsBlock> getDsBlock(String blockNumber) throws IOException {
+    public Rep<DsBlock> getDsBlock(String blockNumber) throws IOException, ZilliqaAPIException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetDsBlock").params(new String[]{blockNumber}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Type type = new TypeToken<Rep<DsBlock>>() {
         }.getType();
         Rep<DsBlock> rep = gson.fromJson(resultString, type);
+        if (null == rep.getResult()) {
+            throw new ZilliqaAPIException(parseError(resultString));
+        }
         return rep;
     }
 
-    public Rep<TxBlock> getTxBlock(String blockNumber) throws IOException {
+    public Rep<TxBlock> getTxBlock(String blockNumber) throws IOException, ZilliqaAPIException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetTxBlock").params(new String[]{blockNumber}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Rep<TxBlock> rep = gson.fromJson(resultString, new TypeToken<Rep<TxBlock>>() {
         }.getType());
+        if (null == rep.getResult()) {
+            throw new ZilliqaAPIException(parseError(resultString));
+        }
         return rep;
     }
 
-    public Rep<String> getNumTxBlocks() throws IOException {
+    public Rep<String> getNumTxBlocks() throws IOException, ZilliqaAPIException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetNumTxBlocks").params(new String[]{""}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Type type = new TypeToken<Rep<String>>() {
         }.getType();
         Rep<String> rep = gson.fromJson(resultString, type);
+        if (null == rep.getResult()) {
+            throw new ZilliqaAPIException(parseError(resultString));
+        }
         return rep;
     }
 
-    public Rep<Double> getTxBlockRate() throws IOException {
+    public Rep<Double> getTxBlockRate() throws IOException, ZilliqaAPIException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetTxBlockRate").params(new String[]{""}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Type type = new TypeToken<Rep<Double>>() {
         }.getType();
         Rep<Double> rep = gson.fromJson(resultString, type);
+        if (null == rep.getResult()) {
+            throw new ZilliqaAPIException(parseError(resultString));
+        }
         return rep;
     }
 
-    public Rep<DsBlock> getLatestDsBlock() throws IOException {
+    public Rep<DsBlock> getLatestDsBlock() throws IOException, ZilliqaAPIException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetLatestDsBlock").params(new String[]{""}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Rep<DsBlock> rep = gson.fromJson(resultString, new TypeToken<Rep<DsBlock>>() {
         }.getType());
+        if (null == rep.getResult()) {
+            throw new ZilliqaAPIException(parseError(resultString));
+        }
         return rep;
     }
 
-    public Rep<TxBlock> getLatestTxBlock() throws IOException {
+    public Rep<TxBlock> getLatestTxBlock() throws IOException, ZilliqaAPIException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetLatestTxBlock").params(new String[]{""}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Rep<TxBlock> rep = gson.fromJson(resultString, new TypeToken<Rep<TxBlock>>() {
         }.getType());
+        if (null == rep.getResult()) {
+            throw new ZilliqaAPIException(parseError(resultString));
+        }
         return rep;
     }
 
-    public Rep<String> getNumTransactions() throws IOException {
+    public Rep<String> getNumTransactions() throws IOException, ZilliqaAPIException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetNumTransactions").params(new String[]{""}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Type type = new TypeToken<Rep<String>>() {
         }.getType();
         Rep<String> rep = gson.fromJson(resultString, type);
+        if (null == rep.getResult()) {
+            throw new ZilliqaAPIException(parseError(resultString));
+        }
         return rep;
     }
 
-    public Rep<Integer> getTransactionRate() throws IOException {
+    public Rep<Integer> getTransactionRate() throws IOException, ZilliqaAPIException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetTransactionRate").params(new String[]{""}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Type type = new TypeToken<Rep<Integer>>() {
         }.getType();
         Rep<Integer> rep = gson.fromJson(resultString, type);
+        if (null == rep.getResult()) {
+            throw new ZilliqaAPIException(parseError(resultString));
+        }
         return rep;
     }
 
-    public Rep<String> getCurrentMiniEpoch() throws IOException {
+    public Rep<String> getCurrentMiniEpoch() throws IOException, ZilliqaAPIException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetCurrentMiniEpoch").params(new String[]{""}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Type type = new TypeToken<Rep<String>>() {
         }.getType();
         Rep<String> rep = gson.fromJson(resultString, type);
+        if (null == rep.getResult()) {
+            throw new ZilliqaAPIException(parseError(resultString));
+        }
         return rep;
     }
 
-    public Rep<String> getCurrentDSEpoch() throws IOException {
+    public Rep<String> getCurrentDSEpoch() throws IOException, ZilliqaAPIException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetCurrentDSEpoch").params(new String[]{""}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Type type = new TypeToken<Rep<String>>() {
         }.getType();
         Rep<String> rep = gson.fromJson(resultString, type);
+        if (null == rep.getResult()) {
+            throw new ZilliqaAPIException(parseError(resultString));
+        }
         return rep;
     }
 
-    public Rep<Integer> getPrevDifficulty() throws IOException {
+    public Rep<Integer> getPrevDifficulty() throws IOException, ZilliqaAPIException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetPrevDifficulty").params(new String[]{""}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Type type = new TypeToken<Rep<Integer>>() {
         }.getType();
         Rep<Integer> rep = gson.fromJson(resultString, type);
+        if (null == rep.getResult()) {
+            throw new ZilliqaAPIException(parseError(resultString));
+        }
         return rep;
     }
 
-    public Rep<Integer> getPrevDSDifficulty() throws IOException {
+    public Rep<Integer> getPrevDSDifficulty() throws IOException, ZilliqaAPIException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetPrevDSDifficulty").params(new String[]{""}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Type type = new TypeToken<Rep<Integer>>() {
         }.getType();
         Rep<Integer> rep = gson.fromJson(resultString, type);
+        if (null == rep.getResult()) {
+            throw new ZilliqaAPIException(parseError(resultString));
+        }
         return rep;
     }
 
@@ -238,6 +299,7 @@ public class HttpProvider {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetBalance").params(new String[]{address}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
+        System.out.println(resultString);
         Type type = new TypeToken<Rep<BalanceResult>>() {
         }.getType();
         Rep<BalanceResult> rep = gson.fromJson(resultString, type);
@@ -257,74 +319,95 @@ public class HttpProvider {
     }
 
     //Contract-related methods todo need test
-    public Rep<ContractResult> getSmartContractCode(String address) throws IOException {
+    public Rep<ContractResult> getSmartContractCode(String address) throws IOException, ZilliqaAPIException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetSmartContractCode").params(new String[]{address}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Type type = new TypeToken<Rep<ContractResult>>() {
         }.getType();
         Rep<ContractResult> rep = gson.fromJson(resultString, type);
+        if (null == rep.getResult()) {
+            throw new ZilliqaAPIException(parseError(resultString));
+        }
         return rep;
     }
 
-    public Rep<List<Contract>> getSmartContracts(String address) throws IOException {
+    public Rep<List<Contract>> getSmartContracts(String address) throws IOException, ZilliqaAPIException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetSmartContracts").params(new String[]{address}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Type type = new TypeToken<Rep<List<Contract>>>() {
         }.getType();
         Rep<List<Contract>> rep = gson.fromJson(resultString, type);
+        if (null == rep.getResult()) {
+            throw new ZilliqaAPIException(parseError(resultString));
+        }
         return rep;
     }
 
-    public Rep<String> getContractAddressFromTransactionID(String address) throws IOException {
+    public Rep<String> getContractAddressFromTransactionID(String address) throws IOException, ZilliqaAPIException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetContractAddressFromTransactionID").params(new String[]{address}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Type type = new TypeToken<Rep<String>>() {
         }.getType();
         Rep<String> rep = gson.fromJson(resultString, type);
+        if (null == rep.getResult()) {
+            throw new ZilliqaAPIException(parseError(resultString));
+        }
         return rep;
     }
 
-    public Rep<List<Contract.State>> getSmartContractState(String address) throws IOException {
+    public Rep<List<Contract.State>> getSmartContractState(String address) throws IOException, ZilliqaAPIException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetSmartContractState").params(new String[]{address}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Type type = new TypeToken<Rep<List<Contract.State>>>() {
         }.getType();
         Rep<List<Contract.State>> rep = gson.fromJson(resultString, type);
+        if (null == rep.getResult()) {
+            throw new ZilliqaAPIException(parseError(resultString));
+        }
         return rep;
     }
 
-    public Rep<List<Contract.State>> getSmartContractInit(String address) throws IOException {
+    public Rep<List<Contract.State>> getSmartContractInit(String address) throws IOException, ZilliqaAPIException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetSmartContractInit").params(new String[]{address}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Type type = new TypeToken<Rep<List<Contract.State>>>() {
         }.getType();
         Rep<List<Contract.State>> rep = gson.fromJson(resultString, type);
+        if (null == rep.getResult()) {
+            throw new ZilliqaAPIException(parseError(resultString));
+        }
         return rep;
     }
 
     //Transaction-related methods
-    public Rep<CreateTxResult> createTransaction(TransactionPayload payload) throws IOException {
+    public Rep<CreateTxResult> createTransaction(TransactionPayload payload) throws IOException, ZilliqaAPIException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("CreateTransaction").params(new Object[]{payload}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Type type = new TypeToken<Rep<CreateTxResult>>() {
         }.getType();
         Rep<CreateTxResult> rep = gson.fromJson(resultString, type);
+        if (null == rep.getResult()) {
+            throw new ZilliqaAPIException(parseError(resultString));
+        }
         return rep;
     }
 
-    public Rep<String> getMinimumGasPrice() throws IOException {
+    public Rep<String> getMinimumGasPrice() throws IOException, ZilliqaAPIException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetMinimumGasPrice").params(new String[]{""}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Type type = new TypeToken<Rep<String>>() {
         }.getType();
         Rep<String> rep = gson.fromJson(resultString, type);
+        if (null == rep.getResult()) {
+            throw new ZilliqaAPIException(parseError(resultString));
+        }
         return rep;
     }
 
@@ -349,13 +432,16 @@ public class HttpProvider {
     }
 
 
-    public Rep<TransactionList> getRecentTransactions() throws IOException {
+    public Rep<TransactionList> getRecentTransactions() throws IOException, ZilliqaAPIException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetRecentTransactions").params(new String[]{""}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Type type = new TypeToken<Rep<TransactionList>>() {
         }.getType();
         Rep<TransactionList> rep = gson.fromJson(resultString, type);
+        if (null == rep.getResult()) {
+            throw new ZilliqaAPIException(parseError(resultString));
+        }
         return rep;
     }
 
@@ -378,23 +464,29 @@ public class HttpProvider {
     }
 
 
-    public Rep<String> getNumTxnsTxEpoch() throws IOException {
+    public Rep<String> getNumTxnsTxEpoch() throws IOException, ZilliqaAPIException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetNumTxnsTxEpoch").params(new String[]{""}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Type type = new TypeToken<Rep<String>>() {
         }.getType();
         Rep<String> rep = gson.fromJson(resultString, type);
+        if (null == rep.getResult()) {
+            throw new ZilliqaAPIException(parseError(resultString));
+        }
         return rep;
     }
 
-    public Rep<String> getNumTxnsDSEpoch() throws IOException {
+    public Rep<String> getNumTxnsDSEpoch() throws IOException, ZilliqaAPIException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetNumTxnsDSEpoch").params(new String[]{""}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
         Type type = new TypeToken<Rep<String>>() {
         }.getType();
         Rep<String> rep = gson.fromJson(resultString, type);
+        if (null == rep.getResult()) {
+            throw new ZilliqaAPIException(parseError(resultString));
+        }
         return rep;
     }
 
@@ -430,5 +522,11 @@ public class HttpProvider {
                     ", TranID='" + TranID + '\'' +
                     '}';
         }
+    }
+
+    public String parseError(String error) {
+        JsonObject root = gson.fromJson(error, JsonObject.class);
+        JsonObject err = root.getAsJsonObject("error");
+        return err.get("message").getAsString();
     }
 }
