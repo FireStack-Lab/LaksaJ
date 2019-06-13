@@ -2,6 +2,7 @@ package com.firestack.laksaj.contract;
 
 import com.firestack.laksaj.account.Account;
 import com.firestack.laksaj.account.Wallet;
+import com.firestack.laksaj.exception.ZilliqaAPIException;
 import com.firestack.laksaj.jsonrpc.HttpProvider;
 import com.firestack.laksaj.transaction.Transaction;
 import com.firestack.laksaj.transaction.TxStatus;
@@ -147,6 +148,8 @@ public class Contract {
             return this.provider.getSmartContractState(this.address.replace("0x", "").toLowerCase()).getResult();
 
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ZilliqaAPIException e) {
             e.printStackTrace();
         }
 

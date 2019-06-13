@@ -192,7 +192,7 @@ public class ProviderTest {
     @Test
     public void parseError() {
         HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
-        String message = client.parseError("{\"error\":{\"code\":-8,\"data\":null,\"message\":\"Address size not appropriate\"},\"id\":\"1\",\"jsonrpc\":\"2.0\"}\n");
-        Assert.assertEquals("Address size not appropriate", message);
+        HttpProvider.Pair pair = client.parseError("{\"error\":{\"code\":-8,\"data\":null,\"message\":\"Address size not appropriate\"},\"id\":\"1\",\"jsonrpc\":\"2.0\"}\n");
+        Assert.assertEquals("Address size not appropriate", pair.getMessage());
     }
 }
