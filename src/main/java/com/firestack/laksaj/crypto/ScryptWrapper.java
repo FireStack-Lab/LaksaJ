@@ -1,6 +1,7 @@
 package com.firestack.laksaj.crypto;
 
-import org.spongycastle.crypto.generators.SCrypt;
+
+import org.bouncycastle.crypto.generators.SCrypt;
 
 //http://tools.ietf.org/html/draft-josefsson-scrypt-kdf-01
 public class ScryptWrapper {
