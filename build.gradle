@@ -16,7 +16,7 @@ sourceCompatibility = 1.8
 dependencies {
     compile files(org.gradle.internal.jvm.Jvm.current().toolsJar)
     compile group: 'junit', name: 'junit', version: '4.12'
-    compile "org.web3j:core:4.1.0" 
+    compile "org.web3j:core:4.2.0" 
     compileOnly("org.projectlombok:lombok:1.18.4") 
     annotationProcessor "org.projectlombok:lombok:1.18.4"
     compile 'com.google.guava:guava:27.0.1-jre'
