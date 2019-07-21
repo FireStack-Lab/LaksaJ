@@ -43,18 +43,19 @@ public class KeyStore {
     public String encryptPrivateKey(String privateKey, String passphrase, KDFType type) throws Exception {
         String address = KeyTools.getAddressFromPrivateKey(privateKey);
         byte[] iv = KeyTools.generateRandomBytes(16);
-        byte[] salt = KeyTools.generateRandomBytes(32);
+        byte[] saltArray = KeyTools.generateRandomBytes(32);
+        String salt = ByteUtil.byteArrayToHexString(saltArray);
         byte[] derivedKey;
         if (type.equals(KDFType.PBKDF2)) {
             PBKDF2Params pbkdf2Params = PBKDF2Params.builder()
-                    .salt(ByteUtil.byteArrayToHexString(salt))
+                    .salt(salt)
                     .dkLen(32)
                     .count(262144)
                     .build();
             derivedKey = getDerivedKey(passphrase.getBytes(), pbkdf2Params);
         } else {
             ScryptParams scryptParams = ScryptParams.builder()
-                    .salt(ByteUtil.byteArrayToHexString(salt))
+                    .salt(salt)
                     .dkLen(32)
                     .p(1)
                     .r(8)
@@ -71,7 +72,7 @@ public class KeyStore {
         SecretKeySpec secretKeySpec = new SecretKeySpec(encryptKey, "AES");
         cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec, ivParameterSpec);
         byte[] ciphertext = cipher.doFinal(ByteUtil.hexStringToByteArray(privateKey));
-        byte[] mac = generateMac(derivedKey, ciphertext);
+        byte[] mac = generateMac(derivedKey, ciphertext,iv);
 
         //build struct
         CipherParams cipherParams = CipherParams.builder().iv(ByteUtil.byteArrayToHexString(iv)).build();
@@ -129,9 +130,9 @@ public class KeyStore {
         private int r = 8;
         private int p = 1;
         private int dklen = 32;
-        private byte[] salt;
+        private String salt;
 
-        public kdfparams(byte[] salt) {
+        public kdfparams(String salt) {
             this.salt = salt;
         }
     }
@@ -145,14 +146,14 @@ public class KeyStore {
         byte[] derivedKey;
         if (kdf.equals("pbkdf2")) {
             PBKDF2Params pbkdf2Params = PBKDF2Params.builder()
-                    .salt(ByteUtil.byteArrayToHexString(kp.salt))
+                    .salt(kp.salt)
                     .dkLen(32)
                     .count(262144)
                     .build();
             derivedKey = getDerivedKey(passphrase.getBytes(), pbkdf2Params);
         } else {
             ScryptParams scryptParams = ScryptParams.builder()
-                    .salt(ByteUtil.byteArrayToHexString(kp.salt))
+                    .salt(kp.salt)
                     .dkLen(32)
                     .p(1)
                     .r(8)
@@ -160,8 +161,8 @@ public class KeyStore {
                     .build();
             derivedKey = getDerivedKey(passphrase.getBytes(), scryptParams);
         }
-        String mac = ByteUtil.byteArrayToHexString(generateMac(derivedKey, ciphertext));
-        if (!mac.toUpperCase().equals(keystoreV3.crypto.mac)) {
+        String mac = ByteUtil.byteArrayToHexString(generateMac(derivedKey, ciphertext,iv));
+        if (!mac.toUpperCase().equals(keystoreV3.crypto.mac.toUpperCase())) {
             throw new IllegalAccessException("Failed to decrypt.");
         }
         IvParameterSpec ivParameterSpec = new IvParameterSpec(iv);
