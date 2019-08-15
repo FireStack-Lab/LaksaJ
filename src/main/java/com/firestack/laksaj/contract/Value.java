@@ -8,6 +8,6 @@ import lombok.Data;
 public class Value {
     private String vname;
     private String type;
-    private String value;
+    private Object value;
 }
 
