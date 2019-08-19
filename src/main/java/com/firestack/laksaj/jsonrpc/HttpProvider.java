@@ -544,12 +544,14 @@ public class HttpProvider {
     public static class CreateTxResult {
         private String Info;
         private String TranID;
+        private String ContractAddress;
 
         @Override
         public String toString() {
             return "CreateTxResult{" +
                     "Info='" + Info + '\'' +
                     ", TranID='" + TranID + '\'' +
+                    ", ContractAddress='" + ContractAddress + '\'' +
                     '}';
         }
     }
