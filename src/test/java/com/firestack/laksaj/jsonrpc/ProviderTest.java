@@ -9,6 +9,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -158,9 +159,20 @@ public class ProviderTest {
 
     @Test
     public void getSmartContractState() throws IOException, ZilliqaAPIException {
-        HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
-        String stateList = client.getSmartContractState("a11de7664F55F5bDf8544a9aC711691D01378b4c");
+        HttpProvider client = new HttpProvider("https://mainnet-cashew-api.mainnet.aws.zilliqa.com");
+        String stateList = client.getSmartContractState("9611c53BE6d1b32058b2747bdeCECed7e1216793");
         System.out.println(stateList);
+    }
+
+    @Test
+    public void getSmartContractSubState() throws IOException {
+        HttpProvider client = new HttpProvider("https://mainnet-cashew-api.mainnet.aws.zilliqa.com");
+        List<Object> param = new ArrayList<>();
+        param.add("9611c53BE6d1b32058b2747bdeCECed7e1216793");
+        param.add("admins");
+        param.add(new ArrayList<>());
+        String state = client.getSmartContractSubState(param);
+        System.out.println(state);
     }
 
     @Test

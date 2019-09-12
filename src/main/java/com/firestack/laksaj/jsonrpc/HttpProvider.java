@@ -389,7 +389,7 @@ public class HttpProvider {
         return resultString;
     }
 
-    public String getSmartContractSubState(List<String> param) throws IOException {
+    public String getSmartContractSubState(List<Object> param) throws IOException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetSmartContractSubState").params(param.toArray()).build();
         Response response = client.newCall(buildRequest(req)).execute();
         return Objects.requireNonNull(response.body()).string();
