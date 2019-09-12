@@ -3,6 +3,7 @@ package com.firestack.laksaj.jsonrpc;
 import com.firestack.laksaj.blockchain.*;
 import com.firestack.laksaj.exception.ZilliqaAPIException;
 import com.firestack.laksaj.transaction.Transaction;
+import com.google.gson.JsonObject;
 import okhttp3.OkHttpClient;
 import org.junit.Assert;
 import org.junit.Test;
@@ -158,35 +159,8 @@ public class ProviderTest {
     @Test
     public void getSmartContractState() throws IOException, ZilliqaAPIException {
         HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
-        List<Contract.State> stateList = client.getSmartContractState("D6606D02DFF929593312D8D0D36105E376F95AA0").getResult();
+        String stateList = client.getSmartContractState("a11de7664F55F5bDf8544a9aC711691D01378b4c");
         System.out.println(stateList);
-    }
-
-    @Test
-    public void getNumTxnsTxEpoch() throws IOException, InterruptedException, ZilliqaAPIException {
-        HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
-        String lastEpoch = client.getNumTxnsTxEpoch().getResult();
-        List<Contract.State> lastStateList = client.getSmartContractState("D6606D02DFF929593312D8D0D36105E376F95AA0").getResult();
-
-        System.out.println("last epoch is " + lastEpoch);
-        System.out.println("last state:" + lastStateList);
-
-        int n = 0;
-
-        while (true) {
-            String epoch = client.getNumTxnsTxEpoch().getResult();
-            System.out.println(n + "th current epoch is: " + epoch);
-            if (!lastEpoch.equals(epoch)) {
-                System.out.println("epoch hash changed");
-                List<Contract.State> stateList = client.getSmartContractState("D6606D02DFF929593312D8D0D36105E376F95AA0").getResult();
-                System.out.println("last state: " + lastStateList);
-                System.out.println("current state: " + stateList);
-                lastEpoch = epoch;
-                lastStateList = stateList;
-            }
-            Thread.sleep(3000);
-            n += 1;
-        }
     }
 
     @Test
