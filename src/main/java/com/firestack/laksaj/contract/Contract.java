@@ -163,22 +163,4 @@ public class Contract {
     public boolean isRejected() {
         return ContractStatus.Rejected.equals(this.contractStatus);
     }
-
-    public List<com.firestack.laksaj.blockchain.Contract.State> getState() {
-
-        if (!ContractStatus.Deployed.equals(this.contractStatus)) {
-            new ArrayList();
-        }
-
-        try {
-            return this.provider.getSmartContractState(this.address.replace("0x", "").toLowerCase()).getResult();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ZilliqaAPIException e) {
-            e.printStackTrace();
-        }
-
-        return state;
-    }
 }
