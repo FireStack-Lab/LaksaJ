@@ -387,7 +387,7 @@ maven:
 <dependency>
   <groupId>org.firestack</groupId>
   <artifactId>laksaj</artifactId>
-  <version>0.4.5-SNAPSHOT</version>
+  <version>1.0.5-SNAPSHOT</version>
 </dependency>
 ```
 

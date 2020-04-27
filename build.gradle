@@ -8,7 +8,7 @@ repositories {
 
 
 group 'com.firestack'
-version '1.0.4-RELEASE'
+version '1.0.5-RELEASE'
 
 
 sourceCompatibility = 1.8
@@ -66,7 +66,7 @@ publishing {
             customizePom(pom)
             groupId = 'org.firestack'
             artifactId = 'laksaj'
-            version = '1.0.4-RELEASE'
+            version = '1.0.5-RELEASE'
             from components.java
 
             // create the sign pom artifact
