@@ -65,7 +65,7 @@ public class Contract {
                 .toAddr(NIL_ADDRESS)
                 .amount("0")
                 .code(this.code.replace("/\\", ""))
-                .data(gson.toJson(this.init).replace("/\\",""))
+                .data(gson.toJson(this.init).replace("/\\", ""))
                 .provider(this.provider)
                 .build();
         transaction = this.prepareTx(transaction, attempts, interval);
@@ -79,6 +79,27 @@ public class Contract {
         this.address = ContractFactory.getAddressForContract(transaction);
         Pair<Transaction, Contract> pair = new Pair<>(transaction, this);
         return pair;
+    }
+
+    public HttpProvider.CreateTxResult deployWithoutConfirm(DeployParams params) throws Exception {
+        if (null == this.code || this.code.isEmpty() || null == this.init || this.init.length == 0) {
+            throw new IllegalArgumentException("Cannot deploy without code or initialisation parameters.");
+        }
+        Gson gson = new Gson();
+        Transaction transaction = Transaction.builder()
+                .ID(params.getID())
+                .version(params.getVersion())
+                .nonce(params.getNonce())
+                .gasPrice(params.getGasPrice())
+                .gasLimit(params.getGasLimit())
+                .senderPubKey(params.getSenderPubKey())
+                .toAddr(NIL_ADDRESS)
+                .amount("0")
+                .code(this.code.replace("/\\", ""))
+                .data(gson.toJson(this.init).replace("/\\", ""))
+                .provider(this.provider)
+                .build();
+        return this.prepareTx(transaction);
     }
 
     @Data
@@ -111,6 +132,11 @@ public class Contract {
 
     }
 
+    public HttpProvider.CreateTxResult prepareTx(Transaction tx) throws Exception {
+        tx = signer.sign(tx);
+        HttpProvider.CreateTxResult createTxResult = provider.createTransaction(tx.toTransactionPayload()).getResult();
+        return createTxResult;
+    }
 
     public Transaction prepareTx(Transaction tx, int attempts, int interval) throws Exception {
         tx = signer.sign(tx);
@@ -136,23 +162,5 @@ public class Contract {
 
     public boolean isRejected() {
         return ContractStatus.Rejected.equals(this.contractStatus);
-    }
-
-    public List<com.firestack.laksaj.blockchain.Contract.State> getState() {
-
-        if (!ContractStatus.Deployed.equals(this.contractStatus)) {
-            new ArrayList();
-        }
-
-        try {
-            return this.provider.getSmartContractState(this.address.replace("0x", "").toLowerCase()).getResult();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ZilliqaAPIException e) {
-            e.printStackTrace();
-        }
-
-        return state;
     }
 }

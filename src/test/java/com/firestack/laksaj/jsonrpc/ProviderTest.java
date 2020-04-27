@@ -3,11 +3,13 @@ package com.firestack.laksaj.jsonrpc;
 import com.firestack.laksaj.blockchain.*;
 import com.firestack.laksaj.exception.ZilliqaAPIException;
 import com.firestack.laksaj.transaction.Transaction;
+import com.google.gson.JsonObject;
 import okhttp3.OkHttpClient;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -130,7 +132,7 @@ public class ProviderTest {
     @Test
     public void getTransaction() throws IOException {
         HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
-        Transaction transaction = client.getTransaction("ce918e4c77ed40f3a23588bd3c380458b43be168935d468e2e6f680724e71474").getResult();
+        Transaction transaction = client.getTransaction("055294ba67b3073d66ef078fb149dfb0490b2d46156479a9f2c9327fb762f4e9").getResult();
         System.out.println(transaction);
     }
 
@@ -157,36 +159,20 @@ public class ProviderTest {
 
     @Test
     public void getSmartContractState() throws IOException, ZilliqaAPIException {
-        HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
-        List<Contract.State> stateList = client.getSmartContractState("D6606D02DFF929593312D8D0D36105E376F95AA0").getResult();
+        HttpProvider client = new HttpProvider("https://mainnet-cashew-api.mainnet.aws.zilliqa.com");
+        String stateList = client.getSmartContractState("9611c53BE6d1b32058b2747bdeCECed7e1216793");
         System.out.println(stateList);
     }
 
     @Test
-    public void getNumTxnsTxEpoch() throws IOException, InterruptedException, ZilliqaAPIException {
-        HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
-        String lastEpoch = client.getNumTxnsTxEpoch().getResult();
-        List<Contract.State> lastStateList = client.getSmartContractState("D6606D02DFF929593312D8D0D36105E376F95AA0").getResult();
-
-        System.out.println("last epoch is " + lastEpoch);
-        System.out.println("last state:" + lastStateList);
-
-        int n = 0;
-
-        while (true) {
-            String epoch = client.getNumTxnsTxEpoch().getResult();
-            System.out.println(n + "th current epoch is: " + epoch);
-            if (!lastEpoch.equals(epoch)) {
-                System.out.println("epoch hash changed");
-                List<Contract.State> stateList = client.getSmartContractState("D6606D02DFF929593312D8D0D36105E376F95AA0").getResult();
-                System.out.println("last state: " + lastStateList);
-                System.out.println("current state: " + stateList);
-                lastEpoch = epoch;
-                lastStateList = stateList;
-            }
-            Thread.sleep(3000);
-            n += 1;
-        }
+    public void getSmartContractSubState() throws IOException {
+        HttpProvider client = new HttpProvider("https://mainnet-cashew-api.mainnet.aws.zilliqa.com");
+        List<Object> param = new ArrayList<>();
+        param.add("9611c53BE6d1b32058b2747bdeCECed7e1216793");
+        param.add("admins");
+        param.add(new ArrayList<>());
+        String state = client.getSmartContractSubState(param);
+        System.out.println(state);
     }
 
     @Test

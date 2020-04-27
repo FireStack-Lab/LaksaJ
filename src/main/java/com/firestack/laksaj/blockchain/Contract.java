@@ -10,7 +10,7 @@ public class Contract {
     @Data
     public static class State {
         private String type;
-        private String value;
+        private Object value;
         private String vname;
     }
 }

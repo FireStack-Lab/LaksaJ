@@ -2,7 +2,7 @@ package com.firestack.laksaj.crypto;
 
 import lombok.Builder;
 import lombok.Data;
-import org.spongycastle.util.encoders.Hex;
+import org.bouncycastle.util.encoders.Hex;
 
 import java.math.BigInteger;
 

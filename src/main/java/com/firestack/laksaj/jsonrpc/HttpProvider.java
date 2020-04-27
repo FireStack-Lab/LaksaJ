@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -46,7 +47,7 @@ public class HttpProvider {
         Rep<String> rep = gson.fromJson(resultString, type);
         if (null == rep.getResult()) {
             Pair pair = parseError(resultString);
-            throw new ZilliqaAPIException(pair.getMessage(),pair.getCode());
+            throw new ZilliqaAPIException(pair.getMessage(), pair.getCode());
         }
         return rep;
     }
@@ -60,7 +61,7 @@ public class HttpProvider {
         Rep<BlockchainInfo> rep = gson.fromJson(resultString, type);
         if (null == rep.getResult()) {
             Pair pair = parseError(resultString);
-            throw new ZilliqaAPIException(pair.getMessage(),pair.getCode());
+            throw new ZilliqaAPIException(pair.getMessage(), pair.getCode());
         }
         return rep;
     }
@@ -74,7 +75,7 @@ public class HttpProvider {
         Rep<ShardingStructure> rep = gson.fromJson(resultString, type);
         if (null == rep.getResult()) {
             Pair pair = parseError(resultString);
-            throw new ZilliqaAPIException(pair.getMessage(),pair.getCode());
+            throw new ZilliqaAPIException(pair.getMessage(), pair.getCode());
         }
         return rep;
 
@@ -89,7 +90,7 @@ public class HttpProvider {
         Rep<BlockList> rep = gson.fromJson(resultString, type);
         if (null == rep.getResult()) {
             Pair pair = parseError(resultString);
-            throw new ZilliqaAPIException(pair.getMessage(),pair.getCode());
+            throw new ZilliqaAPIException(pair.getMessage(), pair.getCode());
         }
         return rep;
     }
@@ -103,7 +104,7 @@ public class HttpProvider {
         Rep<BlockList> rep = gson.fromJson(resultString, type);
         if (null == rep.getResult()) {
             Pair pair = parseError(resultString);
-            throw new ZilliqaAPIException(pair.getMessage(),pair.getCode());
+            throw new ZilliqaAPIException(pair.getMessage(), pair.getCode());
         }
         return rep;
     }
@@ -117,7 +118,7 @@ public class HttpProvider {
         Rep<String> rep = gson.fromJson(resultString, type);
         if (null == rep.getResult()) {
             Pair pair = parseError(resultString);
-            throw new ZilliqaAPIException(pair.getMessage(),pair.getCode());
+            throw new ZilliqaAPIException(pair.getMessage(), pair.getCode());
         }
         return rep;
     }
@@ -131,7 +132,7 @@ public class HttpProvider {
         Rep<Double> rep = gson.fromJson(resultString, type);
         if (null == rep.getResult()) {
             Pair pair = parseError(resultString);
-            throw new ZilliqaAPIException(pair.getMessage(),pair.getCode());
+            throw new ZilliqaAPIException(pair.getMessage(), pair.getCode());
         }
         return rep;
     }
@@ -145,7 +146,7 @@ public class HttpProvider {
         Rep<BlockList> rep = gson.fromJson(resultString, type);
         if (null == rep.getResult()) {
             Pair pair = parseError(resultString);
-            throw new ZilliqaAPIException(pair.getMessage(),pair.getCode());
+            throw new ZilliqaAPIException(pair.getMessage(), pair.getCode());
         }
         return rep;
     }
@@ -159,7 +160,7 @@ public class HttpProvider {
         Rep<DsBlock> rep = gson.fromJson(resultString, type);
         if (null == rep.getResult()) {
             Pair pair = parseError(resultString);
-            throw new ZilliqaAPIException(pair.getMessage(),pair.getCode());
+            throw new ZilliqaAPIException(pair.getMessage(), pair.getCode());
         }
         return rep;
     }
@@ -172,7 +173,7 @@ public class HttpProvider {
         }.getType());
         if (null == rep.getResult()) {
             Pair pair = parseError(resultString);
-            throw new ZilliqaAPIException(pair.getMessage(),pair.getCode());
+            throw new ZilliqaAPIException(pair.getMessage(), pair.getCode());
         }
         return rep;
     }
@@ -186,7 +187,7 @@ public class HttpProvider {
         Rep<String> rep = gson.fromJson(resultString, type);
         if (null == rep.getResult()) {
             Pair pair = parseError(resultString);
-            throw new ZilliqaAPIException(pair.getMessage(),pair.getCode());
+            throw new ZilliqaAPIException(pair.getMessage(), pair.getCode());
         }
         return rep;
     }
@@ -200,7 +201,7 @@ public class HttpProvider {
         Rep<Double> rep = gson.fromJson(resultString, type);
         if (null == rep.getResult()) {
             Pair pair = parseError(resultString);
-            throw new ZilliqaAPIException(pair.getMessage(),pair.getCode());
+            throw new ZilliqaAPIException(pair.getMessage(), pair.getCode());
         }
         return rep;
     }
@@ -213,7 +214,7 @@ public class HttpProvider {
         }.getType());
         if (null == rep.getResult()) {
             Pair pair = parseError(resultString);
-            throw new ZilliqaAPIException(pair.getMessage(),pair.getCode());
+            throw new ZilliqaAPIException(pair.getMessage(), pair.getCode());
         }
         return rep;
     }
@@ -226,7 +227,7 @@ public class HttpProvider {
         }.getType());
         if (null == rep.getResult()) {
             Pair pair = parseError(resultString);
-            throw new ZilliqaAPIException(pair.getMessage(),pair.getCode());
+            throw new ZilliqaAPIException(pair.getMessage(), pair.getCode());
         }
         return rep;
     }
@@ -240,7 +241,7 @@ public class HttpProvider {
         Rep<String> rep = gson.fromJson(resultString, type);
         if (null == rep.getResult()) {
             Pair pair = parseError(resultString);
-            throw new ZilliqaAPIException(pair.getMessage(),pair.getCode());
+            throw new ZilliqaAPIException(pair.getMessage(), pair.getCode());
         }
         return rep;
     }
@@ -254,7 +255,7 @@ public class HttpProvider {
         Rep<Integer> rep = gson.fromJson(resultString, type);
         if (null == rep.getResult()) {
             Pair pair = parseError(resultString);
-            throw new ZilliqaAPIException(pair.getMessage(),pair.getCode());
+            throw new ZilliqaAPIException(pair.getMessage(), pair.getCode());
         }
         return rep;
     }
@@ -268,7 +269,7 @@ public class HttpProvider {
         Rep<String> rep = gson.fromJson(resultString, type);
         if (null == rep.getResult()) {
             Pair pair = parseError(resultString);
-            throw new ZilliqaAPIException(pair.getMessage(),pair.getCode());
+            throw new ZilliqaAPIException(pair.getMessage(), pair.getCode());
         }
         return rep;
     }
@@ -282,7 +283,7 @@ public class HttpProvider {
         Rep<String> rep = gson.fromJson(resultString, type);
         if (null == rep.getResult()) {
             Pair pair = parseError(resultString);
-            throw new ZilliqaAPIException(pair.getMessage(),pair.getCode());
+            throw new ZilliqaAPIException(pair.getMessage(), pair.getCode());
         }
         return rep;
     }
@@ -296,7 +297,7 @@ public class HttpProvider {
         Rep<Integer> rep = gson.fromJson(resultString, type);
         if (null == rep.getResult()) {
             Pair pair = parseError(resultString);
-            throw new ZilliqaAPIException(pair.getMessage(),pair.getCode());
+            throw new ZilliqaAPIException(pair.getMessage(), pair.getCode());
         }
         return rep;
     }
@@ -310,7 +311,7 @@ public class HttpProvider {
         Rep<Integer> rep = gson.fromJson(resultString, type);
         if (null == rep.getResult()) {
             Pair pair = parseError(resultString);
-            throw new ZilliqaAPIException(pair.getMessage(),pair.getCode());
+            throw new ZilliqaAPIException(pair.getMessage(), pair.getCode());
         }
         return rep;
     }
@@ -348,7 +349,7 @@ public class HttpProvider {
         Rep<ContractResult> rep = gson.fromJson(resultString, type);
         if (null == rep.getResult()) {
             Pair pair = parseError(resultString);
-            throw new ZilliqaAPIException(pair.getMessage(),pair.getCode());
+            throw new ZilliqaAPIException(pair.getMessage(), pair.getCode());
         }
         return rep;
     }
@@ -362,7 +363,7 @@ public class HttpProvider {
         Rep<List<Contract>> rep = gson.fromJson(resultString, type);
         if (null == rep.getResult()) {
             Pair pair = parseError(resultString);
-            throw new ZilliqaAPIException(pair.getMessage(),pair.getCode());
+            throw new ZilliqaAPIException(pair.getMessage(), pair.getCode());
         }
         return rep;
     }
@@ -376,23 +377,22 @@ public class HttpProvider {
         Rep<String> rep = gson.fromJson(resultString, type);
         if (null == rep.getResult()) {
             Pair pair = parseError(resultString);
-            throw new ZilliqaAPIException(pair.getMessage(),pair.getCode());
+            throw new ZilliqaAPIException(pair.getMessage(), pair.getCode());
         }
         return rep;
     }
 
-    public Rep<List<Contract.State>> getSmartContractState(String address) throws IOException, ZilliqaAPIException {
+    public String getSmartContractState(String address) throws IOException, ZilliqaAPIException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetSmartContractState").params(new String[]{address}).build();
         Response response = client.newCall(buildRequest(req)).execute();
         String resultString = Objects.requireNonNull(response.body()).string();
-        Type type = new TypeToken<Rep<List<Contract.State>>>() {
-        }.getType();
-        Rep<List<Contract.State>> rep = gson.fromJson(resultString, type);
-        if (null == rep.getResult()) {
-            Pair pair = parseError(resultString);
-            throw new ZilliqaAPIException(pair.getMessage(),pair.getCode());
-        }
-        return rep;
+        return resultString;
+    }
+
+    public String getSmartContractSubState(List<Object> param) throws IOException {
+        Req req = Req.builder().id("1").jsonrpc("2.0").method("GetSmartContractSubState").params(param.toArray()).build();
+        Response response = client.newCall(buildRequest(req)).execute();
+        return Objects.requireNonNull(response.body()).string();
     }
 
     public Rep<List<Contract.State>> getSmartContractInit(String address) throws IOException, ZilliqaAPIException {
@@ -404,7 +404,7 @@ public class HttpProvider {
         Rep<List<Contract.State>> rep = gson.fromJson(resultString, type);
         if (null == rep.getResult()) {
             Pair pair = parseError(resultString);
-            throw new ZilliqaAPIException(pair.getMessage(),pair.getCode());
+            throw new ZilliqaAPIException(pair.getMessage(), pair.getCode());
         }
         return rep;
     }
@@ -419,7 +419,7 @@ public class HttpProvider {
         Rep<CreateTxResult> rep = gson.fromJson(resultString, type);
         if (null == rep.getResult()) {
             Pair pair = parseError(resultString);
-            throw new ZilliqaAPIException(pair.getMessage(),pair.getCode());
+            throw new ZilliqaAPIException(pair.getMessage(), pair.getCode());
         }
         return rep;
     }
@@ -433,11 +433,10 @@ public class HttpProvider {
         Rep<String> rep = gson.fromJson(resultString, type);
         if (null == rep.getResult()) {
             Pair pair = parseError(resultString);
-            throw new ZilliqaAPIException(pair.getMessage(),pair.getCode());
+            throw new ZilliqaAPIException(pair.getMessage(), pair.getCode());
         }
         return rep;
     }
-
 
     public Rep<Transaction> getTransaction(String hash) throws IOException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetTransaction").params(new String[]{hash}).build();
@@ -468,7 +467,7 @@ public class HttpProvider {
         Rep<TransactionList> rep = gson.fromJson(resultString, type);
         if (null == rep.getResult()) {
             Pair pair = parseError(resultString);
-            throw new ZilliqaAPIException(pair.getMessage(),pair.getCode());
+            throw new ZilliqaAPIException(pair.getMessage(), pair.getCode());
         }
         return rep;
     }
@@ -501,7 +500,7 @@ public class HttpProvider {
         Rep<String> rep = gson.fromJson(resultString, type);
         if (null == rep.getResult()) {
             Pair pair = parseError(resultString);
-            throw new ZilliqaAPIException(pair.getMessage(),pair.getCode());
+            throw new ZilliqaAPIException(pair.getMessage(), pair.getCode());
         }
         return rep;
     }
@@ -515,7 +514,7 @@ public class HttpProvider {
         Rep<String> rep = gson.fromJson(resultString, type);
         if (null == rep.getResult()) {
             Pair pair = parseError(resultString);
-            throw new ZilliqaAPIException(pair.getMessage(),pair.getCode());
+            throw new ZilliqaAPIException(pair.getMessage(), pair.getCode());
         }
         return rep;
     }
@@ -544,12 +543,14 @@ public class HttpProvider {
     public static class CreateTxResult {
         private String Info;
         private String TranID;
+        private String ContractAddress;
 
         @Override
         public String toString() {
             return "CreateTxResult{" +
                     "Info='" + Info + '\'' +
                     ", TranID='" + TranID + '\'' +
+                    ", ContractAddress='" + ContractAddress + '\'' +
                     '}';
         }
     }

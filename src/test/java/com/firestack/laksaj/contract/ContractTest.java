@@ -228,12 +228,13 @@ public class ContractTest {
         Contract contract = factory.newContract(code, (Value[]) init.toArray(), "");
         Integer nonce = Integer.valueOf(factory.getProvider().getBalance("9bfec715a6bd658fcb62b0f8cc9bfa2ade71434a").getResult().getNonce());
         DeployParams deployParams = DeployParams.builder().version(String.valueOf(pack(333, 1))).gasPrice("1000000000").gasLimit("10000").nonce(String.valueOf(nonce + 1)).senderPubKey("0246e7178dc8253201101e18fd6f6eb9972451d121fc57aa2a06dd5c111e58dc6a").build();
-        Pair<Transaction, Contract> result = contract.deploy(deployParams, 3000, 3);
+        System.out.println(contract.deployWithoutConfirm(deployParams));
+//        Pair<Transaction, Contract> result = contract.deploy(deployParams, 3000, 3);
 
-        System.out.println("result is: " + result.toString());
-
-        String transactionFee = new BigInteger(result.getKey().getReceipt().getCumulative_gas()).multiply(new BigInteger(result.getKey().getGasPrice())).toString();
-        System.out.println("transaction fee is: " + transactionFee);
+//        System.out.println("result is: " + result.toString());
+//
+//        String transactionFee = new BigInteger(result.getKey().getReceipt().getCumulative_gas()).multiply(new BigInteger(result.getKey().getGasPrice())).toString();
+//        System.out.println("transaction fee is: " + transactionFee);
     }
 
     @Test

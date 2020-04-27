@@ -27,7 +27,7 @@ public class KeyToolsTest {
     @Test
     public void generatePrivateKey() throws InvalidAlgorithmParameterException, NoSuchAlgorithmException, NoSuchProviderException {
         int i = 0;
-        while (i < 100000) {
+        while (i < 10) {
             i++;
             String privateKey = KeyTools.generatePrivateKey();
             if (privateKey.length() != 64) {
