@@ -15,4 +15,5 @@ public class TransactionReceipt {
     private String epoch_num;
     //optional JsonArray
     private List<Object> event_logs;
+    private List<Object> transitions;
 }
