@@ -165,6 +165,13 @@ public class ProviderTest {
     }
 
     @Test
+    public void getMinerInfo() throws IOException, ZilliqaAPIException {
+        HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
+        JsonObject minerInfo = client.getMinerInfo("5500").getResult();
+        System.out.println(minerInfo);
+    }
+
+    @Test
     public void getSmartContractState() throws IOException, ZilliqaAPIException {
         HttpProvider client = new HttpProvider("https://mainnet-cashew-api.mainnet.aws.zilliqa.com");
         String stateList = client.getSmartContractState("9611c53BE6d1b32058b2747bdeCECed7e1216793");
