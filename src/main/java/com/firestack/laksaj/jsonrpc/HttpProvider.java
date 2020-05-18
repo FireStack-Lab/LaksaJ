@@ -438,6 +438,26 @@ public class HttpProvider {
         return rep;
     }
 
+    @Data
+    public static class PendingResult {
+        private int code;
+        private boolean confirmed;
+        private String info;
+    }
+
+    public Rep<PendingResult> getPendingTnx(String hash) throws IOException {
+        Req req = Req.builder().id("1").jsonrpc("2.0").method("GetPendingTxn").params(new String[]{hash}).build();
+        Response response = client.newCall(buildRequest(req)).execute();
+        String resultString = Objects.requireNonNull(response.body()).string();
+        Type type = new TypeToken<Rep<PendingResult>>() {
+        }.getType();
+        Rep<PendingResult> rep = gson.fromJson(resultString, type);
+        if (rep.getResult() == null) {
+            throw new IOException("get result error = " + resultString);
+        }
+        return rep;
+    }
+
     public Rep<Transaction> getTransaction(String hash) throws IOException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetTransaction").params(new String[]{hash}).build();
         Response response = client.newCall(buildRequest(req)).execute();
