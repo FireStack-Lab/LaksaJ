@@ -3,6 +3,7 @@ package com.firestack.laksaj.jsonrpc;
 import com.firestack.laksaj.blockchain.*;
 import com.firestack.laksaj.exception.ZilliqaAPIException;
 import com.firestack.laksaj.transaction.Transaction;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import okhttp3.OkHttpClient;
 import org.junit.Assert;
@@ -134,6 +135,13 @@ public class ProviderTest {
         HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
         Transaction transaction = client.getTransaction("055294ba67b3073d66ef078fb149dfb0490b2d46156479a9f2c9327fb762f4e9").getResult();
         System.out.println(transaction);
+    }
+
+    @Test
+    public void getTxnBodiesForTxBlock() throws IOException {
+        HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
+        JsonArray result = client.getTxnBodiesForTxBlock("1000").getResult();
+        System.out.println(result);
     }
 
     @Test

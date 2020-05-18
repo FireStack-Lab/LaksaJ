@@ -7,6 +7,7 @@ import com.firestack.laksaj.transaction.TransactionPayload;
 import com.firestack.laksaj.utils.Bech32;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import lombok.Builder;
 import lombok.Data;
@@ -483,6 +484,21 @@ public class HttpProvider {
         }
         return rep;
     }
+
+    public Rep<JsonArray> getTxnBodiesForTxBlock(String txBlock) throws IOException {
+        Req req = Req.builder().id("1").jsonrpc("2.0").method("GetTxnBodiesForTxBlock").params(new String[]{txBlock}).build();
+        Response response = client.newCall(buildRequest(req)).execute();
+        String resultString = Objects.requireNonNull(response.body()).string();
+        Type type = new TypeToken<Rep<JsonArray>>() {
+        }.getType();
+        Rep<JsonArray> rep = gson.fromJson(resultString, type);
+        if (rep.getResult() == null) {
+            throw new IOException("get result error = " + resultString);
+        }
+        return rep;
+    }
+
+
 
     public Rep<Transaction> getTransaction32(String hash) throws Exception {
         Rep<Transaction> rep = getTransaction(hash);
