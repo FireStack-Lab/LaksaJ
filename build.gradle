@@ -8,7 +8,7 @@ repositories {
 
 
 group 'com.firestack'
-version '1.0.5-RELEASE'
+version '1.0.6-SNAPSHOT'
 
 
 sourceCompatibility = 1.8
@@ -66,7 +66,7 @@ publishing {
             customizePom(pom)
             groupId = 'org.firestack'
             artifactId = 'laksaj'
-            version = '1.0.5-RELEASE'
+            version = '1.0.6-SNAPSHOT'
             from components.java
 
             // create the sign pom artifact
@@ -103,11 +103,13 @@ publishing {
     }
     repositories {
         maven {
-//            url = "https://oss.sonatype.org/service/local/staging/deploy/maven2"
-            url = "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+            // snapshot
+            url = "https://oss.sonatype.org/content/repositories/snapshots"
+            // staging(release on page)
+            // url = "https://oss.sonatype.org/service/local/staging/deploy/maven2"
             credentials {
                 username 'xiaohuo'
-                password ''
+                password System.properties['mavenpassword']
             }
         }
 
@@ -127,32 +129,32 @@ def customizePom(pom) {
         root.children().last() + {
             resolveStrategy = Closure.DELEGATE_FIRST
 
-            description 'Serialize and Deserialize Json-LD into Java entities'
-            name 'Schema.org Java'
-            url 'https://github.com/mautini/schemaorg-java'
+            description 'Zilliqa java library'
+            name 'zilliqa.com Java'
+            url 'https://github.com/FireStack-Lab/LaksaJ'
             organization {
-                name 'com.github.mautini'
-                url 'https://github.com/mautini'
+                name 'com.zilliqa'
+                url 'https://github.com/zilliqa'
             }
             issueManagement {
                 system 'GitHub'
-                url 'https://github.com/mautini/schemaorg-java/issues'
+                url 'https://github.com/FireStack-Lab/LaksaJ/issues'
             }
             licenses {
                 license {
                     name 'Apache License 2.0'
-                    url 'https://github.com/mautini/schemaorg-java/blob/master/LICENSE'
+                    url 'https://github.com/FireStack-Lab/LaksaJ/blob/master/LICENSE'
                     distribution 'repo'
                 }
             }
             scm {
-                url 'https://github.com/mautini/schemaorg-java'
-                connection 'scm:git:git://github.com/mautini/schemaorg-java.git'
-                developerConnection 'scm:git:ssh://git@github.com:mautini/schemaorg-java.git'
+                url 'https://github.com/FireStack-Lab/LaksaJ'
+                connection 'scm:git:git://github.com/FireStack-Lab/LaksaJ.git'
+                developerConnection 'scm:git:ssh://git@github.com:FireStack-Lab/LaksaJ.git'
             }
             developers {
                 developer {
-                    name 'Mautini'
+                    name 'xiaohuo200@gmail.com'
                 }
             }
         }
