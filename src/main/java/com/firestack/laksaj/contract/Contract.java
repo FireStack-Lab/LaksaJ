@@ -2,7 +2,6 @@ package com.firestack.laksaj.contract;
 
 import com.firestack.laksaj.account.Account;
 import com.firestack.laksaj.account.Wallet;
-import com.firestack.laksaj.exception.ZilliqaAPIException;
 import com.firestack.laksaj.jsonrpc.HttpProvider;
 import com.firestack.laksaj.transaction.Transaction;
 import com.firestack.laksaj.transaction.TxStatus;
@@ -12,7 +11,6 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 

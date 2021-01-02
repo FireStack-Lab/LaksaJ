@@ -1,7 +1,8 @@
 package com.firestack.laksaj.crypto;
 
 import com.firestack.laksaj.utils.HashUtil;
-
+import org.bouncycastle.crypto.digests.SHA256Digest;
+import org.bouncycastle.crypto.macs.HMac;
 import org.bouncycastle.crypto.prng.SP800SecureRandomBuilder;
 import org.bouncycastle.jcajce.provider.asymmetric.ec.BCECPrivateKey;
 import org.bouncycastle.jcajce.provider.asymmetric.ec.BCECPublicKey;
@@ -10,13 +11,11 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.jce.spec.ECNamedCurveGenParameterSpec;
 import org.bouncycastle.jce.spec.ECNamedCurveParameterSpec;
 import org.bouncycastle.math.ec.ECPoint;
-import org.bouncycastle.crypto.digests.SHA256Digest;
-import org.bouncycastle.crypto.macs.HMac;
 import org.web3j.crypto.ECKeyPair;
 
+import java.math.BigInteger;
 import java.security.*;
 import java.util.Arrays;
-import java.math.BigInteger;
 
 public class Schnorr {
     static {

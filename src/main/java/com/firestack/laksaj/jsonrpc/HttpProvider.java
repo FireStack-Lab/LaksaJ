@@ -4,7 +4,9 @@ import com.firestack.laksaj.blockchain.*;
 import com.firestack.laksaj.exception.ZilliqaAPIException;
 import com.firestack.laksaj.transaction.Transaction;
 import com.firestack.laksaj.transaction.TransactionPayload;
+import com.firestack.laksaj.transaction.TxStatus;
 import com.firestack.laksaj.utils.Bech32;
+import com.google.common.base.Strings;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -16,9 +18,7 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class HttpProvider {
 
@@ -424,6 +424,37 @@ public class HttpProvider {
         return rep;
     }
 
+    public List<Transaction> createTransactions(List<Transaction> transactions) throws Exception {
+        List<Req> reqs = new ArrayList<>();
+        Map<String, Transaction> transactionMap = new HashMap<>();
+        for (int i = 0; i < transactions.size(); i++) {
+            String index = Integer.toString(i);
+            Transaction txn = transactions.get(i);
+            transactionMap.put(index, txn);
+            TransactionPayload payload = txn.toTransactionPayload();
+            Req req = Req.builder().id(index).jsonrpc("2.0").method("CreateTransaction").params(new Object[]{payload}).build();
+            reqs.add(req);
+        }
+        Response response = client.newCall(buildRequests(reqs)).execute();
+        String resultString = Objects.requireNonNull(response.body()).string();
+        Type type = new TypeToken<List<Rep<CreateTxResult>>>() {
+        }.getType();
+        List<Rep<CreateTxResult>> reps = gson.fromJson(resultString, type);
+        for (int i = 0; i < reps.size(); i++) {
+            CreateTxResult createTxResult = reps.get(i).getResult();
+            if (null == createTxResult) {
+                transactionMap.get(reps.get(i).getId()).setStatus(TxStatus.Rejected);
+                transactionMap.get(reps.get(i).getId()).setInfo(reps.get(i).getError().message);
+            } else if (Strings.isNullOrEmpty(createTxResult.TranID)) {
+                transactionMap.get(reps.get(i).getId()).setStatus(TxStatus.Rejected);
+                transactionMap.get(reps.get(i).getId()).setInfo(createTxResult.Info);
+            } else {
+                transactionMap.get(reps.get(i).getId()).setID(createTxResult.TranID);
+            }
+        }
+        return transactions;
+    }
+
     public Rep<String> getMinimumGasPrice() throws IOException, ZilliqaAPIException {
         Req req = Req.builder().id("1").jsonrpc("2.0").method("GetMinimumGasPrice").params(new String[]{""}).build();
         Response response = client.newCall(buildRequest(req)).execute();
@@ -528,6 +559,15 @@ public class HttpProvider {
                 .build();
     }
 
+    private Request buildRequests(List<Req> reqs) throws MalformedURLException {
+        RequestBody body = RequestBody.create(JSON, gson.toJson(reqs));
+        return new Request.Builder()
+                .post(body)
+                .url(new URL(this.url))
+                .build();
+    }
+
+
     @Data
     public static class BalanceResult {
         private String balance;
@@ -553,6 +593,13 @@ public class HttpProvider {
                     ", ContractAddress='" + ContractAddress + '\'' +
                     '}';
         }
+    }
+
+    @Data
+    public static class CreateTxError {
+        private Integer code;
+        private Object data;
+        private String message;
     }
 
     @Data

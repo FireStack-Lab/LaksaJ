@@ -3,8 +3,6 @@ package com.firestack.laksaj.utils;
 import com.firestack.laksaj.transaction.TxParams;
 import org.junit.Test;
 
-import java.util.Optional;
-
 public class TransactionUtilTest {
     @Test
     public void encodeTransactionProto() {

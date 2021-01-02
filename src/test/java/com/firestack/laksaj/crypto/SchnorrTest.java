@@ -14032,7 +14032,7 @@ public class SchnorrTest {
             signature = Schnorr.trySign(this.keys, this.msg, this.k);
         }
 
-        ECPoint pubKeyPoint = secp256k1.getCurve().decodePoint(this.keys.getPublicKey().toByteArray()) ;
+        ECPoint pubKeyPoint = secp256k1.getCurve().decodePoint(this.keys.getPublicKey().toByteArray());
         boolean res = Schnorr.verify(this.msg, signature, pubKeyPoint);
 
         Assert.assertTrue(signature.getR().equals(this.sig.getR()));

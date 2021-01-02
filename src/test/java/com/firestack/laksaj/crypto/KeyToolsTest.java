@@ -56,7 +56,7 @@ public class KeyToolsTest {
         privateKey = "e19d05c5452598e24caad4a0d85a49146f7be089515c905ae6a19e8a578a6930";
         System.out.println(KeyTools.getPublicKeyFromPrivateKey(privateKey, true));
         //3b7b12dc9fc38584e4baf021b1f37e4c41096dbde826762b27a7476f360a99c2a
-        System.out.println(KeyTools.getPublicKeyFromPrivateKey("a7da3f73462264e44562f003e2dbcf7add319bf4bb0798a83d1009f651a5c803",true));
+        System.out.println(KeyTools.getPublicKeyFromPrivateKey("a7da3f73462264e44562f003e2dbcf7add319bf4bb0798a83d1009f651a5c803", true));
     }
 
     @Test

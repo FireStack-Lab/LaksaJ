@@ -3,11 +3,9 @@ package com.firestack.laksaj.contract;
 import com.firestack.laksaj.account.Wallet;
 import com.firestack.laksaj.jsonrpc.HttpProvider;
 import com.firestack.laksaj.transaction.Transaction;
-import javafx.util.Pair;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.List;

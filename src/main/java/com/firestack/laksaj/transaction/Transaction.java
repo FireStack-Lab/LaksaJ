@@ -34,6 +34,8 @@ public class Transaction {
 
     private HttpProvider provider;
     private TxStatus status;
+    // indicate error message returned by api while creating
+    private String info;
 
     public TxParams toTransactionParam() throws IOException {
         return TxParams.builder()

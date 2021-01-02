@@ -3,7 +3,6 @@ package com.firestack.laksaj.jsonrpc;
 import com.firestack.laksaj.blockchain.*;
 import com.firestack.laksaj.exception.ZilliqaAPIException;
 import com.firestack.laksaj.transaction.Transaction;
-import com.google.gson.JsonObject;
 import okhttp3.OkHttpClient;
 import org.junit.Assert;
 import org.junit.Test;

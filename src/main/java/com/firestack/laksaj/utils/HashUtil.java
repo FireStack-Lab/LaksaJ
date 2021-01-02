@@ -12,7 +12,7 @@ public class HashUtil {
     public static String ALGO_IDENTIFIER = "aes-128-ctr";
 
 
-    public static byte[] hmacSha256(byte[] derivedKey,byte[] bytes) {
+    public static byte[] hmacSha256(byte[] derivedKey, byte[] bytes) {
         return Hashing.hmacSha256(derivedKey).hashBytes(bytes).asBytes();
     }
 
@@ -20,13 +20,13 @@ public class HashUtil {
         return Hashing.sha256().hashBytes(bytes).asBytes();
     }
 
-    public static byte[] generateMac(byte[] derivedKey, byte[] cipherText,byte[] iv) {
-        ByteBuffer byteBuffer = ByteBuffer.allocate(16 + cipherText.length+iv.length+ALGO_IDENTIFIER.getBytes().length);
-        byteBuffer.put(Arrays.copyOfRange(derivedKey,16,32));
+    public static byte[] generateMac(byte[] derivedKey, byte[] cipherText, byte[] iv) {
+        ByteBuffer byteBuffer = ByteBuffer.allocate(16 + cipherText.length + iv.length + ALGO_IDENTIFIER.getBytes().length);
+        byteBuffer.put(Arrays.copyOfRange(derivedKey, 16, 32));
         byteBuffer.put(cipherText);
         byteBuffer.put(iv);
         byteBuffer.put(ALGO_IDENTIFIER.getBytes());
-        return HashUtil.hmacSha256(derivedKey,byteBuffer.array());
+        return HashUtil.hmacSha256(derivedKey, byteBuffer.array());
     }
 
     public static byte[] encode(String key, String data) throws Exception {

@@ -1,5 +1,6 @@
 # LaksaJ
-LaksaJ -- Zilliqa Blockchain Java Library 
+
+LaksaJ -- Zilliqa Blockchain Java Library
 
 The project is still under development.
 
@@ -56,7 +57,7 @@ public class ValidateAddress {
 }
 ```
 
-### Validate checksum address 
+### Validate checksum address
 
 ```java
 package com.firestack.example;
@@ -238,7 +239,6 @@ public class SmartContractDeposit {
 
 ```
 
-
 ## Supports
 
 ### Account API
@@ -269,7 +269,6 @@ public class SmartContractDeposit {
 - [x] isInitialised isDeployed isRejected
 - [x] getState
 - [x] getAddressForContract
-
 
 ### Crypto API
 
@@ -351,6 +350,7 @@ public class SmartContractDeposit {
 - [x] isBase58
 - [x] bech32 encode decode
 - [x] fromBech32Address toBech32Address
+
 ## Build and Installation
 
 you can build jar using following command :
@@ -359,8 +359,7 @@ you can build jar using following command :
 gradle build -x test
 ```
 
-and you can also try our snapshot version by 
-
+and you can also try our snapshot version by
 
 gradle: (please see our example project)
 
@@ -379,9 +378,7 @@ dependencies {
 
 ```
 
-
-
-maven: 
+maven:
 
 ```xml
 <dependency>

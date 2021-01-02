@@ -220,7 +220,7 @@ public class Bech32 {
             throw new Exception("Invalid address format.");
         }
 
-        address = address.toLowerCase().replace("0x","");
+        address = address.toLowerCase().replace("0x", "");
 
         List<Integer> bits = convertBits(ByteUtil.hexStringToByteArray(address), 8, 5, false);
 
@@ -253,7 +253,7 @@ public class Bech32 {
             throw new Exception("Could not convert buffer to bytes");
         }
 
-        return Account.toCheckSumAddress(ByteUtil.byteArrayToHexString(buf)).replace("0x","");
+        return Account.toCheckSumAddress(ByteUtil.byteArrayToHexString(buf)).replace("0x", "");
     }
 
 

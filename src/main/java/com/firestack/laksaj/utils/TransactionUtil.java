@@ -21,11 +21,11 @@ public class TransactionUtil {
                 .setAmount(Message.ByteArray.newBuilder().setData(ByteString.copyFrom(BigIntegers.asUnsignedByteArray(16, amount))).build())
                 .setGasprice(Message.ByteArray.newBuilder().setData(ByteString.copyFrom(BigIntegers.asUnsignedByteArray(16, gasPrice))).build())
                 .setGaslimit(Long.valueOf(txParams.getGasLimit()));
-        if (null != txParams.getCode() && !txParams.getCode().isEmpty()){
+        if (null != txParams.getCode() && !txParams.getCode().isEmpty()) {
             builder.setCode(ByteString.copyFrom(txParams.getCode().getBytes()));
         }
 
-        if (null != txParams.getData() && !txParams.getData().isEmpty()){
+        if (null != txParams.getData() && !txParams.getData().isEmpty()) {
             builder.setData(ByteString.copyFrom(txParams.getData().getBytes()));
         }
 

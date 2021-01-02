@@ -1,6 +1,5 @@
 package com.firestack.laksaj.crypto;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 public class KeyStoreTest {

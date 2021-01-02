@@ -1,9 +1,8 @@
 package com.firestack.laksaj.blockchain;
 
 
-import com.google.gson.JsonArray;
-import lombok.Data;
 import lombok.Builder;
+import lombok.Data;
 
 import java.util.List;
 

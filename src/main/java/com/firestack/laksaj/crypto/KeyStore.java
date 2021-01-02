@@ -2,8 +2,8 @@ package com.firestack.laksaj.crypto;
 
 import com.firestack.laksaj.utils.ByteUtil;
 import com.google.gson.Gson;
-import lombok.Data;
 import lombok.Builder;
+import lombok.Data;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
@@ -72,7 +72,7 @@ public class KeyStore {
         SecretKeySpec secretKeySpec = new SecretKeySpec(encryptKey, "AES");
         cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec, ivParameterSpec);
         byte[] ciphertext = cipher.doFinal(ByteUtil.hexStringToByteArray(privateKey));
-        byte[] mac = generateMac(derivedKey, ciphertext,iv);
+        byte[] mac = generateMac(derivedKey, ciphertext, iv);
 
         //build struct
         CipherParams cipherParams = CipherParams.builder().iv(ByteUtil.byteArrayToHexString(iv)).build();
@@ -161,7 +161,7 @@ public class KeyStore {
                     .build();
             derivedKey = getDerivedKey(passphrase.getBytes(), scryptParams);
         }
-        String mac = ByteUtil.byteArrayToHexString(generateMac(derivedKey, ciphertext,iv));
+        String mac = ByteUtil.byteArrayToHexString(generateMac(derivedKey, ciphertext, iv));
         if (!mac.toUpperCase().equals(keystoreV3.crypto.mac.toUpperCase())) {
             throw new IllegalAccessException("Failed to decrypt.");
         }

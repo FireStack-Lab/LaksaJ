@@ -13,12 +13,7 @@ import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
-
-import static com.firestack.laksaj.contract.Contract.NIL_ADDRESS;
+import java.util.*;
 
 
 /**
@@ -94,6 +89,13 @@ public class Wallet {
                 }
             }
         }
+    }
+
+    public List<Transaction> batchSign(List<Transaction> transactions) throws Exception {
+        for (int i = 0; i < transactions.size(); i++) {
+            this.sign(transactions.get(i));
+        }
+        return transactions;
     }
 
     public Transaction sign(Transaction transaction) throws Exception {
