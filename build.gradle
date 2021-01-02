@@ -106,7 +106,7 @@ publishing {
             // snapshot
             url = "https://oss.sonatype.org/content/repositories/snapshots"
             // staging(release on page)
-            // url = "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+//             url = "https://oss.sonatype.org/service/local/staging/deploy/maven2"
             credentials {
                 username 'xiaohuo'
                 password System.properties['mavenpassword']
