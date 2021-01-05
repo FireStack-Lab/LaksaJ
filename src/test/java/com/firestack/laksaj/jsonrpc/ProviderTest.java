@@ -3,6 +3,7 @@ package com.firestack.laksaj.jsonrpc;
 import com.firestack.laksaj.blockchain.*;
 import com.firestack.laksaj.exception.ZilliqaAPIException;
 import com.firestack.laksaj.transaction.Transaction;
+import com.firestack.laksaj.transaction.TransactionStatus;
 import okhttp3.OkHttpClient;
 import org.junit.Assert;
 import org.junit.Test;
@@ -127,6 +128,12 @@ public class ProviderTest {
 
     }
 
+    @Test
+    public void getTransactionStatus() throws IOException {
+        HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
+        TransactionStatus transaction = client.getTransactionStatus("347a3d1f7393843b547b2d341a69b092473a26cb531eb8aabaffe1c790e1c70e").getResult();
+        System.out.println(transaction);
+    }
 
     @Test
     public void getTransaction() throws IOException {

@@ -4,6 +4,7 @@ import com.firestack.laksaj.exception.ZilliqaAPIException;
 import com.firestack.laksaj.jsonrpc.HttpProvider;
 
 import java.io.IOException;
+
 public class SmartContractDeposit {
     public static void main(String[] args) throws IOException, InterruptedException, ZilliqaAPIException {
         HttpProvider client = new HttpProvider("https://api.zilliqa.com/");

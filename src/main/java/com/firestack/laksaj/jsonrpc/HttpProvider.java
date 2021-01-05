@@ -4,6 +4,7 @@ import com.firestack.laksaj.blockchain.*;
 import com.firestack.laksaj.exception.ZilliqaAPIException;
 import com.firestack.laksaj.transaction.Transaction;
 import com.firestack.laksaj.transaction.TransactionPayload;
+import com.firestack.laksaj.transaction.TransactionStatus;
 import com.firestack.laksaj.transaction.TxStatus;
 import com.firestack.laksaj.utils.Bech32;
 import com.google.common.base.Strings;
@@ -27,6 +28,50 @@ public class HttpProvider {
     private static final MediaType JSON
             = MediaType.parse("application/json; charset=utf-8");
     private String url;
+    private static final Map<Integer, Map<Integer, String>> transactionStatusMap = new HashMap<>();
+
+    static {
+        transactionStatusMap.put(0, new HashMap<Integer, String>() {
+            {
+                put(0, "Transaction not found");
+                put(1, "Pending - Dispatched");
+            }
+        });
+
+        transactionStatusMap.put(1, new HashMap<Integer, String>() {
+            {
+                put(2, "Pending - Soft-confirmed (awaiting Tx block generation)");
+                put(4, "Pending - Nonce is higher than expected");
+                put(5, "Pending - Microblock gas limit exceeded");
+                put(6, "Pending - Consensus failure in network");
+            }
+        });
+
+        transactionStatusMap.put(2, new HashMap<Integer, String>() {
+            {
+                put(2, "Confirmed");
+                put(10, "Rejected - Transaction caused math error");
+                put(11, "Rejected - Scilla invocation error");
+                put(12, "Rejected - Contract account initialization error");
+                put(13, "Rejected - Invalid source account");
+                put(14, "Rejected - Gas limit higher than shard gas limit");
+                put(15, "Rejected - Unknown transaction type");
+                put(16, "Rejected - Transaction sent to wrong shard");
+                put(17, "Rejected - Contract & source account cross-shard issue");
+                put(18, "Rejected - Code size exceeded limit");
+                put(19, "Rejected - Transaction verification failed");
+                put(20, "Rejected - Gas limit too low");
+                put(21, "Rejected - Insufficient balance");
+                put(22, "Rejected - Insufficient gas to invoke Scilla checker");
+                put(23, "Rejected - Duplicate transaction exists");
+                put(24, "Rejected - Transaction with higher gas price exists");
+                put(25, "Rejected - Invalid destination address");
+                put(26, "Rejected - Failed to add contract account to state");
+                put(27, "Rejected - Nonce is lower than expected");
+                put(255, "Rejected - Internal error");
+            }
+        });
+    }
 
     public HttpProvider(String url) {
         this.url = url;
@@ -466,6 +511,21 @@ public class HttpProvider {
             Pair pair = parseError(resultString);
             throw new ZilliqaAPIException(pair.getMessage(), pair.getCode());
         }
+        return rep;
+    }
+
+    public Rep<TransactionStatus> getTransactionStatus(String hash) throws IOException {
+        Req req = Req.builder().id("1").jsonrpc("2.0").method("GetTransactionStatus").params(new String[]{hash}).build();
+        Response response = client.newCall(buildRequest(req)).execute();
+        String resultString = Objects.requireNonNull(response.body()).string();
+        Type type = new TypeToken<Rep<TransactionStatus>>() {
+        }.getType();
+        Rep<TransactionStatus> rep = gson.fromJson(resultString, type);
+        if (rep.getResult() == null) {
+            throw new IOException("get result error = " + resultString);
+        }
+        TransactionStatus status = rep.getResult();
+        rep.getResult().setInfo(transactionStatusMap.get(status.getModificationState()).get(status.getStatus()));
         return rep;
     }
 
