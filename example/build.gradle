@@ -15,5 +15,5 @@ repositories {
 }
 
 dependencies {
-    compile group: 'org.firestack', name: 'laksaj', version: '1.0.7-SNAPSHOT'
+    compile group: 'org.firestack', name: 'laksaj', version: '1.0.9-SNAPSHOT'
 }

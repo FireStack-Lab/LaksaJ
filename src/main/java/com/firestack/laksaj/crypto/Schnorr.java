@@ -43,13 +43,12 @@ public class Schnorr {
         return new ECKeyPair(privateKey.getD(), new BigInteger(1, publicKey.getQ().getEncoded(true)));
     }
 
-    public static Signature sign(ECKeyPair kp, byte[] message) throws NoSuchAlgorithmException {
-//        SecureRandom drbg = getDRBG(message);
-        SecureRandom sha1Prng = SecureRandom.getInstance("SHA1PRNG");
+    public static Signature sign(ECKeyPair kp, byte[] message) {
+        SecureRandom drbg = getDRBG(message);
 
         int len = secp256k1.getN().bitLength() / 8;
         byte[] bytes = new byte[len];
-        sha1Prng.nextBytes(bytes);
+        drbg.nextBytes(bytes);
 
         Signature signature = null;
         while (signature == null) {
@@ -150,10 +149,11 @@ public class Schnorr {
         return r1.equals(sig.getR());
     }
 
+    // use custom secure random function to solve blocked issue
     private static SecureRandom getDRBG(byte[] message) {
         SHA256Digest sha256 = new SHA256Digest();
         HMac hMac = new HMac(sha256);
-        return new SP800SecureRandomBuilder()
+        return new SP800SecureRandomBuilder(new CustomSecureRandom(), false)
                 .setEntropyBitsRequired(ENT_BITS)
                 .setPersonalizationString(ALG)
                 .buildHMAC(hMac, message, true);
