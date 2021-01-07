@@ -43,11 +43,13 @@ public class Schnorr {
         return new ECKeyPair(privateKey.getD(), new BigInteger(1, publicKey.getQ().getEncoded(true)));
     }
 
-    public static Signature sign(ECKeyPair kp, byte[] message) {
-        SecureRandom drbg = getDRBG(message);
+    public static Signature sign(ECKeyPair kp, byte[] message) throws NoSuchAlgorithmException {
+//        SecureRandom drbg = getDRBG(message);
+        SecureRandom sha1Prng = SecureRandom.getInstance("SHA1PRNG");
+
         int len = secp256k1.getN().bitLength() / 8;
         byte[] bytes = new byte[len];
-        drbg.nextBytes(bytes);
+        sha1Prng.nextBytes(bytes);
 
         Signature signature = null;
         while (signature == null) {

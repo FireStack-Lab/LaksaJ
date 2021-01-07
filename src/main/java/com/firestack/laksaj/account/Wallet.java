@@ -138,7 +138,7 @@ public class Wallet {
 
     }
 
-    public Transaction signWith(Transaction tx, Account signer) throws IOException {
+    public Transaction signWith(Transaction tx, Account signer) throws IOException, NoSuchAlgorithmException {
         HttpProvider.BalanceResult result;
         if (Objects.isNull(signer)) {
             throw new IllegalArgumentException("account not exists");
