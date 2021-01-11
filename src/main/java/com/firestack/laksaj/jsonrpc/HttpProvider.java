@@ -2,10 +2,7 @@ package com.firestack.laksaj.jsonrpc;
 
 import com.firestack.laksaj.blockchain.*;
 import com.firestack.laksaj.exception.ZilliqaAPIException;
-import com.firestack.laksaj.transaction.Transaction;
-import com.firestack.laksaj.transaction.TransactionPayload;
-import com.firestack.laksaj.transaction.TransactionStatus;
-import com.firestack.laksaj.transaction.TxStatus;
+import com.firestack.laksaj.transaction.*;
 import com.firestack.laksaj.utils.Bech32;
 import com.google.common.base.Strings;
 import com.google.common.reflect.TypeToken;
@@ -526,6 +523,19 @@ public class HttpProvider {
         }
         TransactionStatus status = rep.getResult();
         rep.getResult().setInfo(transactionStatusMap.get(status.getModificationState()).get(status.getStatus()));
+        return rep;
+    }
+
+    public Rep<PendingStatus> getPendingTnx(String hash) throws  IOException {
+        Req req = Req.builder().id("1").jsonrpc("2.0").method("GetPendingTxn").params(new String[]{hash}).build();
+        Response response = client.newCall(buildRequest(req)).execute();
+        String resultString = Objects.requireNonNull(response.body()).string();
+        Type type = new TypeToken<Rep<PendingStatus>>() {
+        }.getType();
+        Rep<PendingStatus> rep = gson.fromJson(resultString, type);
+        if (rep.getResult() == null) {
+            throw new IOException("get result error = " + resultString);
+        }
         return rep;
     }
 
