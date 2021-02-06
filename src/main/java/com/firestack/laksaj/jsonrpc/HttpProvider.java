@@ -8,6 +8,7 @@ import com.google.common.base.Strings;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonSyntaxException;
 import lombok.Builder;
 import lombok.Data;
 import okhttp3.*;
@@ -545,11 +546,15 @@ public class HttpProvider {
         String resultString = Objects.requireNonNull(response.body()).string();
         Type type = new TypeToken<Rep<Transaction>>() {
         }.getType();
-        Rep<Transaction> rep = gson.fromJson(resultString, type);
-        if (rep.getResult() == null) {
-            throw new IOException("get result error = " + resultString);
+        try {
+            Rep<Transaction> rep = gson.fromJson(resultString, type);
+            if (rep.getResult() == null) {
+                throw new IOException("get result error = " + resultString);
+            }
+            return rep;
+        } catch (JsonSyntaxException e) {
+            throw new IOException("get wrong result: " + resultString);
         }
-        return rep;
     }
 
     public Rep<Transaction> getTransaction32(String hash) throws Exception {
