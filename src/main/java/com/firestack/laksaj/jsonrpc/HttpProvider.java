@@ -366,16 +366,20 @@ public class HttpProvider {
         String resultString = Objects.requireNonNull(response.body()).string();
         Type type = new TypeToken<Rep<BalanceResult>>() {
         }.getType();
-        Rep<BalanceResult> rep = gson.fromJson(resultString, type);
 
-//        Assert.assertNotNull("result is null, check your account address!", rep.getResult());
-        if (null == rep.getResult()) {
-            BalanceResult balanceResult = new BalanceResult();
-            balanceResult.setBalance("0");
-            balanceResult.setNonce("0");
-            rep.setResult(balanceResult);
+        try {
+            Rep<BalanceResult> rep = gson.fromJson(resultString, type);
+            if (null == rep.getResult()) {
+                BalanceResult balanceResult = new BalanceResult();
+                balanceResult.setBalance("0");
+                balanceResult.setNonce("0");
+                rep.setResult(balanceResult);
+            }
+            return rep;
+        } catch (JsonSyntaxException e) {
+            throw new IOException("get wrong result: " + resultString);
         }
-        return rep;
+
     }
 
     public Rep<BalanceResult> getBalance32(String address) throws Exception {
