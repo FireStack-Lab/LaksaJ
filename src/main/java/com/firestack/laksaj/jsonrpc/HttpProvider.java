@@ -18,6 +18,7 @@ import java.lang.reflect.Type;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 public class HttpProvider {
 
@@ -27,6 +28,7 @@ public class HttpProvider {
             = MediaType.parse("application/json; charset=utf-8");
     private String url;
     private static final Map<Integer, Map<Integer, String>> transactionStatusMap = new HashMap<>();
+    private int retry = 3;
 
     static {
         transactionStatusMap.put(0, new HashMap<Integer, String>() {
@@ -78,6 +80,11 @@ public class HttpProvider {
     public HttpProvider(String url, OkHttpClient client) {
         this.url = url;
         this.client = client;
+    }
+
+    public HttpProvider(String url, int retry) {
+        this.url = url;
+        this.retry = retry;
     }
 
     //Blockchain-related methods
@@ -382,7 +389,26 @@ public class HttpProvider {
 
     }
 
-    public Rep<BalanceResult> getBalance32(String address) throws Exception {
+
+    public Rep<BalanceResult> getBalanceWithRetry(String address) throws IOException, InterruptedException {
+        int leftRetry = this.retry;
+        double sleep = 1.0;
+        while (leftRetry > 0) {
+            try {
+                Rep<BalanceResult> status = this.getBalance(address);
+                return status;
+            } catch (Exception e) {
+                TimeUnit.SECONDS.sleep((long) Math.pow(2.0,sleep));
+            }
+            leftRetry--;
+            sleep++;
+        }
+
+        throw new IOException("failed after retry");
+    }
+
+
+        public Rep<BalanceResult> getBalance32(String address) throws Exception {
         return getBalance(Bech32.fromBech32Address(address));
     }
 
@@ -522,13 +548,34 @@ public class HttpProvider {
         String resultString = Objects.requireNonNull(response.body()).string();
         Type type = new TypeToken<Rep<TransactionStatus>>() {
         }.getType();
-        Rep<TransactionStatus> rep = gson.fromJson(resultString, type);
-        if (rep.getResult() == null) {
-            throw new IOException("get result error = " + resultString);
+        try {
+            Rep<TransactionStatus> rep = gson.fromJson(resultString, type);
+            if (rep.getResult() == null) {
+                throw new IOException("get result error = " + resultString);
+            }
+            TransactionStatus status = rep.getResult();
+            rep.getResult().setInfo(transactionStatusMap.get(status.getModificationState()).get(status.getStatus()));
+            return rep;
+        } catch (JsonSyntaxException e) {
+            throw new IOException("get wrong result: " + resultString);
         }
-        TransactionStatus status = rep.getResult();
-        rep.getResult().setInfo(transactionStatusMap.get(status.getModificationState()).get(status.getStatus()));
-        return rep;
+    }
+
+    public Rep<TransactionStatus> getTransactionStatusWithRetry(String hash) throws IOException, InterruptedException {
+        int leftRetry = this.retry;
+        double sleep = 1.0;
+        while (leftRetry > 0) {
+            try {
+                Rep<TransactionStatus> status = this.getTransactionStatus(hash);
+                return status;
+            } catch (Exception e) {
+                TimeUnit.SECONDS.sleep((long) Math.pow(2.0,sleep));
+            }
+            leftRetry--;
+            sleep++;
+        }
+
+        throw new IOException("failed after retry");
     }
 
     public Rep<PendingStatus> getPendingTnx(String hash) throws  IOException {

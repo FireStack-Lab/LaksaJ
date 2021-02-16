@@ -104,6 +104,13 @@ public class ProviderTest {
     }
 
     @Test
+    public void getBalanceWithRetry() throws IOException, InterruptedException {
+        HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
+        HttpProvider.BalanceResult balance = client.getBalanceWithRetry("AE9C49CAF0D0BC9D7C769391E8BDA2028F824CF3F".toLowerCase()).getResult();
+        Assert.assertNotNull(balance.getBalance());
+    }
+
+    @Test
     public void getBalance32() throws Exception {
         HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
         HttpProvider.BalanceResult balance = client.getBalance32("zil1z6rpmumewzrmdz44wu9hgvdwrs5xgptlzd6kec").getResult();
@@ -132,7 +139,14 @@ public class ProviderTest {
     @Test
     public void getTransactionStatus() throws IOException {
         HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
-        TransactionStatus transaction = client.getTransactionStatus("347a3d1f7393843b547b2d341a69b092473a26cb531eb8aabaffe1c790e1c70e").getResult();
+        TransactionStatus transaction = client.getTransactionStatus("db89c9998c5ba10b2ebd00116e0b5bd19339a54aed2f5d5bdc8b4e94ebd81f14").getResult();
+        System.out.println(transaction);
+    }
+
+    @Test
+    public void getTransactionStatusWithRetry() throws IOException, InterruptedException {
+        HttpProvider client = new HttpProvider("https://api.zilliqa.com/");
+        TransactionStatus transaction = client.getTransactionStatusWithRetry("db89c9998c5ba10b2ebd00116e0b5bd19339a54aed2f5d5bdc8b4e94ebd81f14").getResult();
         System.out.println(transaction);
     }
 
